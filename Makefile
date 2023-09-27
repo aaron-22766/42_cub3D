@@ -6,7 +6,7 @@
 #    By: lfiorini <lfiorini@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 00:37:15 by lfiorini          #+#    #+#              #
-#    Updated: 2023/09/21 02:32:12 by lfiorini         ###   ########.fr        #
+#    Updated: 2023/09/21 18:10:50 by lfiorini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,17 @@ NAME		= cub3D
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror #-g3 -fsanitize=address
-
+FRAMEWORKS	= -framework Cocoa -framework OpenGL -framework IOKit
 
 # DIRECTORIES #
 
-SRCS_DIR	= ./sources/
-OBJS_DIR	= ./objects/
-INC_DIR		= ./include/
-LIBFT_DIR	= ./libraries/libft/
-MLX_DIR		= ./libraries/minilibx/
+SRCS_DIR	= sources/
+OBJS_DIR	= objects/
+INC_DIR		= include/
+LIBFT_DIR	= libraries/libft/
+MLX_DIR		= libraries/MLX42/
 
-MLX			= $(MLX_DIR)libmlx.a
+LIB_MLX42	= $(MLX_DIR)build/libmlx42.a
 LIBFT		= $(LIBFT_DIR)libft.a
 INCLUDE		= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
@@ -47,7 +47,7 @@ libmlx:
 			
 
 $(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lmlx -lmlx -Llibft -lft $(FRAMEWORKS)
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c
 				@mkdir -p $(OBJS_DIR)
@@ -58,11 +58,10 @@ clean:
 			$(MAKE) -C $(LIBFT_DIR) clean
 			$(MAKE) -C $(MLX_DIR) clean
 			
-fclean:		
-			rm -rf $(OBJS_DIR)
+fclean:		clean
 			rm -f $(NAME)
-			$(MAKE) -C $(LIBFT_DIR) fclean
-			$(MAKE) -C $(MLX_DIR) fclean
+			rm -f $(LIBFT)
+			rm -f $(LIB_MLX42)
 
 re:			fclean all
 

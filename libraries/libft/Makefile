@@ -79,14 +79,14 @@ DEPS		= $(addprefix ${OBJS_DIR}, $(addsuffix .d, $(LIBFT_F))) \
 LIBFT_DIR	= libft/
 GNL_DIR		= get_next_line/
 PRINTF_DIR	= ft_printf/
-OBJS_DIR	= objs/
+OBJS_DIR	= objects/
 
 
 # FLAGS
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
-INCLUDE		= -I./include/
+INCLUDE		+= -I./include
 
 
 # RULES
@@ -100,13 +100,13 @@ $(NAME): 	$(OBJS)
 
 ${OBJS_DIR}%.o:  ${LIBFT_DIR}%.c 
 			@mkdir -p $(dir $@)
-			$(CC) -c $(CFLAGS) -MMD -MP  $< -o $@
+			$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP  $< -o $@
 ${OBJS_DIR}%.o:  ${GNL_DIR}%.c
 			@mkdir -p $(dir $@)
-			$(CC) -c $(CFLAGS) -MMD -MP $< -o $@
+			$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP $< -o $@
 ${OBJS_DIR}%.o:  ${PRINTF_DIR}%.c 
 			@mkdir -p $(dir $@)
-			$(CC) -c $(CFLAGS) -MMD -MP $< -o $@
+			$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP $< -o $@
 
 clean:
 			${RM} $(OBJS_DIR)
