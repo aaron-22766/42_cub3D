@@ -6,7 +6,7 @@
 #    By: lfiorini <lfiorini@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 00:37:15 by lfiorini          #+#    #+#              #
-#    Updated: 2023/09/21 18:10:50 by lfiorini         ###   ########.fr        #
+#    Updated: 2023/10/02 22:19:59 by lfiorini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ INC_DIR		= include/
 LIBFT_DIR	= libraries/libft/
 MLX_DIR		= libraries/MLX42/
 
-LIB_MLX42	= $(MLX_DIR)build/libmlx42.a
-LIBFT		= $(LIBFT_DIR)libft.a
-INCLUDE		= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+LIB_MLX42	= libraries/MLX42/build/libmlx42.a
+LIBFT		= libraries/libft/libft.a
+INCLUDE		= -I./ -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
 
 FILES		= main
 
@@ -37,31 +37,40 @@ OBJS		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
 # RULES #
 
-all:		libft libmlx $(NAME)
+all:		libft install_glfw $(NAME)
 
 libft:
 			$(MAKE) -C $(LIBFT_DIR)
 
-libmlx:
-			$(MAKE) -lglfw -C $(MLX_DIR)
-			
+# libmlx:
+# 			$(MAKE) -lglfw -C $(MLX_DIR)
 
-$(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lmlx -lmlx -Llibft -lft $(FRAMEWORKS)
+install_glfw:
+	@if [ ! -f $(LIB_MLX42) ]; then \
+		git submodule update --init --recursive --remote; \
+		brew uninstall glfw; \
+		cmake -S libraries/MLX42/ -B libraries/MLX42/build -DGLFW_FETCH=1; \
+		make -C libraries/MLX42/build; \
+		brew install glfw; \
+		echo "GLFW installed"; \
+	fi
+
+$(NAME):	$(LIBFT) $(LIB_MLX42) $(OBJS)
+			$(CC) $(INCLUDE) $(CFLAGS) $(LIBFT) $(LIB_MLX42) $(FRAMEWORKS) -o $(NAME) $(OBJS) 
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c
 				@mkdir -p $(OBJS_DIR)
-				$(CC) $(CFLAGS) -c $< -o $@
-				
+				$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
+
+$(LIB_MLX42): install_glfw
+
 clean:
 			rm -rf $(OBJS_DIR)
 			$(MAKE) -C $(LIBFT_DIR) clean
-			$(MAKE) -C $(MLX_DIR) clean
 			
 fclean:		clean
 			rm -f $(NAME)
 			rm -f $(LIBFT)
-			rm -f $(LIB_MLX42)
 
 re:			fclean all
 

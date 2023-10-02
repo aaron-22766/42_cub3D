@@ -1,4 +1,6 @@
 [submodule "libraries/MLX42"]
 	path = libraries/MLX42
 	url = https://github.com/codam-coding-college/MLX42.git
-	
+[submodule "MLX42"]
+	path = MLX42
+	url = https://github.com/codam-coding-college/MLX42.git

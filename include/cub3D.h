@@ -6,7 +6,7 @@
 /*   By: lfiorini <lfiorini@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 00:37:11 by lfiorini          #+#    #+#             */
-/*   Updated: 2023/09/21 02:35:11 by lfiorini         ###   ########.fr       */
+/*   Updated: 2023/10/02 22:11:06 by lfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include "libft.h"
+# include "../libraries/libft/include/libft.h"
 
 
 # ifndef HEIGHT
