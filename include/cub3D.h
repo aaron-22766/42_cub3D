@@ -6,7 +6,18 @@
 # include <string.h>
 # include <sys/errno.h>
 # include "../libraries/libft/include/libft.h"
+# include "../libraries/MLX42/include/MLX42/MLX42.h"
+# include "utils.h"
+# include "parser.h"
 
+
+/**
+ * @brief Window height & width in pixels
+ * 
+ * @note Default values are 720p (1280x720)
+ * 
+ * 
+ */
 
 # ifndef HEIGHT
 #  define HEIGHT 720
@@ -16,20 +27,24 @@
 #  define WIDTH 1280
 # endif
 
+
+typedef struct s_map	t_map;
+typedef struct s_parser	t_parser;
+typedef struct s_position	t_position;
+
+
+/**
+ * @brief Game structure
+ * 
+ */
+
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
+	mlx_t		*mlx;
+	t_parser	*parser;
+	void		*win;
 }	t_game;
 
-enum e_errors
-{
-	ERR_ERRNO,
-	ERR_MEM
-};
-
-void	parser(int argc, char **argv);
-
-void	ft_perror(int err, char *context);
+void	key_hook(t_game *game);
 
 #endif

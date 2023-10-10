@@ -14,11 +14,12 @@ MLX_DIR		= libraries/MLX42/
 
 LIB_MLX42	= libraries/MLX42/build/libmlx42.a
 LIBFT		= libraries/libft/libft.a
-INCLUDE		= -I./ -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
+INCLUDE		= -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
 
 FILES		= main \
-			parser \
-			error
+			parser/parser \
+			utils/error \
+			game/hook 
 
 
 SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
@@ -27,7 +28,7 @@ OBJS		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
 # RULES #
 
-all:		libft install_glfw $(NAME)
+all:		libft install_glfw object_directories $(NAME)
 
 libft:
 			$(MAKE) -C $(LIBFT_DIR)
@@ -41,6 +42,12 @@ install_glfw:
 		brew install glfw; \
 		echo "GLFW installed"; \
 	fi
+
+object_directories:
+			@mkdir -p $(OBJS_DIR)
+			@mkdir -p $(OBJS_DIR)game
+			@mkdir -p $(OBJS_DIR)parser
+			@mkdir -p $(OBJS_DIR)utils
 
 $(NAME):	$(LIBFT) $(LIB_MLX42) $(OBJS)
 			$(CC) $(INCLUDE) $(CFLAGS) $(LIBFT) $(LIB_MLX42) $(FRAMEWORKS) -o $(NAME) $(OBJS) 

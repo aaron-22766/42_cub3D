@@ -2,9 +2,10 @@
 
 int	main(int argc, char **argv)
 {
-	// t_game	game;
+	t_game	game;
 
-	parser(argc, argv);
+	game.parser = parser(argc, argv);
+	key_hook(&game);
 	// if (argc == 2)
 	// {
 	// 	game = init_game(argv[1]);
