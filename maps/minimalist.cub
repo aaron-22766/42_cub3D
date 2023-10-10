@@ -1,0 +1,28 @@
+NO textures/wood.png     
+SO textures/pillar.png
+
+WE textures/greystone.png
+EA          textures/mossy.png   
+
+
+F 153,107,122
+C 115,116,153
+
+
+1111111111111111111111111
+1                       1
+1               X       1
+1                       1
+1                       1
+1                       1
+1                       1
+1    X        N         1
+1                       1
+1                       1
+1                  X    1
+1111111111111111111111111
+
+
+
+
+
