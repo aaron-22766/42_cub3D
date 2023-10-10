@@ -1,25 +1,20 @@
 NAME		=	cub3D
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
-FRAMEWORKS	=	-framework Cocoa -framework OpenGL -framework IOKit
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror #-g3 -fsanitize=address
+FRAMEWORKS	= -framework Cocoa -framework OpenGL -framework IOKit
 
 # DIRECTORIES #
 
-SRCS_DIR	=	sources/
-OBJS_DIR	=	objects/
-INC_DIR		=	include/
-LIBFT_DIR	=	libraries/libft/
-MLX_DIR		=	libraries/MLX42/
+SRCS_DIR	= sources/
+OBJS_DIR	= objects/
+INC_DIR		= include/
+LIBFT_DIR	= libraries/libft/
+MLX_DIR		= libraries/MLX42/
 
-# LIBRARIES #
-LIBS 		=	-L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
-LIB_MLX42	=	libraries/MLX42/build/libmlx42.a
-LIBFT		=	libraries/libft/libft.a
-INCLUDE		=	-I./ -I./include\
-				-I./libraries/libft/include\
-				-I./libraries/MLX42\
-				-I./libraries/MLX42/include/MLX42
+LIB_MLX42	= libraries/MLX42/build/libmlx42.a
+LIBFT		= libraries/libft/libft.a
+INCLUDE		= -I./ -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
 
 FILES		= main \
 			parser \
