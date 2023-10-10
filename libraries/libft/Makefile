@@ -21,6 +21,8 @@ LIBFT_F		:= ft_atoi \
 			ft_isdigit \
 			ft_isprint \
 			ft_itoa \
+			ft_uitoa \
+			ft_ultoa_hex \
 			ft_memchr \
 			ft_memcmp \
 			ft_memcpy \
@@ -36,13 +38,17 @@ LIBFT_F		:= ft_atoi \
 			ft_striteri \
 			ft_strjoin \
 			ft_strlcat \
+			ft_strcpy \
 			ft_strlcpy \
+			ft_strncpy \
 			ft_strlen \
 			ft_strmapi \
 			ft_strncmp \
 			ft_strnstr \
 			ft_strrchr \
+			ft_strchr_index \
 			ft_strtrim \
+			ft_strmerge \
 			ft_substr \
 			ft_tolower \
 			ft_toupper \
@@ -57,13 +63,26 @@ LIBFT_F		:= ft_atoi \
 			ft_lstsize
 GNL_F		:= get_next_line \
 			get_next_line_utils
-PRINTF_F	:= ft_printf \
-			ft_printf_utils \
-			print_chars \
-			print_digits \
-			ft_parser \
-			ft_converter \
-			ft_printf_bonus
+PRINTF_F	:= ft_asprintf \
+			ft_eprintf \
+			ft_vasprintf \
+			ft_dprintf \
+			ft_printf \
+			ft_vdprintf \
+			pf_helpers/pf_apply_alternate \
+			pf_helpers/pf_get_string \
+			pf_helpers/pf_apply_precision \
+			pf_helpers/pf_get_uint \
+			pf_helpers/pf_apply_width \
+			pf_helpers/pf_apply_zero_padding \
+			pf_helpers/pf_put_char \
+			pf_helpers/pf_get_hex \
+			pf_helpers/pf_put_char_ret \
+			pf_helpers/pf_get_int \
+			pf_helpers/pf_valid_tag \
+			pf_helpers/pf_get_percent \
+			pf_helpers/pf_write_string_ret \
+			pf_helpers/pf_get_pointer
 
 SRCS 		= $(addprefix ${LIBFT_DIR}, $(addsuffix .c, $(LIBFT_F))) \
 			$(addprefix ${GNL_DIR}, $(addsuffix .c, $(GNL_F))) \
@@ -78,7 +97,7 @@ DEPS		= $(addprefix ${OBJS_DIR}, $(addsuffix .d, $(LIBFT_F))) \
 # DIRECTORIES
 LIBFT_DIR	= libft/
 GNL_DIR		= get_next_line/
-PRINTF_DIR	= ft_printf/
+PRINTF_DIR	= ft_printf_family/
 OBJS_DIR	= objects/
 
 

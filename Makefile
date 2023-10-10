@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfiorini <lfiorini@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: arabenst <arabenst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 00:37:15 by lfiorini          #+#    #+#              #
-#    Updated: 2023/10/02 22:19:59 by lfiorini         ###   ########.fr        #
+#    Updated: 2023/10/10 15:14:07 by arabenst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ LIB_MLX42	= libraries/MLX42/build/libmlx42.a
 LIBFT		= libraries/libft/libft.a
 INCLUDE		= -I./ -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
 
-FILES		= main
+FILES		= main \
+			parser \
+			error
 
 
 SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

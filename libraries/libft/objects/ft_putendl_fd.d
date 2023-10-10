@@ -1,8 +1,17 @@
-objects/ft_putendl_fd.o: libft/ft_putendl_fd.c include/libft.h \
-  include/get_next_line.h include/ft_printf.h
+objects/ft_putendl_fd.o: libft/ft_putendl_fd.c libft/../include/libft.h \
+  include/get_next_line.h include/../ft_printf_family/ft_printf_family.h \
+  include/../ft_printf_family/../include/libft.h \
+  include/../ft_printf_family/pf_helpers/pf_helpers.h \
+  include/../ft_printf_family/pf_helpers/../ft_printf_family.h
 
-include/libft.h:
+libft/../include/libft.h:
 
 include/get_next_line.h:
 
-include/ft_printf.h:
+include/../ft_printf_family/ft_printf_family.h:
+
+include/../ft_printf_family/../include/libft.h:
+
+include/../ft_printf_family/pf_helpers/pf_helpers.h:
+
+include/../ft_printf_family/pf_helpers/../ft_printf_family.h:

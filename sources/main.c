@@ -1,23 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lfiorini <lfiorini@student.42heilbronn.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 00:38:22 by lfiorini          #+#    #+#             */
-/*   Updated: 2023/10/02 22:12:00 by lfiorini         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3d.h"
+#include "../include/cub3D.h"
 
 int	main(int argc, char **argv)
 {
 	// t_game	game;
 
-	(void)argc;
-	(void)argv;
+	parser(argc, argv);
 	// if (argc == 2)
 	// {
 	// 	game = init_game(argv[1]);
