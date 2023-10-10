@@ -19,11 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include "cub3D.h"
-
-typedef struct s_game		t_game;
-typedef struct s_map		t_map;
-typedef struct s_parser		t_parser;
-typedef struct s_position	t_position;
+# include "parser.h"
 
 /**
  * @brief Error codes.

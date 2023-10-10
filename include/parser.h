@@ -3,6 +3,8 @@
 # define PARSER_H
 
 # include "cub3D.h"
+# include "utils.h"
+
 typedef struct s_position	t_position;
 
 /**
@@ -25,10 +27,10 @@ typedef struct s_map
 typedef struct s_parser
 {
 	t_map			*map;
-	mlx_texture_t	wall_n_txt;
-	mlx_texture_t	wall_s_txt;
-	mlx_texture_t	wall_w_txt;
-	mlx_texture_t	wall_e_txt;
+	mlx_texture_t	*wall_n_txt;
+	mlx_texture_t	*wall_s_txt;
+	mlx_texture_t	*wall_w_txt;
+	mlx_texture_t	*wall_e_txt;
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
 	double			orientation;

@@ -1,3 +1,4 @@
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -27,9 +28,12 @@
 #  define WIDTH 1280
 # endif
 
+# ifndef SPEED
+#  define SPEED 0.1
+# endif
 
-typedef struct s_map	t_map;
-typedef struct s_parser	t_parser;
+typedef struct s_map		t_map;
+typedef struct s_parser		t_parser;
 typedef struct s_position	t_position;
 
 
@@ -40,9 +44,17 @@ typedef struct s_position	t_position;
 
 typedef struct s_game
 {
-	mlx_t		*mlx;
-	t_parser	*parser;
-	void		*win;
+	mlx_t			*mlx;
+	int32_t			window_height;
+	int32_t			window_width;
+	t_map			*map;
+	mlx_texture_t	*no_texture;
+	mlx_texture_t	*so_texture;
+	mlx_texture_t	*we_texture;
+	mlx_texture_t	*ea_texture;
+	double			speed;
+	t_position		player_pos;
+	t_parser		*parser;
 }	t_game;
 
 void	key_hook(t_game *game);

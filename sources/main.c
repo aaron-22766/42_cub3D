@@ -4,15 +4,9 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	if (argc != 2)
+		ft_perror(ERR_ARGS, "Invalid argument.\nUsage: ./cub3D [filename].cub");
 	game.parser = parser(argc, argv);
-	key_hook(&game);
-	// if (argc == 2)
-	// {
-	// 	game = init_game(argv[1]);
-	// 	if (game.error == 0)
-	// 		game_loop(&game);
-	// }
-	// else
-	// 	printf("Error\nWrong number of arguments\n");
+	init_game(&game);
 	return (0);
 }
