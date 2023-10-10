@@ -16,6 +16,12 @@
 #  define WIDTH 1280
 # endif
 
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+}	t_game;
+
 enum e_errors
 {
 	ERR_ERRNO,
