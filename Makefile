@@ -19,7 +19,8 @@ INCLUDE		= -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libra
 FILES		= main \
 			parser/parser \
 			utils/error \
-			game/hook 
+			game/hook \
+			game/init_game
 
 
 SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

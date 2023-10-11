@@ -1,12 +1,11 @@
 
-/**
- * @brief Here are all the includes and defines that are used in the project.
- * 
- * 
- */
 
 #ifndef UTILS_H
 # define UTILS_H
+
+/* ************************************************************************** */
+/*                                  INCLUDES                                  */
+/* ************************************************************************** */
 
 # include <math.h>
 # include <stdlib.h>
@@ -18,21 +17,51 @@
 # include <sys/errno.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include "cub3D.h"
-# include "parser.h"
+// # include "cub3D.h"
+// # include "parser.h"
+
+/* ************************************************************************** */
+/*                                   ENUMS                                    */
+/* ************************************************************************** */
 
 /**
  * @brief Error codes.
  * 
  * @enum e_error_codes
- * ERR_ARGS	= Invalid arguments
- * ERR_EXT	= Invalid file extension
- * ERR_MAP	= Invalid map
- * ERR_RGB	= Invalid RGB color
- * ERR_MEM	= Memory allocation error
+ * ERR_ERRNO = Error specified in errno
+ * ERR_MLX   = Error specified in mlx_errno
+ * ERR_MEM	 = Memory allocation error
+ * ERR_ARGS	 = Invalid arguments
+ * ERR_EXT	 = Invalid file extension
  * 
  * TODO: Add more error codes as needed				@Aaron
  */
+
+
+typedef enum e_cub_errno
+{
+	CUB_SUCCESS = 0,
+	CUB_MLXFAIL = MLX_ERRMAX,
+	CUB_ERRNO,
+	CUB_MEMFAIL,
+	CUB_INVARGS,
+	CUB_INVEXT
+}	t_cub_errno;
+
+/* ************************************************************************** */
+/*                                  STRUCTS                                   */
+/* ************************************************************************** */
+
+/**
+ * @brief Map structure
+ * 
+ */
+typedef struct s_map
+{
+	char	**map;
+	int		width;
+	int		height;
+}	t_map;
 
 typedef struct s_position
 {
@@ -40,16 +69,10 @@ typedef struct s_position
 	double	y;
 }	t_position;
 
-typedef enum e_error_codes
-{
-	ERR_ARGS,
-	ERR_EXT,
-	ERR_MAP,
-	ERR_RGB,
-	ERR_MEM
-}	t_error_codes;
+/* ************************************************************************** */
+/*                                 FUNCTIONS                                  */
+/* ************************************************************************** */
 
-
-void	ft_perror(int err, char *context);
+t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
 #endif

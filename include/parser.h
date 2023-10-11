@@ -2,41 +2,37 @@
 #ifndef PARSER_H
 # define PARSER_H
 
+/* ************************************************************************** */
+/*                                  INCLUDES                                  */
+/* ************************************************************************** */
+
 # include "cub3D.h"
 # include "utils.h"
 
+/* ************************************************************************** */
+/*                                  TYPEDEFS                                  */
+/* ************************************************************************** */
+
+typedef struct s_game		t_game;
 typedef struct s_position	t_position;
+typedef enum e_cub_errno	t_cub_errno;
 
-/**
- * @brief Map structure
- * 
- */
-
-typedef struct s_map
-{
-	char	**map;
-	int		width;
-	int		height;
-}	t_map;
-
-/**
- * @brief Parser structure
- * 
- */
+/* ************************************************************************** */
+/*                                  STRUCTS                                   */
+/* ************************************************************************** */
 
 typedef struct s_parser
 {
-	t_map			*map;
-	mlx_texture_t	*wall_n_txt;
-	mlx_texture_t	*wall_s_txt;
-	mlx_texture_t	*wall_w_txt;
-	mlx_texture_t	*wall_e_txt;
-	uint32_t		floor_color;
-	uint32_t		ceiling_color;
-	double			orientation;
-	t_position		player;
+	int			scene_file;
+	char		*line;
+	t_cub_errno	error;
+	t_game		*game;
 }	t_parser;
 
-t_parser	*parser(int argc, char **argv);
+/* ************************************************************************** */
+/*                                 FUNCTIONS                                  */
+/* ************************************************************************** */
+
+void	parse(t_game *game, int argc, char **argv);
 
 #endif
