@@ -10,6 +10,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/errno.h>
+# include <math.h>
 # include "../libraries/libft/include/libft.h"
 # include "../libraries/MLX42/include/MLX42/MLX42.h"
 # include "utils.h"
@@ -58,8 +59,6 @@ typedef struct s_position	t_position;
 typedef struct s_game
 {
 	mlx_t			*mlx;
-	// int32_t			window_height;
-	// int32_t			window_width;
 	t_map			*map;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*so_texture;
@@ -68,7 +67,6 @@ typedef struct s_game
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
 	double			orientation;
-	// double			speed;
 	t_position		player_pos;
 }	t_game;
 
@@ -76,8 +74,19 @@ typedef struct s_game
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
-// void	key_hook(t_game *game);
-void	init_settings(t_game *game);
-// int	init_game(t_game *game);
+
+/* debug.c */
+void		print_game(t_game *game);
+
+/* free_game.c */
+void		free_game(t_game *game);
+
+/* hook.c */
+void		key_hook(t_game *game);
+
+/* init_game.c */
+// void		key_hook(t_game *game);
+void		init_settings(t_game *game);
+// int		init_game(t_game *game);
 
 #endif

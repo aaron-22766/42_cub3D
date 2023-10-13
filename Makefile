@@ -17,10 +17,14 @@ LIBFT		= libraries/libft/libft.a
 INCLUDE		= -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
 
 FILES		= main \
+			game/debug \
+			game/free_game \
+			game/hook \
+			game/init_game \
 			parser/parser \
 			utils/error \
-			game/hook \
-			game/init_game
+			utils/ft_pixel
+
 
 
 SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
