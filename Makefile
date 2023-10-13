@@ -1,72 +1,62 @@
 NAME		=	cub3D
 
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror #-g3 -fsanitize=address
-FRAMEWORKS	= -framework Cocoa -framework OpenGL -framework IOKit
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror -MMD #-g3 -fsanitize=address
+MLXFLAGS	=	-lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 # DIRECTORIES #
 
-SRCS_DIR	= sources/
-OBJS_DIR	= objects/
-INC_DIR		= include/
-LIBFT_DIR	= libraries/libft/
-MLX_DIR		= libraries/MLX42/
+INCS_DIR	=	include
+LIBS_DIR	=	lib
+SRCS_DIR	=	src
+SUBDIRS		=	game parser utils
+BUILD_DIR	=	build
 
-LIB_MLX42	= libraries/MLX42/build/libmlx42.a
-LIBFT		= libraries/libft/libft.a
-INCLUDE		= -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
+LIBFT_DIR	=	$(LIBS_DIR)/libft
+LIBFT		=	$(LIBFT_DIR)/libft.a
+MLX_DIR		=	$(LIBS_DIR)/MLX42
+MLX_BUILD	=	$(MLX_DIR)/build
+MLX42		=	$(MLX_BUILD)/libmlx42.a
 
-FILES		= main \
-			parser/parser \
-			utils/error \
-			game/hook \
-			game/init_game
-
-
-SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-OBJS		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
-
+INCS		=	-I./$(INCS_DIR) -I./$(LIBFT_DIR)/include -I./$(MLX_DIR) \
+				-I./$(MLX_DIR)/include/MLX42
+SRCS		=	$(SRCS_DIR)/main.c \
+				$(foreach dir, $(SUBDIRS), $(wildcard $(SRCS_DIR)/$(dir)/*.c))
+OBJS		=	$(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+DEPS		=	$(OBJS:.o=.d)
 
 # RULES #
 
-all:		libft install_glfw object_directories $(NAME)
+$(NAME): $(LIBFT) $(MLX42) $(OBJS)
+	$(CC) $(INCS) $(CFLAGS) $(LIBFT) $(MLX42) $(MLXFLAGS) -o $@ $(OBJS)
 
-libft:
-			$(MAKE) -C $(LIBFT_DIR)
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 
-install_glfw:
-	@if [ ! -f $(LIB_MLX42) ]; then \
+$(MLX42):
+	@if [ ! -f $(MLX42) ]; then \
 		git submodule update --init --recursive --remote; \
-		brew uninstall glfw; \
-		cmake -S libraries/MLX42/ -B libraries/MLX42/build -DGLFW_FETCH=1; \
-		make -C libraries/MLX42/build; \
-		brew install glfw; \
-		echo "GLFW installed"; \
+		brew install glfw \
+		cmake -S $(MLX_DIR)/ -B $(MLX_DIR)/build -DGLFW_FETCH=1; \
+		make -C $(MLX_DIR)/build; \
 	fi
 
-object_directories:
-			@mkdir -p $(OBJS_DIR)
-			@mkdir -p $(OBJS_DIR)game
-			@mkdir -p $(OBJS_DIR)parser
-			@mkdir -p $(OBJS_DIR)utils
+-include $(DEPS)
 
-$(NAME):	$(LIBFT) $(LIB_MLX42) $(OBJS)
-			$(CC) $(INCLUDE) $(CFLAGS) $(LIBFT) $(LIB_MLX42) $(FRAMEWORKS) -o $(NAME) $(OBJS) 
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(INCS) $(CFLAGS) -c $< -o $@
 
-$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c
-				@mkdir -p $(OBJS_DIR)
-				$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
-
-$(LIB_MLX42): install_glfw
+all: $(NAME)
 
 clean:
-			rm -rf $(OBJS_DIR)
-			$(MAKE) -C $(LIBFT_DIR) clean
-			
-fclean:		clean
-			rm -f $(NAME)
-			rm -f $(LIBFT)
+	rm -rf $(BUILD_DIR)
+	make -C $(LIBFT_DIR) clean
 
-re:			fclean all
+fclean: clean
+	rm -rf $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
-.PHONY:		all libft libmlx clean fclean re
+re: fclean all
+
+.PHONY: all clean fclean re

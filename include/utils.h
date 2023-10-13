@@ -15,8 +15,10 @@
 # include <string.h>
 # include <errno.h>
 # include <sys/errno.h>
-# include <sys/types.h>
-# include <sys/stat.h>
+// # include <sys/types.h>
+// # include <sys/stat.h>
+# include "../lib/libft/include/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 // # include "cub3D.h"
 // # include "parser.h"
 
@@ -36,8 +38,6 @@
  * 
  * TODO: Add more error codes as needed				@Aaron
  */
-
-
 typedef enum e_cub_errno
 {
 	CUB_SUCCESS = 0,
@@ -45,7 +45,9 @@ typedef enum e_cub_errno
 	CUB_ERRNO,
 	CUB_MEMFAIL,
 	CUB_INVARGS,
-	CUB_INVEXT
+	CUB_INVEXT,
+	CUB_INVLINE,
+	CUB_DUPCONFIG
 }	t_cub_errno;
 
 /* ************************************************************************** */

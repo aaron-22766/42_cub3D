@@ -6,12 +6,6 @@
 /*                                  INCLUDES                                  */
 /* ************************************************************************** */
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/errno.h>
-# include "../libraries/libft/include/libft.h"
-# include "../libraries/MLX42/include/MLX42/MLX42.h"
 # include "utils.h"
 # include "parser.h"
 
@@ -22,7 +16,7 @@
 /**
  * @brief Window height & width in pixels
  * 
- * @note Default values are 720p (1280x720)
+ * @note Default values are 720p (1080x720)
  * 
  * 
  */
@@ -32,7 +26,7 @@
 # endif
 
 # ifndef WIDTH
-#  define WIDTH 1280
+#  define WIDTH 1080
 # endif
 
 # ifndef SPEED
@@ -78,6 +72,7 @@ typedef struct s_game
 
 // void	key_hook(t_game *game);
 void	init_settings(t_game *game);
+void	free_game(t_game *game);
 // int	init_game(t_game *game);
 
 #endif
