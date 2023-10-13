@@ -14,7 +14,7 @@ MLX_DIR		= libraries/MLX42/
 
 LIB_MLX42	= libraries/MLX42/build/libmlx42.a
 LIBFT		= libraries/libft/libft.a
-INCLUDE		= -I./include -I./libraries/libft/include -I./libraries/MLX42 -I./libraries/MLX42/include/MLX42
+INCLUDE		= -I./include -I./libraries/libft/include -I./libraries/MLX42/include/MLX42
 
 FILES		= main \
 			game/debug \

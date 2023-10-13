@@ -6,5 +6,6 @@ int	main(int argc, char **argv)
 
 	init_settings(&game);
 	parse(&game, argc, argv);
+	free_game(&game);
 	return (EXIT_SUCCESS);
 }

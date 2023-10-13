@@ -1,17 +1,25 @@
 
 #include "cub3D.h"
 
-void free_game(t_game *game)
+static void free_map(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	while (i < game->map->height)
+	while (i < map->height)
 	{
-		free(game->map->map[i]);
+		free(map->map[i]);
 		i++;
 	}
-	free(game->map);
+	free(map);
+}
+
+void free_game(t_game *game)
+{
+	if (game->mlx)
+		mlx_terminate(game->mlx);
+	if (game->map)
+		free_map(game->map);
 	if (game->no_texture)
 		mlx_delete_texture(game->no_texture);
 	if (game->so_texture)

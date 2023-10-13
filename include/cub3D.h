@@ -16,6 +16,7 @@
 # include "utils.h"
 # include "parser.h"
 
+
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
@@ -85,7 +86,6 @@ void		free_game(t_game *game);
 void		key_hook(t_game *game);
 
 /* init_game.c */
-// void		key_hook(t_game *game);
 void		init_settings(t_game *game);
 // int		init_game(t_game *game);
 
