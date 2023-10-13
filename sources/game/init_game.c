@@ -10,8 +10,13 @@
 // 	mlx_loop(game->mlx);
 // }
 
-void	init_settings(t_game *game)
+t_game	*init_settings(void)
 {
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (game == NULL)
+		return (NULL);
 	game->mlx = NULL;
 	// game->window_height = HEIGHT;
 	// game->window_width = WIDTH;
@@ -24,6 +29,9 @@ void	init_settings(t_game *game)
 	game->floor_color = 0;
 	// game->speed = SPEED;
 	game->orientation = 0;
+	game->player_pos.x = 0;
+	game->player_pos.y = 0;
+	return (game);
 }
 
 // void	init_game(t_game *game)

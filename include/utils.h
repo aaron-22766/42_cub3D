@@ -77,7 +77,7 @@ typedef struct s_position
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
 /* ft_pixel.c */
-int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+// int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 
 #endif

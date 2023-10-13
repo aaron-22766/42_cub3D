@@ -77,16 +77,17 @@ typedef struct s_game
 
 
 /* debug.c */
-void		print_game(t_game *game);
+// void		print_game(t_game *game);
 
 /* free_game.c */
-void		free_game(t_game *game);
+// void		free_game(t_game *game);
 
 /* hook.c */
-void		key_hook(t_game *game);
+// void		key_hook(t_game *game);
 
 /* init_game.c */
-void		init_settings(t_game *game);
+// void		init_settings(t_game *game);
+t_game	*init_settings(void);
 // int		init_game(t_game *game);
 
 #endif
