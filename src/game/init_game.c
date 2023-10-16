@@ -15,7 +15,9 @@ void	init_settings(t_game *game)
 	game->mlx = NULL;
 	// game->window_height = HEIGHT;
 	// game->window_width = WIDTH;
-	game->map = NULL;
+	game->map.height = 0;
+	game->map.width = 0;
+	game->map.map = NULL;
 	game->no_texture = NULL;
 	game->so_texture = NULL;
 	game->we_texture = NULL;

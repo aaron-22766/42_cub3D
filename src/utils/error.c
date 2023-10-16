@@ -9,9 +9,13 @@ static void	print_error(t_cub_errno err, char *context)
 	else if (err == CUB_INVEXT)
 		ft_eprintf("Invalid file extension. Expected: *.cub");
 	else if (err == CUB_INVLINE)
-		ft_eprintf("Invalid line in scene file: %s", context);
+		ft_eprintf("Invalid line in scene file:\n%s", context);
 	else if (err == CUB_DUPCONFIG)
-		ft_eprintf("Duplicate elements in scene file: %s", context);
+		ft_eprintf("Duplicate configuration in scene file: %s", context);
+	else if (err == CUB_MISSCONFIG)
+		ft_eprintf("Missing configuration in scene file: %s", context);
+	else if (err == CUB_INVCOLOR)
+		ft_eprintf("Invalid color: %s", context);
 	ft_eprintf("\n");
 }
 
@@ -21,7 +25,7 @@ t_cub_errno	ft_perror(t_cub_errno err, char *context)
 	if (err == CUB_ERRNO)
 		return (perror(context), errno);
 	if (err == CUB_MLXFAIL)
-		return (ft_eprintf("%s\n", mlx_strerror(mlx_errno)), \
+		return (ft_eprintf("%s: %s\n", context, mlx_strerror(mlx_errno)), \
 				(t_cub_errno)mlx_errno);
 	print_error(err, context);
 	return (err);

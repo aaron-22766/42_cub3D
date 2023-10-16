@@ -54,7 +54,7 @@ typedef struct s_game
 	mlx_t			*mlx;
 	// int32_t			window_height;
 	// int32_t			window_width;
-	t_map			*map;
+	t_map			map;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*so_texture;
 	mlx_texture_t	*we_texture;
@@ -74,5 +74,7 @@ typedef struct s_game
 void	init_settings(t_game *game);
 void	free_game(t_game *game);
 // int	init_game(t_game *game);
+
+void	print_game(t_game *game);
 
 #endif

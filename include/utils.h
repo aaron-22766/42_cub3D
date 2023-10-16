@@ -47,7 +47,9 @@ typedef enum e_cub_errno
 	CUB_INVARGS,
 	CUB_INVEXT,
 	CUB_INVLINE,
-	CUB_DUPCONFIG
+	CUB_DUPCONFIG,
+	CUB_MISSCONFIG,
+	CUB_INVCOLOR
 }	t_cub_errno;
 
 /* ************************************************************************** */
@@ -61,8 +63,8 @@ typedef enum e_cub_errno
 typedef struct s_map
 {
 	char	**map;
-	int		width;
-	int		height;
+	size_t	width;
+	size_t	height;
 }	t_map;
 
 typedef struct s_position
@@ -75,6 +77,10 @@ typedef struct s_position
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
+// error.c
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
+
+// ft_pixel.c
+int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 #endif
