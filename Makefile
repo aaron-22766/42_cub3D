@@ -36,7 +36,7 @@ $(LIBFT):
 $(MLX42):
 	@if [ ! -f $(MLX42) ]; then \
 		git submodule update --init --recursive --remote; \
-		brew install glfw \
+		brew install glfw; \
 		cmake -S $(MLX_DIR)/ -B $(MLX_DIR)/build -DGLFW_FETCH=1; \
 		make -C $(MLX_DIR)/build; \
 	fi

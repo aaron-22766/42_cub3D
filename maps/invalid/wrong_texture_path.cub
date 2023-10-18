@@ -1,6 +1,6 @@
-NO ./texture/white_64.png
-SO ./texture/desktop.png
-WE ./texture/white_64.png
+NO ./textures/white_64.png
+SO ./textures/desktop.png
+WE ./textures/white_64.png
 EA desktop.png
 
 F 220,100,0

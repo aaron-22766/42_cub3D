@@ -1,6 +1,23 @@
-#include "cub3D.h"
+#include "../../include/parser.h"
 
-static void	init_parser(t_parser *parser, t_game *game)
+static void	check_args(int argc)
+{
+	if (argc < 2)
+		exit(ft_perror(CUB_INVARGS, "few"));
+	else if (argc > 2)
+		exit(ft_perror(CUB_INVARGS, "many"));
+}
+
+static void	get_scene_file(t_parser *parser, char *path)
+{
+	if (ft_strncmp(path + ft_strlen(path) - 4, ".cub", 4))
+		exit(ft_perror(CUB_INVFILEEXT, NULL));
+	parser->scene_file = open(path, O_RDONLY);
+	if (parser->scene_file == -1)
+		exit(ft_perror(CUB_ERRNO, path));
+}
+
+static void	init_parser(t_parser *parser)
 {
 	parser->no_path = NULL;
 	parser->so_path = NULL;
@@ -8,68 +25,49 @@ static void	init_parser(t_parser *parser, t_game *game)
 	parser->ea_path = NULL;
 	parser->floor_color = NULL;
 	parser->ceiling_color = NULL;
-	parser->map.height = 0;
-	parser->map.width = 0;
-	parser->map.map = NULL;
+	init_map(&parser->map);
 	parser->scene_file = -1;
 	parser->line = NULL;
 	parser->split = NULL;
-	parser->read = true;
-	parser->game = game;
+	parser->vis = NULL;
+	parser->player.x = -1;
+	parser->player.y = -1;
+	parser->game = NULL;
 }
 
-static void	free_parser(t_parser *parser)
+void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
 {
+	ft_perror(err, context);
+	if (err != CUB_SUCCESS)
+		free_game(parser->game);
 	free(parser->no_path);
 	free(parser->so_path);
 	free(parser->we_path);
 	free(parser->ea_path);
 	free(parser->floor_color);
 	free(parser->ceiling_color);
-	free_arr(parser->map.map);
+	free_map(&parser->map);
 	close(parser->scene_file);
 	free(parser->line);
 	free_arr(parser->split);
-}
-
-void	parser_fail(t_parser *parser, t_cub_errno err, char *context)
-{
-	ft_perror(err, context);
-	free_game(parser->game);
-	free_parser(parser);
-	exit(err);
+	free_arr(parser->vis);
+	if (err != CUB_SUCCESS)
+		exit(err);
 }
 
 void	parse(t_game *game, int argc, char **argv)
 {
 	t_parser	parser;
 
-	if (argc < 2)
-		exit(ft_perror(CUB_INVARGS, "few"));
-	else if (argc > 2)
-		exit(ft_perror(CUB_INVARGS, "many"));
-	init_parser(&parser, game);
-	parser.scene_file = get_scene_file(argv[1]);
-	read_file(&parser, configs);
+	check_args(argc);
+	init_parser(&parser);
+	parser.game = game;
+	get_scene_file(&parser, argv[1]);
+	read_file(&parser);
 	check_configs(&parser);
-	read_file(&parser, map);
-	// check_map(&parser);
+	check_map(&parser);
 	print_parser(&parser);
 	set_game(&parser);
-	free_parser(&parser);
+	exit_parser(&parser, CUB_SUCCESS, NULL);
 	print_game(game);
-}
-
-void	print_parser(t_parser *parser)
-{
-	printf("\nPARSER\n");
-	printf("file: %d\n", parser->scene_file);
-	printf("line: %s\n", parser->line);
-	printf("split: %p\n", parser->split);
-	printf("north: %s\n", parser->no_path);
-	printf("south: %s\n", parser->so_path);
-	printf("west: %s\n", parser->we_path);
-	printf("east: %s\n", parser->ea_path);
-	printf("floor: %s\n", parser->floor_color);
-	printf("ceiling: %s\n", parser->ceiling_color);
 }

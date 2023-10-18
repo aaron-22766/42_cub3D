@@ -1,36 +1,34 @@
-
 #include "../../include/parser.h"
 
-int	get_scene_file(char *path)
+static void	read_loop(t_parser *parser, bool (*f)(t_parser *))
 {
-	int	fd;
-
-	if (ft_strncmp(path + ft_strlen(path) - 4, ".cub", 4))
-		exit(ft_perror(CUB_INVEXT, NULL));
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		exit(ft_perror(CUB_ERRNO, path));
-	return (fd);
-}
-
-static void	trim_newline(char *line)
-{
-	char	*nl;
-
-	nl = ft_strrchr(line, '\n');
-	if (nl && !nl[1])
-		*nl = '\0';
-}
-
-void	read_file(t_parser *parser, void (*f)(t_parser *))
-{
-	while (parser->read)
+	while (parser->line)
 	{
-		parser->line = get_next_line(parser->scene_file);
 		trim_newline(parser->line);
-		f(parser);
+		if (f(parser) == false)
+			return ;
 		free(parser->line);
-		parser->line = NULL;
+		parser->line = get_next_line(parser->scene_file);
 	}
-	parser->read = true;
+}
+
+static bool	rest(t_parser *parser)
+{
+	return (is_empty_line(parser->line));
+}
+
+void	read_file(t_parser *parser)
+{
+	parser->line = get_next_line(parser->scene_file);
+	if (!parser->line)
+		exit_parser(parser, CUB_EMPTYFILE, NULL);
+	read_loop(parser, configs);
+	read_loop(parser, map);
+	read_loop(parser, rest);
+	if (!parser->line)
+		return ;
+	if (is_valid_map_line(parser->line))
+		exit_parser(parser, CUB_EMPTYLINE, NULL);
+	else
+		exit_parser(parser, CUB_INVLINE, parser->line);
 }

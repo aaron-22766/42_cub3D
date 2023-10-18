@@ -1,4 +1,3 @@
-
 #ifndef PARSER_H
 # define PARSER_H
 
@@ -14,13 +13,15 @@
 /* ************************************************************************** */
 
 # define MAP_CHARACTERS " 01NESW"
+# define PLAYER_ORIENTATIONS "NESW"
+# define WHITESPACE " \t\v\r\f\n"
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
 /* ************************************************************************** */
 
 typedef struct s_game		t_game;
-typedef struct s_position	t_position;
+typedef struct s_pos		t_pos;
 typedef struct s_map		t_map;
 typedef enum e_cub_errno	t_cub_errno;
 
@@ -40,7 +41,8 @@ typedef struct s_parser
 	int		scene_file;
 	char	*line;
 	char	**split;
-	bool	read;
+	char	**vis;
+	t_pos	player;
 	t_game	*game;
 }	t_parser;
 
@@ -50,25 +52,31 @@ typedef struct s_parser
 
 // parser.c
 void	parse(t_game *game, int argc, char **argv);
-void	parser_fail(t_parser *parser, t_cub_errno err, char *context);
-void	print_parser(t_parser *parser);
+void	exit_parser(t_parser *parser, t_cub_errno err, char *context);
 
 // read.c
-int		get_scene_file(char *path);
-void	read_file(t_parser *parser, void (*f)(t_parser *));
+void	read_file(t_parser *parser);
 
 // configs.c
-void	configs(t_parser *parser);
+bool	configs(t_parser *parser);
 void	check_configs(t_parser *parser);
 
 // map.c
-void	map(t_parser *parser);
+bool	map(t_parser *parser);
+
+// check_map.c
+void	check_map(t_parser *parser);
+
+// walls.c
+void	surrounded_by_walls(t_parser *parser);
 
 // set_game.c
 void	set_game(t_parser *parser);
 
 // utils.c
-size_t	count_arr(char **arr);
-void	free_arr(char **arr);
+bool	is_empty_line(char *line);
+bool	is_valid_map_line(char *line);
+void	trim_newline(char *line);
+void	print_parser(t_parser *parser);//DEBUG
 
 #endif

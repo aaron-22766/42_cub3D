@@ -1,5 +1,3 @@
-
-
 #ifndef UTILS_H
 # define UTILS_H
 
@@ -15,29 +13,13 @@
 # include <string.h>
 # include <errno.h>
 # include <sys/errno.h>
-// # include <sys/types.h>
-// # include <sys/stat.h>
 # include "../lib/libft/include/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
-// # include "cub3D.h"
-// # include "parser.h"
 
 /* ************************************************************************** */
 /*                                   ENUMS                                    */
 /* ************************************************************************** */
 
-/**
- * @brief Error codes.
- * 
- * @enum e_error_codes
- * ERR_ERRNO = Error specified in errno
- * ERR_MLX   = Error specified in mlx_errno
- * ERR_MEM	 = Memory allocation error
- * ERR_ARGS	 = Invalid arguments
- * ERR_EXT	 = Invalid file extension
- * 
- * TODO: Add more error codes as needed				@Aaron
- */
 typedef enum e_cub_errno
 {
 	CUB_SUCCESS = 0,
@@ -45,33 +27,38 @@ typedef enum e_cub_errno
 	CUB_ERRNO,
 	CUB_MEMFAIL,
 	CUB_INVARGS,
-	CUB_INVEXT,
+	CUB_INVFILEEXT,
+	CUB_EMPTYFILE,
 	CUB_INVLINE,
 	CUB_DUPCONFIG,
 	CUB_MISSCONFIG,
-	CUB_INVCOLOR
+	CUB_INVTEXTEXT,
+	CUB_INVCOLOR,
+	CUB_EMPTYLINE,
+	CUB_NOMAP,
+	CUB_SMALLMAP,
+	CUB_MISSPLAYER,
+	CUB_DUPPLAYER,
+	CUB_INVWALLS
 }	t_cub_errno;
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
 /* ************************************************************************** */
 
-/**
- * @brief Map structure
- * 
- */
 typedef struct s_map
 {
 	char	**map;
-	size_t	width;
 	size_t	height;
+	size_t	max_width;
+	size_t	*widths;
 }	t_map;
 
-typedef struct s_position
+typedef struct s_pos
 {
 	double	x;
 	double	y;
-}	t_position;
+}	t_pos;
 
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
@@ -82,5 +69,15 @@ t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
 // ft_pixel.c
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+
+// array.c
+size_t		count_arr(char **arr);
+void		free_arr(char **arr);
+
+// map.c
+void		init_map(t_map *map);
+void		free_map(t_map *map);
+bool		calc_widths(t_map *map);
+void		print_map(t_map *map);
 
 #endif

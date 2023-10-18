@@ -119,13 +119,13 @@ $(NAME): 	$(OBJS)
 
 ${OBJS_DIR}%.o:  ${LIBFT_DIR}%.c 
 			@mkdir -p $(dir $@)
-			$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP  $< -o $@
+			@$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP  $< -o $@
 ${OBJS_DIR}%.o:  ${GNL_DIR}%.c
 			@mkdir -p $(dir $@)
-			$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP $< -o $@
+			@$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP $< -o $@
 ${OBJS_DIR}%.o:  ${PRINTF_DIR}%.c 
 			@mkdir -p $(dir $@)
-			$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP $< -o $@
+			@$(CC) -c $(CFLAGS) $(INCLUDE) -MMD -MP $< -o $@
 
 clean:
 			${RM} $(OBJS_DIR)
