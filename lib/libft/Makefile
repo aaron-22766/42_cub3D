@@ -43,6 +43,7 @@ LIBFT_F		:= ft_atoi \
 			ft_strncpy \
 			ft_strlen \
 			ft_strmapi \
+			ft_strcmp \
 			ft_strncmp \
 			ft_strnstr \
 			ft_strrchr \
@@ -50,6 +51,7 @@ LIBFT_F		:= ft_atoi \
 			ft_strtrim \
 			ft_strmerge \
 			ft_substr \
+			ft_strends \
 			ft_tolower \
 			ft_toupper \
 			ft_lstadd_back \

@@ -41,28 +41,22 @@ bool	configs(t_parser *parser)
 	return (ret);
 }
 
-static void	texture_extension(t_parser *parser, char *path)
+static void	check_path(t_parser *parser, char *path, char *type)
 {
-	if (ft_strncmp(path + ft_strlen(path) - 4, ".png", 4))
-		exit_parser(parser, CUB_INVTEXTEXT, NULL);
+	if (!path)
+		exit_parser(parser, CUB_MISSCONFIG, type);
+	if (!ft_strends(path, ".png"))
+		exit_parser(parser, CUB_INVTEXTEXT, type);
 }
 
 void	check_configs(t_parser *parser)
 {
-	if (!parser->no_path)
-		exit_parser(parser, CUB_MISSCONFIG, "NO");
-	if (!parser->so_path)
-		exit_parser(parser, CUB_MISSCONFIG, "EA");
-	if (!parser->floor_color)
-		exit_parser(parser, CUB_MISSCONFIG, "SO");
-	if (!parser->we_path)
-		exit_parser(parser, CUB_MISSCONFIG, "WE");
+	check_path(parser, parser->no_path, "NO");
+	check_path(parser, parser->ea_path, "EA");
+	check_path(parser, parser->so_path, "SO");
+	check_path(parser, parser->we_path, "WE");
 	if (!parser->ea_path)
 		exit_parser(parser, CUB_MISSCONFIG, "F");
 	if (!parser->ceiling_color)
 		exit_parser(parser, CUB_MISSCONFIG, "C");
-	texture_extension(parser, parser->no_path);
-	texture_extension(parser, parser->ea_path);
-	texture_extension(parser, parser->so_path);
-	texture_extension(parser, parser->we_path);
 }

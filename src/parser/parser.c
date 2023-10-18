@@ -10,7 +10,7 @@ static void	check_args(int argc)
 
 static void	get_scene_file(t_parser *parser, char *path)
 {
-	if (ft_strncmp(path + ft_strlen(path) - 4, ".cub", 4))
+	if (!ft_strends(path, ".cub"))
 		exit(ft_perror(CUB_INVFILEEXT, NULL));
 	parser->scene_file = open(path, O_RDONLY);
 	if (parser->scene_file == -1)
