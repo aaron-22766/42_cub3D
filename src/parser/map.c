@@ -14,7 +14,7 @@ static bool	realloc_arr(char ***ptr, size_t count)
 	new = ft_calloc(count, sizeof(char *));
 	if (!new)
 		return (false);
-	ft_memcpy(new, *ptr, count_arr(*ptr) * sizeof(char *));
+	ft_memcpy(new, *ptr, ft_count_2d_array((void **)*ptr) * sizeof(char *));
 	free(*ptr);
 	*ptr = new;
 	return (true);

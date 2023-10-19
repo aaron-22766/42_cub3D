@@ -34,8 +34,9 @@ bool	configs(t_parser *parser)
 	if (!is_empty_line(parser->line))
 	{
 		parser->split = ft_split(parser->line, ' ');
-		ret = (count_arr(parser->split) == 2 && create_config(parser));
-		free_arr(parser->split);
+		ret = (ft_count_2d_array((void **)parser->split) == 2
+				&& create_config(parser));
+		ft_free_2d_array((void **)parser->split);
 		parser->split = NULL;
 	}
 	return (ret);

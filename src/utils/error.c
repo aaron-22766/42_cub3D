@@ -35,7 +35,7 @@ static void	print_error(t_cub_errno err, char *context)
 	else if (err == CUB_DUPPLAYER)
 		ft_eprintf("Duplicate player starting positions in map");
 	else if (err == CUB_INVWALLS)
-		ft_eprintf("Map is not entirely surrounded by walls");
+		ft_eprintf("Map is not entirely surrounded by walls (%s)", context);
 	ft_eprintf("\n");
 }
 

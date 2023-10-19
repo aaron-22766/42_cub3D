@@ -12,7 +12,10 @@
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
 
-# define MAP_CHARACTERS " 01NESW"
+# define MAP_CHARACTERS " \t01NESW"
+# define ALLIGN " \t"
+# define PATH '0'
+# define WALL '1'
 # define PLAYER_ORIENTATIONS "NESW"
 # define WHITESPACE " \t\v\r\f\n"
 
@@ -67,8 +70,8 @@ bool	map(t_parser *parser);
 // check_map.c
 void	check_map(t_parser *parser);
 
-// walls.c
-void	surrounded_by_walls(t_parser *parser);
+// check_walls.c
+void	check_walls(t_parser *parser);
 
 // set_game.c
 void	set_game(t_parser *parser);

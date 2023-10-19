@@ -49,8 +49,8 @@ void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
 	free_map(&parser->map);
 	close(parser->scene_file);
 	free(parser->line);
-	free_arr(parser->split);
-	free_arr(parser->vis);
+	ft_free_2d_array((void **)parser->split);
+	ft_free_2d_array((void **)parser->vis);
 	if (err != CUB_SUCCESS)
 		exit(err);
 }

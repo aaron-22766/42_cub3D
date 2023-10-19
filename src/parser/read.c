@@ -12,7 +12,7 @@ static void	read_loop(t_parser *parser, bool (*f)(t_parser *))
 	}
 }
 
-static bool	rest(t_parser *parser)
+static bool	empty_lines(t_parser *parser)
 {
 	return (is_empty_line(parser->line));
 }
@@ -20,11 +20,12 @@ static bool	rest(t_parser *parser)
 void	read_file(t_parser *parser)
 {
 	parser->line = get_next_line(parser->scene_file);
+	read_loop(parser, empty_lines);
 	if (!parser->line)
 		exit_parser(parser, CUB_EMPTYFILE, NULL);
 	read_loop(parser, configs);
 	read_loop(parser, map);
-	read_loop(parser, rest);
+	read_loop(parser, empty_lines);
 	if (!parser->line)
 		return ;
 	if (is_valid_map_line(parser->line))

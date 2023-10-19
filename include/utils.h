@@ -13,7 +13,7 @@
 # include <string.h>
 # include <errno.h>
 # include <sys/errno.h>
-# include "../lib/libft/include/libft.h"
+# include "../lib/libft/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 /* ************************************************************************** */
@@ -72,7 +72,6 @@ int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 // array.c
 size_t		count_arr(char **arr);
-void		free_arr(char **arr);
 
 // map.c
 void		init_map(t_map *map);

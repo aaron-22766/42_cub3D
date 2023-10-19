@@ -10,7 +10,7 @@ void	init_map(t_map *map)
 
 void	free_map(t_map *map)
 {
-	free_arr(map->map);
+	ft_free_2d_array((void **)map->map);
 	free(map->widths);
 }
 

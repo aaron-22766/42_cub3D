@@ -48,30 +48,11 @@ static void	player_spawn(t_parser *parser)
 		exit_parser(parser, CUB_MISSPLAYER, NULL);
 }
 
-static void	convert_spaces(t_parser *parser)
-{
-	size_t	i;
-	char	*space;
-
-	i = 0;
-	while (i < parser->map.height)
-	{
-		space = ft_strchr(parser->map.map[i], ' ');
-		while (space)
-		{
-			*space = '0';
-			space = ft_strchr(space + 1, ' ');
-		}
-		i++;
-	}
-}
-
 void	check_map(t_parser *parser)
 {
 	if (calc_widths(&parser->map) == false)
 		exit_parser(parser, CUB_MEMFAIL, "calculating widths of map");
 	map_size(parser);
 	player_spawn(parser);
-	convert_spaces(parser);
-	surrounded_by_walls(parser);
+	check_walls(parser);
 }
