@@ -1,7 +1,7 @@
-NO ./texture/white_64.png
-SO ./texture/desktop.png
-WE ./texture/white_64.png
-EA ./texture/desktop.png
+NO ./textures/white_64.png
+SO ./textures/desktop.png
+WE ./textures/white_64.png
+EA ./textures/desktop.png
 
 F 220,258,0
 C 225,30,0
