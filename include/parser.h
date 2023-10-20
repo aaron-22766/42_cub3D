@@ -12,8 +12,8 @@
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
 
-# define MAP_CHARACTERS " \t01NESW"
-# define ALLIGN " \t"
+# define MAP_CHARACTERS " 01NESW"
+# define ALLIGN " "
 # define PATH '0'
 # define WALL '1'
 # define PLAYER_ORIENTATIONS "NESW"
