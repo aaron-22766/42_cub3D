@@ -70,8 +70,8 @@ void	print_player(t_player *player);		//DEBUG
 void	render_background(t_game *game);
 
 // hook.c
-// void	key_hook(mlx_key_data_t keydata, void* param);
-void	key_hook(void* param);
+void	key_hook(mlx_key_data_t keydata, void* param);
+// void	key_hook(void* param);
 
 // move
 void	move_player_forward(t_game *game);

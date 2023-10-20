@@ -52,7 +52,7 @@ static void	load_color(t_parser *parser, uint32_t *color, char *rgb)
 	ft_free_2d_array((void **)elements);
 	if (red > 255 || green > 255 || blue > 255)
 		exit_parser(parser, CUB_INVCOLOR, rgb);
-	*color = ft_pixel(red, green, blue, 0);
+	*color = ft_pixel(red, green, blue, 255);
 }
 
 // static void	remove_excess_allign(t_parser *parser)

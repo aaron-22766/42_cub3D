@@ -11,6 +11,6 @@ void	run_game(t_game *game)
 	mlx_image_to_window(game->mlx, game->image, 0, 0);
 	printf("mlx_loop\n");		//DEBUG
 	// mlx_loop_hook(game->mlx, (void (*)(void*))key_hook, game);
-	mlx_loop_hook(game->mlx, key_hook, game);
+	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop(game->mlx);
 }
