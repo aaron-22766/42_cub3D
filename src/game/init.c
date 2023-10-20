@@ -1,8 +1,10 @@
+
 #include "../../include/cub3D.h"
 
 void	init_settings(t_game *game)
 {
 	game->mlx = NULL;
+	game->image = NULL;
 	init_map(&game->map);
 	game->no_texture = NULL;
 	game->so_texture = NULL;
@@ -21,5 +23,7 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game->mlx)
 		ft_perror(CUB_MLXFAIL, "Failed to initialize MLX");
-	
+	game->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->image)
+		ft_perror(CUB_MLXFAIL, "Failed to create image");
 }

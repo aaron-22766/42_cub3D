@@ -6,6 +6,7 @@
 /* ************************************************************************** */
 
 # include <math.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -78,5 +79,14 @@ void		init_map(t_map *map);
 void		free_map(t_map *map);
 bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
+
+// move
+void		move_player_forward(t_game *game);
+void		move_player_backward(t_game *game);
+void		move_player_left(t_game *game);
+void		move_player_right(t_game *game);
+void		rotate_player_left(t_game *game);
+void		rotate_player_right(t_game *game);
+
 
 #endif
