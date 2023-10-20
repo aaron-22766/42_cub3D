@@ -13,8 +13,8 @@
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
 
-# define HEIGHT 720
-# define WIDTH 1080
+# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1080
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED M_PI / 180 * 5
 
@@ -63,12 +63,23 @@ void	free_game(t_game *game);
 void	run_game(t_game *game);
 
 // debug.c
-void	print_game(t_game *game);//DEBUG
+void	print_game(t_game *game);			//DEBUG
+void	print_player(t_player *player);		//DEBUG
 
 // render_background.c
 void	render_background(t_game *game);
 
 // hook.c
-int		key_hook(int keycode, t_game *game);
+// void	key_hook(mlx_key_data_t keydata, void* param);
+void	key_hook(void* param);
+
+// move
+void	move_player_forward(t_game *game);
+void	move_player_backward(t_game *game);
+void	move_player_left(t_game *game);
+void	move_player_right(t_game *game);
+void	rotate_player_left(t_game *game);
+void	rotate_player_right(t_game *game);
+
 
 #endif

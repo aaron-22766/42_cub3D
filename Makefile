@@ -11,7 +11,7 @@ INC_DIR		=	include
 LIB_DIR		=	lib
 SRC_DIR		=	src
 BUILD_DIR	=	build
-SUB_DIRS	=	game parser utils
+SUB_DIRS	=	game parser utils game/move
 
 LIBFT_DIR	=	$(LIB_DIR)/libft
 MLX_DIR		=	$(LIB_DIR)/MLX42

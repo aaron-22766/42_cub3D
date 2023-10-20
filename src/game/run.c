@@ -3,7 +3,14 @@
 
 void	run_game(t_game *game)
 {
+	printf("Running game\n");
+	print_game(game);				//DEBUG
+	// mlx_delete_image(game->mlx, game->image);
+	// game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	render_background(game);
+	mlx_image_to_window(game->mlx, game->image, 0, 0);
+	printf("mlx_loop\n");		//DEBUG
+	// mlx_loop_hook(game->mlx, (void (*)(void*))key_hook, game);
 	mlx_loop_hook(game->mlx, key_hook, game);
 	mlx_loop(game->mlx);
 }

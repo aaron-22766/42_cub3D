@@ -20,10 +20,15 @@ void	init_settings(t_game *game)
 
 void	init_game(t_game *game)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
+	printf("Initializing game\n");			// DEBUG
+	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!game->mlx)
 		ft_perror(CUB_MLXFAIL, "Failed to initialize MLX");
-	game->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!game->image)
 		ft_perror(CUB_MLXFAIL, "Failed to create image");
+	if (mlx_image_to_window(game->mlx, game->image, 0, 0))
+		ft_perror(CUB_MLXFAIL, "Failed to create window");
+	// game->no_texture = mlx_xpm_file_to_image(game->mlx, game->map.no_texture_path, &game->map.no_texture_width, &game->map.no_texture_height);
+	printf("Game initialized\n");			// DEBUG
 }
