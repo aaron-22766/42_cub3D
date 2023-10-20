@@ -10,6 +10,7 @@ void	print_game(t_game *game)//DEBUG
 	printf("West texture: %p\n", game->we_texture);
 	printf("Floor color: %x\n", game->floor_color);
 	printf("Ceiling color: %x\n", game->ceiling_color);
-	printf("Player orientation: %f\n", game->orientation);
+	printf("Player orientation: %f\n", game->player.orientation);
+	printf("Player pos: %f, %f\n", game->player.pos.x, game->player.pos.y);
 	print_map(&game->map);
 }

@@ -84,7 +84,4 @@ void	set_game(t_parser *parser)
 
 	// convert_spaces(parser);//only convert inside the map
 	// remove unnecessary spaces outside of the map ??
-	
-	ft_memcpy(&parser->game->map, &parser->map, sizeof(t_map));
-	init_map(&parser->map);
 }

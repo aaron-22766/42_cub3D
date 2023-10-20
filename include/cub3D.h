@@ -23,10 +23,15 @@
 
 typedef struct s_map	t_map;
 typedef struct s_pos	t_pos;
-
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
 /* ************************************************************************** */
+
+typedef struct s_player
+{
+	double	orientation;
+	t_pos	pos;
+}	t_player;
 
 typedef struct s_game
 {
@@ -38,8 +43,7 @@ typedef struct s_game
 	mlx_texture_t	*ea_texture;
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
-	double			orientation;
-	t_pos			player_pos;
+	t_player		player;
 }	t_game;
 
 /* ************************************************************************** */
@@ -48,6 +52,7 @@ typedef struct s_game
 
 // init_game.c
 void	init_settings(t_game *game);
+void	init_game(t_game *game);
 
 // free_game.c
 void	free_game(t_game *game);

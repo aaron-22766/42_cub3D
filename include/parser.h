@@ -45,7 +45,6 @@ typedef struct s_parser
 	char	*line;
 	char	**split;
 	char	**vis;
-	t_pos	player;
 	t_game	*game;
 }	t_parser;
 
