@@ -2,9 +2,9 @@
 
 static void	map_size(t_parser *parser)
 {
-	if (parser->map.height == 0)
+	if (parser->game->map.height == 0)
 		exit_parser(parser, CUB_NOMAP, NULL);
-	if (parser->map.height < 3 || parser->map.max_width < 3)
+	if (parser->game->map.height < 3 || parser->game->map.max_width < 3)
 		exit_parser(parser, CUB_SMALLMAP, NULL);
 }
 
@@ -27,30 +27,30 @@ static void	player_spawn(t_parser *parser)
 	size_t	j;
 
 	i = 0;
-	while (i < parser->map.height)
+	while (i < parser->game->map.height)
 	{
 		j = 0;
-		while (parser->map.map[i][j])
+		while (parser->game->map.map[i][j])
 		{
-			if (ft_strchr(PLAYER_ORIENTATIONS, parser->map.map[i][j]))
+			if (ft_strchr(PLAYER_ORIENTATIONS, parser->game->map.map[i][j]))
 			{
-				if (parser->player.x >= 0.0)
+				if (parser->game->player.pos.x >= 0.0)
 					exit_parser(parser, CUB_DUPPLAYER, NULL);
-				parser->game->orientation = get_radian(parser->map.map[i][j]);
-				parser->player.x = i;
-				parser->player.y = j;
+				parser->game->player.orientation = get_radian(parser->game->map.map[i][j]);
+				parser->game->player.pos.x = i;
+				parser->game->player.pos.y = j;
 			}
 			j++;
 		}
 		i++;
 	}
-	if (parser->player.x < 0.0)
+	if (parser->game->player.pos.x < 0.0)
 		exit_parser(parser, CUB_MISSPLAYER, NULL);
 }
 
 void	check_map(t_parser *parser)
 {
-	if (calc_widths(&parser->map) == false)
+	if (calc_widths(&parser->game->map) == false)
 		exit_parser(parser, CUB_MEMFAIL, "calculating widths of map");
 	map_size(parser);
 	player_spawn(parser);

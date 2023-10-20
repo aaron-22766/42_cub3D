@@ -25,13 +25,10 @@ static void	init_parser(t_parser *parser)
 	parser->ea_path = NULL;
 	parser->floor_color = NULL;
 	parser->ceiling_color = NULL;
-	init_map(&parser->map);
 	parser->scene_file = -1;
 	parser->line = NULL;
 	parser->split = NULL;
 	parser->vis = NULL;
-	parser->player.x = -1;
-	parser->player.y = -1;
 	parser->game = NULL;
 }
 
@@ -46,7 +43,6 @@ void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
 	free(parser->ea_path);
 	free(parser->floor_color);
 	free(parser->ceiling_color);
-	free_map(&parser->map);
 	close(parser->scene_file);
 	free(parser->line);
 	ft_free_2d_array((void **)parser->split);

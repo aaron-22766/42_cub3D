@@ -72,6 +72,4 @@ void	set_game(t_parser *parser)
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
 	// remove_excess_allign(parser);
-	ft_memcpy(&parser->game->map, &parser->map, sizeof(t_map));
-	init_map(&parser->map);
 }
