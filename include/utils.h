@@ -83,7 +83,7 @@ bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
 
 // player.c
-void	init_player(t_player *player);
-void	print_player(t_player *player);
+void		init_player(t_player *player);
+void		print_player(t_player *player);
 
 #endif
