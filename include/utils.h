@@ -60,6 +60,12 @@ typedef struct s_pos
 	double	y;
 }	t_pos;
 
+typedef struct s_player
+{
+	double	orientation;
+	t_pos	pos;
+}	t_player;
+
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
@@ -70,13 +76,14 @@ t_cub_errno	ft_perror(t_cub_errno err, char *context);
 // ft_pixel.c
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
-// array.c
-size_t		count_arr(char **arr);
-
 // map.c
 void		init_map(t_map *map);
 void		free_map(t_map *map);
 bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
+
+// player.c
+void	init_player(t_player *player);
+void	print_player(t_player *player);
 
 #endif

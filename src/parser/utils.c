@@ -43,5 +43,6 @@ void	print_parser(t_parser *parser)//DEBUG
 	printf("west: %s\n", parser->we_path);
 	printf("floor: %s\n", parser->floor_color);
 	printf("ceiling: %s\n", parser->ceiling_color);
+	print_player(&parser->game->player);
 	print_map(&parser->game->map);
 }

@@ -55,7 +55,7 @@ static void	load_color(t_parser *parser, uint32_t *color, char *rgb)
 	*color = ft_pixel(red, green, blue, 0);
 }
 
-static void	remove_excess_allign(t_map *map)
+static size_t	remove_excess_allign(t_map *map)
 {
 	size_t	min;
 	size_t	max;
@@ -81,6 +81,7 @@ static void	remove_excess_allign(t_map *map)
 		ft_memmove(map->map[i], &map->map[i][min], max - min + 2);
 		i++;
 	}
+	return (min);
 }
 
 void	set_game(t_parser *parser)
@@ -91,6 +92,6 @@ void	set_game(t_parser *parser)
 	load_texture(parser, &parser->game->we_texture, parser->we_path);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
-	remove_excess_allign(&parser->game->map);
+	parser->game->player.pos.y -= remove_excess_allign(&parser->game->map);
 	calc_widths(&parser->game->map);
 }

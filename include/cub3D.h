@@ -8,7 +8,6 @@
 # include "utils.h"
 # include "parser.h"
 
-
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
@@ -23,16 +22,11 @@
 
 typedef struct s_map	t_map;
 typedef struct s_pos	t_pos;
+typedef struct s_player	t_player;
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
 /* ************************************************************************** */
-
-typedef struct s_player
-{
-	double	orientation;
-	t_pos	pos;
-}	t_player;
 
 typedef struct s_game
 {
