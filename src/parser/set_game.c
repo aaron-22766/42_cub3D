@@ -55,22 +55,12 @@ static void	load_color(t_parser *parser, uint32_t *color, char *rgb)
 	*color = ft_pixel(red, green, blue, 0);
 }
 
-// static void	convert_spaces(t_parser *parser)
+// static void	remove_excess_allign(t_parser *parser)
 // {
-// 	size_t	i;
-// 	size_t	allign;
+// 	size_t	min;
+// 	size_t	max;
 
-// 	i = 0;
-// 	while (i < parser->map.height)
-// 	{
-// 		allign = ft_strcspn(parser->map.map[i], ALLIGN);
-// 		while (parser->map.map[allign])
-// 		{
-// 			parser->map.map[i][allign] = PATH;
-// 			allign = ft_strcspn(&parser->map.map[i][allign + 1], ALLIGN);
-// 		}
-// 		i++;
-// 	}
+
 // }
 
 void	set_game(t_parser *parser)
@@ -81,10 +71,7 @@ void	set_game(t_parser *parser)
 	load_texture(parser, &parser->game->we_texture, parser->we_path);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
-
-	// convert_spaces(parser);//only convert inside the map
-	// remove unnecessary spaces outside of the map ??
-	
+	// remove_excess_allign(parser);
 	ft_memcpy(&parser->game->map, &parser->map, sizeof(t_map));
 	init_map(&parser->map);
 }
