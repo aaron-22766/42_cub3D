@@ -19,9 +19,11 @@ bool	calc_widths(t_map *map)
 	size_t	i;
 	size_t	len;
 
-	map->widths = malloc(map->height * sizeof(size_t));
+	if (!map->widths)
+		map->widths = malloc(map->height * sizeof(size_t));
 	if (!map->widths)
 		return (false);
+	map->max_width = 0;
 	i = 0;
 	while (i < map->height)
 	{

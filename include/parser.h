@@ -23,10 +23,7 @@
 /*                                  TYPEDEFS                                  */
 /* ************************************************************************** */
 
-typedef struct s_game		t_game;
-typedef struct s_pos		t_pos;
-typedef struct s_map		t_map;
-typedef enum e_cub_errno	t_cub_errno;
+typedef struct s_game	t_game;
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
@@ -40,7 +37,6 @@ typedef struct s_parser
 	char	*ea_path;
 	char	*floor_color;
 	char	*ceiling_color;
-	t_map	map;
 	int		scene_file;
 	char	*line;
 	char	**split;
