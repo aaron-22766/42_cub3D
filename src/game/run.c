@@ -14,4 +14,11 @@ void	run_game(t_game *game)
 	// mlx_loop_hook(game->mlx, (void (*)(void*))key_hook, game);
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop(game->mlx);
+
+	/*
+	TODO:	-	Loop through all mouse events
+			-	For each mouse event:
+				-	Handle mouse event
+				-	Before Generate New render
+	*/
 }

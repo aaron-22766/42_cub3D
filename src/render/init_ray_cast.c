@@ -3,12 +3,20 @@
 
 void	init_raycast_frame(t_game *game, t_render *render)
 {
-	render->camera_x = 2 * render->x / (double)game->image->width - 1;
-	render->ray_dir_x = game->player.dir_x + game->player.plane_x * render->camera_x;
-	render->ray_dir_y = game->player.dir_y + game->player.plane_y * render->camera_x;
-	render->map_x = (int)game->player.pos_x;
-	render->map_y = (int)game->player.pos_y;
-	render->delta_dist_x = fabs(1 / render->ray_dir_x);
-	render->delta_dist_y = fabs(1 / render->ray_dir_y);
-	render->hit = 0;
+	render->angle = game->player.orientation - (game->player.fov / 2);
+	render->angle_increment = game->player.fov / (double) game->image->width;
+	render->ray_index = 0;
+	render->wall_height = TEXTURE_HEIGHT;
+	render->wall_width = TEXTURE_WIDTH;
+}
+
+void	init_single_ray(t_game *game, t_render *render, t_ray *ray)
+{
+	ray->angle = render->angle;
+	ray->eyes.x = game->player.pos.x;
+	ray->eyes.y = game->player.pos.y;
+	ray->eyes.z = render->wall_height / 2;			// TODO: change this to a define
+	ray->distance = 0;			//	TODO:	determine_ray_distance(game, ray);
+	ray->wall_top = 69;			//			determine_wall_top(game, ray);
+	ray->wall_bottom = 420;		//		  	determine_wall_bottom(game, ray);
 }

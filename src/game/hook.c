@@ -22,3 +22,9 @@ void	key_hook(mlx_key_data_t keydata, void* param)
 		rotate_player_right(game);
 	generate_render(game);
 }
+
+/**
+ * To-do: mouse_hook
+ * 
+ */
+

@@ -1,6 +1,11 @@
 
 #include "../../../include/cub3D.h"
 
+/**
+ * TODO:	-	Wall collision
+ * 			-	Door collision ?
+ */
+
 void	move_player_backward(t_game *game)
 {
 	t_pos	new_pos;

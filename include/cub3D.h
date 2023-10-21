@@ -17,6 +17,8 @@
 # define WINDOW_WIDTH 1080
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED M_PI / 180 * 5
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
