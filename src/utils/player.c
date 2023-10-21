@@ -5,6 +5,7 @@ void	init_player(t_player *player)
 	player->orientation = 0.0;
 	player->pos.x = -1;
 	player->pos.y = -1;
+	player->fov = M_PI / 3;
 }
 
 void	print_player(t_player *player)

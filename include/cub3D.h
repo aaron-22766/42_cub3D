@@ -7,6 +7,7 @@
 
 # include "utils.h"
 # include "parser.h"
+# include "render.h"
 
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
@@ -60,9 +61,6 @@ void	run_game(t_game *game);
 // debug.c
 void	print_game(t_game *game);			//DEBUG
 void	print_player(t_player *player);		//DEBUG
-
-// render_background.c
-void	render_background(t_game *game);
 
 // hook.c
 void	key_hook(mlx_key_data_t keydata, void* param);

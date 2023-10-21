@@ -65,6 +65,7 @@ typedef struct s_player
 {
 	double	orientation;
 	t_pos	pos;
+	double	fov;			// field of view (in radians)
 }	t_player;
 
 /* ************************************************************************** */
