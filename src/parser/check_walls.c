@@ -45,9 +45,11 @@ static void	path_outside_walls(t_parser *parser)
 	i = 0;
 	while (i < parser->game->map.height)
 	{
-		if (parser->game->map.map[i][ft_strspn(parser->game->map.map[i], ALLIGN)] == PATH)
+		if (parser->game->map.map[i][ft_strspn(parser->game->map.map[i], \
+			ALLIGN)] == PATH)
 			exit_parser(parser, CUB_INVWALLS, "path outside of left walls");
-		if (parser->game->map.map[i][ft_strrspn(parser->game->map.map[i], ALLIGN)] == PATH)
+		if (parser->game->map.map[i][ft_strrspn(parser->game->map.map[i], \
+			ALLIGN)] == PATH)
 			exit_parser(parser, CUB_INVWALLS, "path outside of right walls");
 		i++;
 	}

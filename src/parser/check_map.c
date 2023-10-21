@@ -36,7 +36,8 @@ static void	player_spawn(t_parser *parser)
 			{
 				if (parser->game->player.pos.x >= 0.0)
 					exit_parser(parser, CUB_DUPPLAYER, NULL);
-				parser->game->player.orientation = get_radian(parser->game->map.map[i][j]);
+				parser->game->player.orientation
+					= get_radian(parser->game->map.map[i][j]);
 				parser->game->player.pos.x = i;
 				parser->game->player.pos.y = j;
 			}
