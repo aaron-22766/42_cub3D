@@ -12,10 +12,7 @@ void	init_settings(t_game *game)
 	game->ea_texture = NULL;
 	game->ceiling_color = 0;
 	game->floor_color = 0;
-	game->player.orientation = 0.0;
-	game->player.pos.x = -1;
-	game->player.pos.y = -1;
-	
+	init_player(&game->player);
 }
 
 void	init_game(t_game *game)
