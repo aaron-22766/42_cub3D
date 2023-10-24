@@ -11,7 +11,9 @@ void	run_game(t_game *game)
 		ft_perror(CUB_MLXFAIL, "Failed to create image");
 	if (mlx_image_to_window(game->mlx, game->image, 0, 0))
 		ft_perror(CUB_MLXFAIL, "Failed to create window");
-	
+	game->player.pos.x += 0.5;
+	game->player.pos.y += 0.5;
+	// print_game(game);
 	generate_render(game);
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop(game->mlx);

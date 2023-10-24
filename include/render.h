@@ -69,6 +69,8 @@ void	render_background(t_game *game);
 /* init_ray_cast.c */
 void	init_raycast_frame(t_game *game, t_render *render);
 void	init_single_ray(t_render *render, t_ray *ray);
+void	print_ray(t_ray *ray);
+void	print_render(t_render *render);
 
 /* ray_casting.c */
 void    render_raycast(t_game *game, t_render *render, t_ray *ray);

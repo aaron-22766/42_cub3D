@@ -22,3 +22,24 @@ void	init_single_ray(t_render *render, t_ray *ray)
 	ray->pos.y = render->pos.y + 0; // 			sin(orientation) * something
 	ray->pos.z = 0;					// 
 }
+
+void	print_ray(t_ray *ray)
+{
+	printf("\nRAY:\n");
+	printf(" Angle: %f\n", ray->angle);
+	printf(" Distance: %f\n", ray->distance);
+	printf(" pw_height: %f\n", ray->pw_height);
+	printf(" pw_width: %f\n", ray->pw_width);
+	printf(" pw_top: %f\n", ray->pw_top);
+	printf(" pw_bottom: %f\n", ray->pw_bottom);
+	print_pos(&ray->pos);
+}
+
+void	print_render(t_render *render)
+{
+	printf("\nRENDER:\n");
+	printf(" ray_index: %zu\n", render->ray_index);
+	printf(" angle: %f\n", render->angle);
+	printf(" angle_increment: %f\n", render->angle_increment);
+	print_pos(&render->pos);
+}
