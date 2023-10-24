@@ -5,11 +5,14 @@
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
 
+typedef struct s_game	t_game;
+
 typedef struct s_ray
 {
 	double		angle;
 	double		distance;
 	t_pos		eyes;
+	t_pos		pos;
 	double		wall_top;
 	double		wall_bottom;
 	// double		wall_height;
