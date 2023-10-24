@@ -89,4 +89,9 @@ void		print_map(t_map *map);
 void		init_player(t_player *player);
 void		print_player(t_player *player);
 
+// position.c
+void		init_pos(t_pos *pos);
+void		set_pos(t_pos *pos, double x, double y, double z);
+void		print_pos(t_pos *pos);
+
 #endif
