@@ -1,6 +1,6 @@
 
 
-#include "../../includes/cub3D.h"
+#include "../../include/cub3D.h"
 
 void	init_game(t_game *game)
 {
@@ -22,7 +22,7 @@ void	free_game(t_game *game)
 {
 	free_map(&game->map);
 	if (game->image)
-		mlx_delete_image(game->image);
+		mlx_delete_image(game->mlx, game->image);
 	if (game->no_texture)
 		mlx_delete_texture(game->no_texture);
 	if (game->so_texture)

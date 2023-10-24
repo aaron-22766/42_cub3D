@@ -10,8 +10,9 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	// atexit(leaks);//DEBUG
-	init_settings(&game);
-	parse(&game, argc, argv);
 	init_game(&game);
+	parse(&game, argc, argv);
+	run_game(&game);
+	free_game(&game);
 	return (EXIT_SUCCESS);
 }

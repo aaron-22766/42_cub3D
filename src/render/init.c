@@ -9,7 +9,7 @@ void	init_raycast_frame(t_game *game, t_render *render)
 	render->pos = game->player.pos;
 }
 
-void	init_single_ray(t_game *game, t_render *render, t_ray *ray)
+void	init_single_ray(t_render *render, t_ray *ray)
 {
 	ray->angle = render->angle;
 	ray->distance = 0;

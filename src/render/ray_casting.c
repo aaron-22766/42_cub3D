@@ -5,13 +5,21 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 {
 	double	dx;
 	double	dy;
+	int		p_x;
+	int		p_y;
 
 	dx = cos(ray->angle);
 	dy = sin(ray->angle);
-	while (game->map.map[(int)ray->pos.y][(int)ray->pos.x] != '1')
+	p_x = floor(ray->pos.y);
+	p_y = floor(ray->pos.x);
+
+	while (fmin(p_x, p_y) >= 0 && p_x < game->map.height &&
+		p_y < game->map.widths[p_x] && game->map.map[p_x][p_y] != '1')
 	{
 		ray->pos.x += dx;
 		ray->pos.y += dy;
+		p_x = floor(ray->pos.y);
+		p_y = floor(ray->pos.x);
 	}
 	ray->distance = sqrt(pow(render->pos.x - ray->pos.x, 2) + pow(render->pos.y - ray->pos.y, 2));
 	ray->pw_height = TEXTURE_HEIGHT / ray->distance * (double) game->image->height;
@@ -59,13 +67,13 @@ void    render_raycast(t_game *game, t_render *render, t_ray *ray)
 	img_col = ray->pw_top;
 	img_row = render->ray_index;
 	p_y = (img_row - 0) * TEXTURE_WIDTH / ray->pw_width; // todo
-	while (img_col < ray->pw_bottom)
-	{
-		p_x = (img_col - ray->pw_top) * TEXTURE_HEIGHT / ray->pw_height;
-		color = get_pixel_color(ray->texture, p_x, p_y);
-		mlx_put_pixel(game->image, img_col, img_row, color);
-		img_col++;
-	}
+	// while (img_col < ray->pw_bottom)
+	// {
+	// 	p_x = (img_col - ray->pw_top) * TEXTURE_HEIGHT / ray->pw_height;
+	// 	color = get_pixel_color(ray->texture, p_x, p_y);
+	// 	mlx_put_pixel(game->image, img_col, img_row, color);
+	// 	img_col++;
+	// }
 }
 
 // TODO: Check if the x corresponds to the column and the y to the row

@@ -16,9 +16,8 @@ void	generate_render(t_game *game)
 	init_raycast_frame(game, &render);
 	while (render.ray_index < game->image->width)
 	{
-		init_single_ray(game, &render, &render.rays[render.ray_index]);
+		init_single_ray(&render, &render.rays[render.ray_index]);
 		render_raycast(game, &render, &render.rays[render.ray_index]);
-		render_wall(game, &render);
 		render.ray_index++;
 		render.angle += render.angle_increment;
 		if (render.angle > 2 * M_PI)

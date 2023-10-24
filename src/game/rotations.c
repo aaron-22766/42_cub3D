@@ -1,5 +1,5 @@
 
-#include "../../../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 void	rotate_counterclockwise(t_game *game)
 {

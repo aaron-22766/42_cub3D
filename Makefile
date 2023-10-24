@@ -11,7 +11,7 @@ INC_DIR		=	include
 LIB_DIR		=	lib
 SRC_DIR		=	src
 BUILD_DIR	=	build
-SUB_DIRS	=	game parser utils game/move
+SUB_DIRS	=	game parser render utils
 
 LIBFT_DIR	=	$(LIB_DIR)/libft
 MLX_DIR		=	$(LIB_DIR)/MLX42
@@ -19,7 +19,7 @@ MLX_BUILD	=	$(MLX_DIR)/build
 
 # FLAGS #
 
-CFLAGS		=	-Wall -Wextra -Werror -MMD #-g3 -fsanitize=address
+CFLAGS		=	#-Wall -Wextra -Werror -MMD #-g3 -fsanitize=address
 MLXFLAGS	=	-lglfw -framework Cocoa -framework OpenGL -framework IOKit
 RMFLAGS		=	-rf
 INCFLAGS	=	-I./$(INC_DIR) \
