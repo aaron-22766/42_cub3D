@@ -10,7 +10,6 @@ void	init_player(t_player *player)
 void	print_player(t_player *player)
 {
 	printf("Player orientation: %f\n", player->orientation);
-	// printf("Player pos: %f, %f\n", player->pos.x, player->pos.y);
 	print_pos(&player->pos);
 	printf("Player Field of View: %.5f rad ~ %.1f rad\n",
 		player->fov, player->fov * 180 / M_PI);

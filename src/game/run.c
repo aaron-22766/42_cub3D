@@ -3,18 +3,18 @@
 
 void	run_game(t_game *game)
 {
-	printf("Running game\n");
-	print_game(game);				//DEBUG
-	// mlx_delete_image(game->mlx, game->image);
-	// game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	// render_background(game);
-	// mlx_image_to_window(game->mlx, game->image, 0, 0);
-	printf("mlx_loop\n");		//DEBUG
+	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
+	if (!game->mlx)
+		ft_perror(CUB_MLXFAIL, "Failed to initialize MLX");
+	game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!game->image)
+		ft_perror(CUB_MLXFAIL, "Failed to create image");
+	if (mlx_image_to_window(game->mlx, game->image, 0, 0))
+		ft_perror(CUB_MLXFAIL, "Failed to create window");
+	
 	generate_render(game);
-	// mlx_loop_hook(game->mlx, (void (*)(void*))key_hook, game);
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop(game->mlx);
-
 	/*
 	TODO:	-	Loop through all mouse events
 			-	For each mouse event:

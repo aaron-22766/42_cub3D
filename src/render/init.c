@@ -14,6 +14,6 @@ void	init_single_ray(t_game *game, t_render *render, t_ray *ray)
 	ray->angle = render->angle;
 	ray->pos.x = render->pos.x + 0; // Change to	cos(orientation) * something
 	ray->pos.y = render->pos.y + 0; // 			sin(orientation) * something
-	ray->pos.z = 
+	ray->pos.z = 0;					// 
 	ray->distance = 0;
 }
