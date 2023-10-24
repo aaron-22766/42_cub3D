@@ -1,3 +1,4 @@
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -62,12 +63,11 @@ void	free_game(t_game *game);
 void	run_game(t_game *game);
 
 // debug.c
-void	print_game(t_game *game);			//DEBUG
-void	print_player(t_player *player);		//DEBUG
+void	print_game(t_game *game);
+void	print_player(t_player *player);
 
 // hook.c
 void	key_hook(mlx_key_data_t keydata, void* param);
-// void	key_hook(void* param);
 
 // move
 void	move_player_forward(t_game *game);
@@ -76,6 +76,5 @@ void	move_player_left(t_game *game);
 void	move_player_right(t_game *game);
 void	rotate_player_left(t_game *game);
 void	rotate_player_right(t_game *game);
-
 
 #endif

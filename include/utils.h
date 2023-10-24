@@ -76,14 +76,17 @@ typedef struct s_player
 // error.c
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
-// ft_pixel.c
-int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-
 // map.c
 void		init_map(t_map *map);
 void		free_map(t_map *map);
 bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
+
+// pixel.c
+int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t		get_pixel_color(mlx_texture_t *txt, int x, int y);
+void		print_pixel_rgba(int32_t pixel);
+void		print_pixel_hex(int32_t pixel);
 
 // player.c
 void		init_player(t_player *player);
