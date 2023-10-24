@@ -13,8 +13,9 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
         ray->pos.x += dx;
 		ray->pos.y += dy;
     }
-	ray->distance = sqrt(pow(ray->eyes.x - ray->pos.x, 2) + pow(ray->eyes.y - ray->pos.y, 2));
+	ray->distance = sqrt(pow(render->pos.x - ray->pos.x, 2) + pow(render->pos.y - ray->pos.y, 2));
 	ray->p_wall_height = render->wall_height / ray->distance * (double) game->image->height;
+	ray->p_wall_width = render->wall_width / ray->distance * (double) game->image->width;
 	ray->wall_top = ((double)game->image->height - ray->p_wall_height) / 2;
 	ray->wall_bottom = ((double)game->image->height + ray->p_wall_height) / 2;
 }
@@ -53,20 +54,23 @@ void    cast_single_ray(t_game *game, t_render *render, t_ray *ray)
 {
 	int32_t	row;
 	int32_t	col;
+int x,y;
 
     set_projection_values(game, render, ray);
 	ray->texture = get_texture(game, render, ray);
 	set_projection_values(game, render, ray);
-	row = 0;
-	col = 0;
-	// while (row < game->image->height)
-		
-	// 	if (col >= ray->wall_top && col <= ray->wall_bottom)
-	// 		mlx_pixel_put(game->mlx, game->image, x, y, get_pixel_color(ray->texture, x, y));
+	row = ray->p_wall_top;
+	col = render.ray_index;
+y = (col - 0) * render->wall_width / ray->p_wall_width; // todo
+	while (row < ray->p_wall_bottom)
+{
+x = (row - ray->p_wall_top) * render->wall_height / ray->p_wall_height;
+mlx_pixel_put(game->mlx, game->image, row, col, get_pixel_color(ray->texture, (row - ray->p_wall_top)  render->wall_height,x, y));
 	// 	// TODO:	-	Loop through all pixels that are part of the wall
 	// 	// 			-	For each pixel:
 	// 	// 				-	Get pixel color
 	// 	// 				-	Render pixel
-	// }
+row++;
+	}
 
 }
