@@ -2,15 +2,23 @@
 #ifndef RENDER_H
 # define RENDER_H
 
-# define WINDOW_HEIGHT 720
-# define WINDOW_WIDTH 1080
+/* ************************************************************************** */
+/*                                  TYPEDEFS                                  */
+/* ************************************************************************** */
 
 typedef struct s_game	t_game;
+# define WINDOW_WIDTH 1080
+
+
+/* ************************************************************************** */
+/*                                  STRUCTS                                   */
+/* ************************************************************************** */
 
 /**
  * @brief Ray structure
  * 
- * @param angle Angle of the ray in radians (0 is right or east, counterclockwise)
+ * @param angle Angle of the ray in radians (0 is right or east,
+ * positive angles are counter-clockwise)
  * @param distance Distance between the player and the wall
  * @param pw_height	Height of the projected wall in the IMAGE
  * @param pw_width Width of the projected wall in the IMAGE
@@ -50,6 +58,10 @@ typedef struct s_render
 	double		angle_increment;
 	t_pos		pos;
 }	t_render;
+
+/* ************************************************************************** */
+/*                                 FUNCTIONS                                  */
+/* ************************************************************************** */
 
 /* background.c */
 void	render_background(t_game *game);

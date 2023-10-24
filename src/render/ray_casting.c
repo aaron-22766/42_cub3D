@@ -46,7 +46,7 @@ static mlx_texture_t	*get_texture(t_game *game, t_render *render, t_ray *ray)
  * @param ray 
  */
 
-void    cast_single_ray(t_game *game, t_render *render, t_ray *ray)
+void    render_raycast(t_game *game, t_render *render, t_ray *ray)
 {
 	int		color;
 	int32_t	img_col;

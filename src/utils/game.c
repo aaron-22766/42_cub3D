@@ -1,5 +1,6 @@
 
-#include "../../includes/cub3d.h"
+
+#include "../../includes/cub3D.h"
 
 void	init_game(t_game *game)
 {

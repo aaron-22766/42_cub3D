@@ -9,7 +9,7 @@
 
 // static void	check_valid_position(t_game *game, double x, double y)
 
-void	move_player_backward(t_game *game)
+void	move_backward(t_game *game)
 {
 	t_pos	new_pos;
 
@@ -22,7 +22,7 @@ void	move_player_backward(t_game *game)
 }
 
 
-void	move_player_forward(t_game *game)
+void	move_forward(t_game *game)
 {
 	t_pos	new_pos;
 
@@ -34,7 +34,7 @@ void	move_player_forward(t_game *game)
 	}
 }
 
-void	move_player_left(t_game *game)
+void	move_left(t_game *game)
 {
 	t_pos	new_pos;
 
@@ -46,7 +46,7 @@ void	move_player_left(t_game *game)
 	}
 }
 
-void	move_player_right(t_game *game)
+void	move_right(t_game *game)
 {
 	t_pos	new_pos;
 

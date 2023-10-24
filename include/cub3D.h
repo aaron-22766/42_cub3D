@@ -52,29 +52,21 @@ typedef struct s_game
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
-// init.c
-void	init_settings(t_game *game);
-void	init_game(t_game *game);
-
-// free.c
-void	free_game(t_game *game);
-
-// run.c
-void	run_game(t_game *game);
-
-// debug.c
-void	print_game(t_game *game);
-void	print_player(t_player *player);
-
-// hook.c
+/* hook.c */
 void	key_hook(mlx_key_data_t keydata, void* param);
+// void	exit_hook(void *param);
 
-// move
-void	move_player_forward(t_game *game);
-void	move_player_backward(t_game *game);
-void	move_player_left(t_game *game);
-void	move_player_right(t_game *game);
-void	rotate_player_left(t_game *game);
-void	rotate_player_right(t_game *game);
+/* motions.c */
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+
+/* rotations.c */
+void	rotate_clockwise(t_game *game);
+void	rotate_counterclockwise(t_game *game);
+
+/* run.c */
+void	run_game(t_game *game);
 
 #endif

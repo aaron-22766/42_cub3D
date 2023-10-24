@@ -1,4 +1,5 @@
-#include "../../include/utils.h"
+
+#include "../../include/cub3D.h"
 
 /* ************************************************************************** */
 /*           SPLIT THIS FUNCTION INTO 25 LINES ONLY AT THE VERY END           */

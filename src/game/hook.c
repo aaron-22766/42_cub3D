@@ -9,17 +9,17 @@ void	key_hook(mlx_key_data_t keydata, void* param)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		move_player_forward(game);
+		move_forward(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		move_player_backward(game);
+		move_backward(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		move_player_left(game);
+		move_left(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		move_player_right(game);
+		move_right(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		rotate_player_left(game);
+		rotate_counterclockwise(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		rotate_player_right(game);
+		rotate_clockwise(game);
 	generate_render(game);
 }
 

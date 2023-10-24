@@ -66,7 +66,7 @@ typedef struct s_player
 {
 	double	orientation;
 	t_pos	pos;
-	double	fov;			// field of view (in radians)
+	double	fov;
 }	t_player;
 
 /* ************************************************************************** */
@@ -75,6 +75,11 @@ typedef struct s_player
 
 // error.c
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
+
+// game.c
+void		init_game(t_game *game);
+void		free_game(t_game *game);
+void		print_game(t_game *game);
 
 // map.c
 void		init_map(t_map *map);
