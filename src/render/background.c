@@ -3,23 +3,23 @@
 
 void	render_background(t_game *game)
 {
-	uint32_t	row;
-	uint32_t	col;
-	uint32_t	colour;
+	uint32_t	img_row;
+	uint32_t	img_col;
+	uint32_t	color;
 
-	row = 0;
-	while (row < game->image->height)
+	img_row = 0;
+	while (img_row < game->image->height)
 	{
-		if (row < game->image->height / 2)
-			colour = game->ceiling_color;
+		img_col = 0;
+		if (img_row < game->image->height / 2)
+			color = game->ceiling_color;
 		else
-			colour = game->floor_color;
-		col = 0;
-		while (col < game->image->width)
+			color = game->floor_color;
+		while (img_col < game->image->width)
 		{
-			mlx_put_pixel(game->image, col, row, colour);
-			col++;
+			mlx_put_pixel(game->image, img_col, img_row, color);
+			img_col++;
 		}
-		row++;
+		img_row++;
 	}
 }

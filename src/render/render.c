@@ -24,14 +24,5 @@ void	generate_render(t_game *game)
 		if (render.angle > 2 * M_PI)
 			render.angle -= 2 * M_PI;
 	}
-
-	/*
-	TODO:	-	Loop through all rays
-			-	For each ray:
-				-	Reset ray
-				-	Cast ray
-				-	Render wall
-	*/
-
 	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }
