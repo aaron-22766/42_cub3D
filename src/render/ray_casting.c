@@ -8,8 +8,11 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 	int		p_w;
 	int		p_h;
 
-	dx = cos(ray->angle);
-	dy = sin(ray->angle);
+	// dx = cos(ray->angle);
+	// dy = sin(ray->angle);
+	// With a 90° counter-clockwise rotation
+	dx = sin(ray->angle);
+	dy = -cos(ray->angle);
 	p_h = floor(ray->pos.x);
 	p_w = floor(ray->pos.y);
 	while (fmin(p_w, p_h) >= 0 && p_h < game->map.height && p_w < game->map.widths[p_w] &&
@@ -22,8 +25,6 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 	}
 	ray->pos.x -= dx;
 	ray->pos.y -= dy;
-	p_h = fmin(floor(ray->pos.x), game->map.height - 1);
-	p_w = fmin(floor(ray->pos.y), game->map.widths[p_h] - 1);
 	ray->distance = sqrt(pow((double)fabs(game->player.pos.x - ray->pos.x), 2.0) +
 						pow((double)(game->player.pos.y - ray->pos.y), 2.0));
 	ray->pw_height = (ray->distance / (double) TEXTURE_HEIGHT) * (double) WINDOW_HEIGHT;

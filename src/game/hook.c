@@ -20,6 +20,7 @@ void	key_hook(mlx_key_data_t keydata, void* param)
 		rotate_counterclockwise(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate_clockwise(game);
+	print_pos(&game->player.pos);
 	generate_render(game);
 }
 
