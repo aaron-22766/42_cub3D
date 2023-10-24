@@ -7,6 +7,8 @@ void	init_raycast_frame(t_game *game, t_render *render)
 	render->angle = game->player.orientation - (game->player.fov / 2);
 	render->angle_increment = game->player.fov / (double) game->image->width;
 	render->pos = game->player.pos;
+	render->img_col = 0;
+	render->img_row = 0;
 }
 
 void	init_single_ray(t_render *render, t_ray *ray)

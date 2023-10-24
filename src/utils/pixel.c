@@ -1,23 +1,26 @@
 
 #include "../../include/cub3D.h"
 
-int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+uint32_t	ft_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-int32_t	get_pixel_color(mlx_texture_t *txt, int x, int y)
+uint32_t	get_pixel_color(mlx_texture_t *txt, uint32_t x, uint32_t y)
 {
-	int32_t	r;
-	int32_t	g;
-	int32_t	b;
-	int32_t	a;
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+	uint32_t	a;
 
 	if (x < 0 || x >= txt->width || y < 0 || y >= txt->height)
 	{
-		printf("Error: get_pixel_color: Out of bounds\n");
-		return (0);
+		printf("x: %d, y: %d\n", x, y);
+		// printf("Error: get_pixel_color: Out of bounds\n");
+		// return (0);
 	}
+	// x = fmax(0, fmin(x, txt->width - 1));
+	// y = fmax(0, fmin(y, txt->height - 1));
 	r = txt->pixels[(y * txt->width + x) * txt->bytes_per_pixel + 0];
 	g = txt->pixels[(y * txt->width + x) * txt->bytes_per_pixel + 1];
 	b = txt->pixels[(y * txt->width + x) * txt->bytes_per_pixel + 2];
@@ -25,12 +28,12 @@ int32_t	get_pixel_color(mlx_texture_t *txt, int x, int y)
 	return (ft_pixel(r, g, b, a));
 }
 
-void	print_pixel_rgba(int32_t pixel)
+void	print_pixel_rgba(uint32_t pixel)
 {
-	int32_t	r;
-	int32_t	g;
-	int32_t	b;
-	int32_t	a;
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+	uint32_t	a;
 
 	r = pixel >> 24 & 0xFF;
 	g = pixel >> 16 & 0xFF;
@@ -39,7 +42,7 @@ void	print_pixel_rgba(int32_t pixel)
 	printf("Pixel: %d, %d, %d, %d\n", r, g, b, a);
 }
 
-void	print_pixel_hex(int32_t pixel)
+void	print_pixel_hex(uint32_t pixel)
 {
 	printf("Pixel: %X\n", pixel);
 }

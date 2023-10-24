@@ -33,7 +33,7 @@ void	free_game(t_game *game)
 		mlx_delete_texture(game->ea_texture);
 }
 
-void	print_game(t_game *game)			//DEBUG
+void	print_game(t_game *game)
 {
 	printf("\nGAME:\n");
 	printf("Image - w: %d, h: %d\n", game->image->width, game->image->height);

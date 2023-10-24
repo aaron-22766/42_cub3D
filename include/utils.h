@@ -94,10 +94,10 @@ bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
 
 // pixel.c
-int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-int32_t		get_pixel_color(mlx_texture_t *txt, int x, int y);
-void		print_pixel_rgba(int32_t pixel);
-void		print_pixel_hex(int32_t pixel);
+uint32_t	ft_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+uint32_t	get_pixel_color(mlx_texture_t *txt, uint32_t x, uint32_t y);
+void		print_pixel_rgba(uint32_t pixel);
+void		print_pixel_hex(uint32_t pixel);
 
 // player.c
 void		init_player(t_player *player);
