@@ -9,14 +9,13 @@ typedef struct s_game	t_game;
 
 typedef struct s_ray
 {
-	double		angle;
-	t_pos		pos;		// Projection position
-	double		distance;
-	double		p_wall_top;
-	double		p_wall_bottom;
-	double		p_wall_height;
-	// t_pos		wall_hit;
-	mlx_texture_t	*txt;
+	double			angle;
+	t_pos			pos;		// Projection position
+	double			distance;
+	double			p_wall_top;
+	double			p_wall_bottom;
+	double			p_wall_height;
+	mlx_texture_t	*texture;
 
 }	t_ray;
 

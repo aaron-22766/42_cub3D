@@ -15,8 +15,8 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
     }
 	ray->distance = sqrt(pow(ray->eyes.x - ray->pos.x, 2) + pow(ray->eyes.y - ray->pos.y, 2));
 	ray->p_wall_height = render->wall_height / ray->distance * (double) game->image->height;
-	ray->wall_top = ((double)game->image->height - ray->p_wall_height) / 2;
-	ray->wall_bottom = ((double)game->image->height + ray->p_wall_height) / 2;
+	ray->p_wall_top = ((double)game->image->height - ray->p_wall_height) / 2;
+	ray->p_wall_bottom = ((double)game->image->height + ray->p_wall_height) / 2;
 }
 
 static mlx_texture_t	*get_texture(t_game *game, t_render *render, t_ray *ray)
