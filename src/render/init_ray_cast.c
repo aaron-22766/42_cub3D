@@ -6,18 +6,18 @@ void	init_raycast_frame(t_game *game, t_render *render)
 	render->angle = game->player.orientation - (game->player.fov / 2);
 	render->angle_increment = game->player.fov / (double) game->image->width;
 	render->ray_index = 0;
-	render->wall_height = TEXTURE_HEIGHT;
-	render->wall_width = TEXTURE_WIDTH;
+	// render->wall_height = TEXTURE_HEIGHT;
+	// render->wall_width = TEXTURE_WIDTH;
+	render->pos = game->player.pos;
 }
 
 void	init_single_ray(t_game *game, t_render *render, t_ray *ray)
 {
 	ray->angle = render->angle;
-	// ray->eyes.x = game->player.pos.x;
-	// ray->eyes.y = game->player.pos.y;
-	// ray->eyes.z = render->wall_height / 2;
-	set_pos(&ray->eyes, game->player.pos.x, game->player.pos.y, render->wall_height / 2);
-	set_pos(&ray->pos, ray->eyes.x, ray->eyes.y, ray->eyes.z);
+	ray->eyes = render->pos;
+	ray->pos.x = render->pos.x + 0; // Change to	cos(orientation) * something
+	ray->pos.y = render->pos.y + 0; // 			sin(orientation) * something
+	ray->pos.z = 0;
 	ray->distance = 0;
 	ray->wall_top = 69;
 	ray->wall_bottom = 420;

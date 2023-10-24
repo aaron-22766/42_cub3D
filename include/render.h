@@ -10,13 +10,14 @@ typedef struct s_game	t_game;
 typedef struct s_ray
 {
 	double		angle;
+	t_pos		pos;		// Projection position
 	double		distance;
-	t_pos		eyes;
-	t_pos		pos;
-	double		wall_top;
-	double		wall_bottom;
-	// double		wall_height;
+	double		p_wall_top;
+	double		p_wall_bottom;
+	double		p_wall_height;
 	// t_pos		wall_hit;
+	mlx_texture_t	*txt;
+
 }	t_ray;
 
 typedef struct s_render
@@ -27,8 +28,7 @@ typedef struct s_render
 	size_t		ray_index;
 	double		wall_height;
 	double		wall_width;
-	// t_pos		ray_destination;
-	// t_pos		ray_origin;
+	t_pos		pos;	// player position
 }	t_render;
 
 

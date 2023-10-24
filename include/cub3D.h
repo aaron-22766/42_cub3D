@@ -19,6 +19,7 @@
 # define ROTATE_SPEED M_PI / 180 * 5
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
+# define FOV M_PI / 3
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
