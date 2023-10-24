@@ -13,6 +13,11 @@ int32_t	get_pixel_color(mlx_texture_t *txt, int x, int y)
 	int32_t	b;
 	int32_t	a;
 
+	if (x < 0 || x >= txt->width || y < 0 || y >= txt->height)
+	{
+		printf("Error: get_pixel_color: Out of bounds\n");
+		return (0);
+	}
 	r = txt->pixels[(y * txt->width + x) * txt->bytes_per_pixel + 0];
 	g = txt->pixels[(y * txt->width + x) * txt->bytes_per_pixel + 1];
 	b = txt->pixels[(y * txt->width + x) * txt->bytes_per_pixel + 2];
