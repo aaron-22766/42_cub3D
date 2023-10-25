@@ -1,7 +1,7 @@
 
 #include "../../include/cub3D.h"
 
-void	key_hook(mlx_key_data_t keydata, void* param)
+void	hook(void* param)
 {
 	t_game	*game;
 

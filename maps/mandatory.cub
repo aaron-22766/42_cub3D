@@ -1,9 +1,16 @@
-C 225,30,0
-          NO ./textures/white_64.png
-SO ./textures/white_64.png
-EA ./textures/desktop.png
-F 220,100,0
-WE ./textures/white_64.png
+
+         
+
+NO ./textures/test/east_64.png
+
+
+        EA ./textures/test/white_64.png
+SO ./textures/test/white_64.png         
+
+
+        F 30,30,30         
+C 37,37,37           
+WE ./textures/test/white_64.png
      1111111111111111111111111
       1000000000110000000000001         
       1011000001110000000000001           

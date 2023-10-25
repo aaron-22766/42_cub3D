@@ -36,7 +36,9 @@ void	free_game(t_game *game)
 void	print_game(t_game *game)
 {
 	printf("\nGAME:\n");
-	printf("Image - w: %d, h: %d\n", game->image->width, game->image->height);
+	if (game->image)
+		printf("Image - w: %d, h: %d\n", game->image->width,
+			game->image->height);
 	print_map(&game->map);
 	printf("No texture - w: %d, h: %d\n", game->no_texture->width, game->no_texture->height);
 	printf("So texture - w: %d, h: %d\n", game->so_texture->width, game->so_texture->height);

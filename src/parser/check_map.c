@@ -8,21 +8,6 @@ static void	map_size(t_parser *parser)
 		exit_parser(parser, CUB_SMALLMAP, NULL);
 }
 
-// Changed: East is now 0 degrees, North is 90 degrees, West is 180 degrees, South is 270 degrees.
-/**
- * @brief Get the radian object
- * Changes for consistency & ease of use:
- * 	- East is now 0 degrees
- * 	- North is 90 degrees
- *	- West is 180 degrees
- *	- South is 270 degrees
- * As in the unit circle.
- * 
- * You can delete this comment after you've read it.
- * @param c 
- * @return double 
- */
-
 static double	get_radian(char c)
 {
 	if (c == 'N')

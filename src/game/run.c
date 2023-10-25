@@ -16,7 +16,7 @@ void	run_game(t_game *game)
 	game->player.pos.x += 0.5;
 	game->player.pos.y += 0.5;
 	generate_render(game);
-	mlx_key_hook(game->mlx, key_hook, game);
+	mlx_loop_hook(game->mlx, hook, game);
 	// mlx_mouse_hook(game->mlx, mouse_hook, game);  // To-do: mouse_hook (bonus)
 	mlx_loop(game->mlx);
 }

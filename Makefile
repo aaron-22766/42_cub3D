@@ -47,7 +47,6 @@ $(NAME): $(LIBFT) $(MLX42) $(OBJS)
 $(LIBFT):
 	@git submodule update --init --recursive --remote $(LIBFT_DIR)
 	@make -C $(LIBFT_DIR)
-	@make -C $(LIBFT_DIR) clean
 
 $(MLX42):
 	@git submodule update --init --recursive --remote $(MLX_DIR)

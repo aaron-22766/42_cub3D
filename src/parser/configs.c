@@ -9,17 +9,17 @@ static void	set_config(t_parser *parser, char **config)
 
 static bool	create_config(t_parser *parser)
 {
-	if (!strcmp(parser->split[0], "NO"))
+	if (!ft_strcmp(parser->split[0], "NO"))
 		set_config(parser, &parser->no_path);
-	else if (!strcmp(parser->split[0], "EA"))
+	else if (!ft_strcmp(parser->split[0], "EA"))
 		set_config(parser, &parser->ea_path);
-	else if (!strcmp(parser->split[0], "SO"))
+	else if (!ft_strcmp(parser->split[0], "SO"))
 		set_config(parser, &parser->so_path);
-	else if (!strcmp(parser->split[0], "WE"))
+	else if (!ft_strcmp(parser->split[0], "WE"))
 		set_config(parser, &parser->we_path);
-	else if (!strcmp(parser->split[0], "F"))
+	else if (!ft_strcmp(parser->split[0], "F"))
 		set_config(parser, &parser->floor_color);
-	else if (!strcmp(parser->split[0], "C"))
+	else if (!ft_strcmp(parser->split[0], "C"))
 		set_config(parser, &parser->ceiling_color);
 	else
 		return (false);

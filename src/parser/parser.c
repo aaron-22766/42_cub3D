@@ -1,22 +1,5 @@
 #include "../../include/parser.h"
 
-static void	check_args(int argc)
-{
-	if (argc < 2)
-		exit(ft_perror(CUB_INVARGS, "few"));
-	else if (argc > 2)
-		exit(ft_perror(CUB_INVARGS, "many"));
-}
-
-static void	get_scene_file(t_parser *parser, char *path)
-{
-	if (!ft_strends(path, ".cub"))
-		exit(ft_perror(CUB_INVFILEEXT, NULL));
-	parser->scene_file = open(path, O_RDONLY);
-	if (parser->scene_file == -1)
-		exit(ft_perror(CUB_ERRNO, path));
-}
-
 static void	init_parser(t_parser *parser)
 {
 	parser->no_path = NULL;
@@ -32,11 +15,24 @@ static void	init_parser(t_parser *parser)
 	parser->game = NULL;
 }
 
-void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
+static int	get_input(int argc, char **argv)
 {
-	ft_perror(err, context);
-	if (err != CUB_SUCCESS)
-		free_game(parser->game);
+	int	fd;
+
+	if (argc < 2)
+		exit(ft_perror(CUB_INVARGS, "few"));
+	else if (argc > 2)
+		exit(ft_perror(CUB_INVARGS, "many"));
+	if (!ft_strends(argv[1], ".cub"))
+		exit(ft_perror(CUB_INVFILEEXT, NULL));
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit(ft_perror(CUB_ERRNO, argv[1]));
+	return (fd);
+}
+
+static void	free_parser(t_parser *parser)
+{
 	free(parser->no_path);
 	free(parser->so_path);
 	free(parser->we_path);
@@ -47,23 +43,28 @@ void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
 	free(parser->line);
 	ft_free_2d_array((void **)parser->split);
 	ft_free_2d_array((void **)parser->vis);
-	if (err != CUB_SUCCESS)
-		exit(err);
+}
+
+void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
+{
+	ft_perror(err, context);
+	free_game(parser->game);
+	free_parser(parser);
+	exit(err);
 }
 
 void	parse(t_game *game, int argc, char **argv)
 {
 	t_parser	parser;
 
-	check_args(argc);
 	init_parser(&parser);
 	parser.game = game;
-	get_scene_file(&parser, argv[1]);
+	parser.scene_file = get_input(argc, argv);
 	read_file(&parser);
 	check_configs(&parser);
 	check_map(&parser);
-	// print_parser(&parser);
+	print_parser(&parser);
 	set_game(&parser);
-	exit_parser(&parser, CUB_SUCCESS, NULL);
-	// print_game(game);
+	print_game(game);
+	free_parser(&parser);
 }

@@ -53,7 +53,7 @@ typedef struct s_game
 /* ************************************************************************** */
 
 /* hook.c */
-void	key_hook(mlx_key_data_t keydata, void* param);
+void	hook(void* param);
 // void	exit_hook(void *param);
 
 /* motions.c */

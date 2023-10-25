@@ -3,18 +3,18 @@
 
 static void	init_new_map(t_map *map)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	map->map = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
-		ft_perror(CUB_MEMFAIL, "Failed to allocate memory for map");
+		ft_perror(CUB_MEMFAIL, "transforming map");
 	i = 0;
 	while (i < map->height)
 	{
 		map->map[i] = (char *)malloc(sizeof(char) * (map->max_width + 1));
 		if (!map->map[i])
-			ft_perror(CUB_MEMFAIL, "Failed to allocate memory for map");
+			ft_perror(CUB_MEMFAIL, "transforming map");
 		j = 0;
 		while (j < map->max_width)
 		{
@@ -29,8 +29,8 @@ static void	init_new_map(t_map *map)
 
 static void	rotate_map(t_map *new_map, t_map *map, t_player *player)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (i < map->height)
