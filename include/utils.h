@@ -49,6 +49,16 @@ typedef enum e_cub_errno
 	CUB_INVWALLS
 }	t_cub_errno;
 
+typedef enum e_player_action
+{
+	MOVE_FORWARD = MLX_KEY_W,
+	MOVE_BACKWARD = MLX_KEY_S,
+	MOVE_LEFT = MLX_KEY_A,
+	MOVE_RIGHT = MLX_KEY_D,
+	ROTATE_CCW = MLX_KEY_LEFT,
+	ROTATE_CW = MLX_KEY_RIGHT
+}	t_player_action;
+
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
 /* ************************************************************************** */

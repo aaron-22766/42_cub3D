@@ -4,60 +4,63 @@
 
 /**
  * TODO:	-	Wall collision
- * 			-	Door collision ?
+ * 			-	Door collision (if any)
  */
 
-// static void	check_valid_position(t_game *game, double x, double y)
-
-void	move_forward(t_game *game)
+t_pos	get_displacement(t_game *game, t_player_action action)
 {
-	t_pos	new_pos;
-	// int	row;
-	// int	col;
+	t_pos	displacement;
 
-	// row = floor(game->player.pos.y);
-	// new_pos.x = 
-	new_pos.y = game->player.pos.y + sin(game->player.orientation) * MOVE_SPEED;
-	new_pos.y = game->player.pos.y + sin(game->player.orientation) * MOVE_SPEED;
-	if (true)
+	init_pos(&displacement);
+	if (action == MOVE_FORWARD)
 	{
-		game->player.pos = new_pos;
+		displacement.x = cos(game->player.orientation) * MOVE_SPEED;
+		displacement.y = sin(game->player.orientation) * MOVE_SPEED;
 	}
+	else if (action == MOVE_BACKWARD)
+	{
+		displacement.x = -cos(game->player.orientation) * MOVE_SPEED;
+		displacement.y = -sin(game->player.orientation) * MOVE_SPEED;
+	}
+	else if (action == MOVE_LEFT)
+	{
+		displacement.x = -sin(game->player.orientation) * MOVE_SPEED;
+		displacement.y = cos(game->player.orientation) * MOVE_SPEED;
+	}
+	else if (action == MOVE_RIGHT)
+	{
+		displacement.x = sin(game->player.orientation) * MOVE_SPEED;
+		displacement.y = -cos(game->player.orientation) * MOVE_SPEED;
+	}
+	return (displacement);
 }
 
-void	move_backward(t_game *game)
+t_pos	get_new_pos(t_game *game, t_player_action action)
 {
 	t_pos	new_pos;
+	t_pos	displacement;
 
-	new_pos.x = game->player.pos.x - cos(game->player.orientation) * MOVE_SPEED;
-	new_pos.y = game->player.pos.y - sin(game->player.orientation) * MOVE_SPEED;
-	if (true) // check_valid_position(game, new_pos.x, new_pos.y))
-	{
-		game->player.pos = new_pos;
-	}
+	new_pos = game->player.pos;
+	displacement = get_displacement(game, action);
+	new_pos.x = game->player.pos.x + displacement.x;
+	new_pos.x = fmin(fmax(new_pos.x, 1), game->map.max_width - 2);
+	new_pos.y = game->player.pos.y + displacement.y;
+	new_pos.y = fmin(fmax(new_pos.y, 1), game->map.height - 2);
+	/*
+	Check if new_pos is a valid position
+	*/
+	return (new_pos);
 }
 
-
-void	move_left(t_game *game)
+void	move_player(t_game *game, t_player_action action)
 {
 	t_pos	new_pos;
 
-	new_pos.x = game->player.pos.x - cos(game->player.orientation) * MOVE_SPEED;
-	new_pos.y = game->player.pos.y + sin(game->player.orientation) * MOVE_SPEED;
-	if (true)
+	new_pos = get_new_pos(game, action);
+	if (game->map.map[(int)new_pos.y][(int)new_pos.x] != '1' &&
+		game->map.map[(int)new_pos.y][(int)new_pos.x] != ' ')
 	{
-		game->player.pos = new_pos;
-	}
-}
-
-void	move_right(t_game *game)
-{
-	t_pos	new_pos;
-
-	new_pos.x = game->player.pos.x + cos(game->player.orientation) * MOVE_SPEED;
-	new_pos.y = game->player.pos.y - sin(game->player.orientation) * MOVE_SPEED;
-	if (true)
-	{
-		game->player.pos = new_pos;
+		game->player.pos.x = new_pos.x;
+		game->player.pos.y = new_pos.y;
 	}
 }

@@ -3,13 +3,7 @@
 
 void	run_game(t_game *game)
 {
-	printf("\nMAP Before:\n");	// DEBUG
-	print_map(&game->map);		// DEBUG
 	transform_map(game);
-	printf("\nMAP After:\n");	// DEBUG
-	print_map(&game->map);		// DEBUG
-
-
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!game->mlx)
 		ft_perror(CUB_MLXFAIL, "Failed to initialize MLX");
@@ -21,14 +15,8 @@ void	run_game(t_game *game)
 		ft_perror(CUB_MLXFAIL, "Failed to create window");
 	game->player.pos.x += 0.5;
 	game->player.pos.y += 0.5;
-	// print_game(game);
 	generate_render(game);
 	mlx_key_hook(game->mlx, key_hook, game);
+	// mlx_mouse_hook(game->mlx, mouse_hook, game);  // To-do: mouse_hook (bonus)
 	mlx_loop(game->mlx);
-	/*
-	TODO:	-	Loop through all mouse events
-			-	For each mouse event:
-				-	Handle mouse event
-				-	Before Generate New render
-	*/
 }
