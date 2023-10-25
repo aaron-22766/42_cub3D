@@ -66,5 +66,6 @@ void	parse(t_game *game, int argc, char **argv)
 	print_parser(&parser);
 	set_game(&parser);
 	print_game(game);
-	free_parser(&parser);
+	// free_parser(&parser);
+	exit_parser(&parser, CUB_SUCCESS, NULL);
 }

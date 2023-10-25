@@ -1,10 +1,5 @@
 #include "../../include/parser.h"
 
-bool	is_power_of_two(unsigned long long n)
-{
-	return ((n & (n - 1)) == 0);
-}
-
 static void	load_texture(t_parser *parser, mlx_texture_t **texture, char *path)
 {
 	int	fd;
@@ -17,8 +12,8 @@ static void	load_texture(t_parser *parser, mlx_texture_t **texture, char *path)
 	if (!(*texture))
 		exit_parser(parser, CUB_MLXFAIL, path);
 	if ((*texture)->width != (*texture)->height
-		|| !is_power_of_two((*texture)->width)
-		|| !is_power_of_two((*texture)->height))
+		|| !ft_is_power_of_two((*texture)->width)
+		|| !ft_is_power_of_two((*texture)->height))
 		exit_parser(parser, CUB_INVTEXTSIZE, path);
 }
 
