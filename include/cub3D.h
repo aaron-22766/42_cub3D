@@ -69,4 +69,6 @@ void	rotate_counterclockwise(t_game *game);
 /* run.c */
 void	run_game(t_game *game);
 
+void	transform_map(t_game *game);
+
 #endif

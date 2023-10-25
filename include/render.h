@@ -58,6 +58,7 @@ typedef struct s_render
 	double		angle_increment;
 	uint32_t	img_row;
 	uint32_t	img_col;
+	t_pixel		img_pixel;
 	t_pos		pos;
 }	t_render;
 

@@ -7,7 +7,7 @@ void	init_raycast_frame(t_game *game, t_render *render)
 	render->angle = game->player.orientation - (game->player.fov / 2);
 	render->angle_increment = game->player.fov / (double) game->image->width;
 	// render->pos = set_pos(game->map.max_width - game->player.pos.y, game->player.pos.x, 0);
-	render->pos = game->player.pos;
+	set_pos(&render->pos, game->player.pos.x, game->player.pos.y, 0);
 	render->img_col = 0;
 	render->img_row = 0;
 }

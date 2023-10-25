@@ -75,6 +75,14 @@ typedef struct s_player
 	double	fov;
 }	t_player;
 
+
+typedef struct s_pixel
+{
+	uint32_t	x;	// X is COLUMN in the IMAGE (width)
+	uint32_t	y; 	// Y is ROW    in the IMAGE (height)
+	uint32_t	color;
+}	t_pixel;
+
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */

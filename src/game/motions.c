@@ -9,6 +9,22 @@
 
 // static void	check_valid_position(t_game *game, double x, double y)
 
+void	move_forward(t_game *game)
+{
+	t_pos	new_pos;
+	// int	row;
+	// int	col;
+
+	// row = floor(game->player.pos.y);
+	// new_pos.x = 
+	new_pos.y = game->player.pos.y + sin(game->player.orientation) * MOVE_SPEED;
+	new_pos.y = game->player.pos.y + sin(game->player.orientation) * MOVE_SPEED;
+	if (true)
+	{
+		game->player.pos = new_pos;
+	}
+}
+
 void	move_backward(t_game *game)
 {
 	t_pos	new_pos;
@@ -21,18 +37,6 @@ void	move_backward(t_game *game)
 	}
 }
 
-
-void	move_forward(t_game *game)
-{
-	t_pos	new_pos;
-
-	new_pos.x = game->player.pos.x + cos(game->player.orientation) * MOVE_SPEED;
-	new_pos.y = game->player.pos.y + sin(game->player.orientation) * MOVE_SPEED;
-	if (true)
-	{
-		game->player.pos = new_pos;
-	}
-}
 
 void	move_left(t_game *game)
 {
