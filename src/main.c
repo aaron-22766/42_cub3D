@@ -12,6 +12,7 @@ int	main(int argc, char **argv)
 	// atexit(leaks);//DEBUG
 	init_game(&game);
 	parse(&game, argc, argv);
+	// print_game(&game);
 	run_game(&game);
 	free_game(&game);
 	return (EXIT_SUCCESS);

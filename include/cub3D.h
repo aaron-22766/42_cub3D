@@ -18,8 +18,7 @@
 # define WINDOW_WIDTH 1080
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED M_PI / 180 * 15
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
+# define TILE_SIZE 64
 # define FOV M_PI / 3
 
 /* ************************************************************************** */
@@ -70,7 +69,5 @@ void	rotate_player(t_game *game, t_player_action action);
 
 /* run.c */
 void	run_game(t_game *game);
-
-void	transform_map(t_game *game);
 
 #endif

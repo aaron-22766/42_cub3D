@@ -51,7 +51,7 @@ typedef struct s_parser
 
 // parser.c
 void	parse(t_game *game, int argc, char **argv);
-void	exit_parser(t_parser *parser, t_cub_errno err, char *context);
+void	parser_fail(t_parser *parser, t_cub_errno err, char *context);
 
 // read.c
 void	read_file(t_parser *parser);
@@ -68,6 +68,9 @@ void	check_map(t_parser *parser);
 
 // check_walls.c
 void	check_walls(t_parser *parser);
+
+// transform.c
+void	transform_map(t_parser *parser);
 
 // set_game.c
 void	set_game(t_parser *parser);

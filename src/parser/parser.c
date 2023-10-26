@@ -45,7 +45,7 @@ static void	free_parser(t_parser *parser)
 	ft_free_2d_array((void **)parser->vis);
 }
 
-void	exit_parser(t_parser *parser, t_cub_errno err, char *context)
+void	parser_fail(t_parser *parser, t_cub_errno err, char *context)
 {
 	ft_perror(err, context);
 	free_game(parser->game);
@@ -64,7 +64,7 @@ void	parse(t_game *game, int argc, char **argv)
 	check_configs(&parser);
 	check_map(&parser);
 	// print_parser(&parser);
+	transform_map(&parser);
 	set_game(&parser);
-	// print_game(game);
 	free_parser(&parser);
 }

@@ -22,14 +22,14 @@ void	read_file(t_parser *parser)
 	parser->line = get_next_line(parser->scene_file);
 	read_loop(parser, empty_lines);
 	if (!parser->line)
-		exit_parser(parser, CUB_EMPTYFILE, NULL);
+		parser_fail(parser, CUB_EMPTYFILE, NULL);
 	read_loop(parser, configs);
 	read_loop(parser, map);
 	read_loop(parser, empty_lines);
 	if (!parser->line)
 		return ;
 	if (is_valid_map_line(parser->line))
-		exit_parser(parser, CUB_EMPTYLINE, NULL);
+		parser_fail(parser, CUB_EMPTYLINE, NULL);
 	else
-		exit_parser(parser, CUB_INVLINE, parser->line);
+		parser_fail(parser, CUB_INVLINE, parser->line);
 }

@@ -27,7 +27,7 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 	ray->pos.y -= dy;
 	ray->distance = sqrt(pow((double)fabs(game->player.pos.x - ray->pos.x), 2.0) +
 						pow((double)(game->player.pos.y - ray->pos.y), 2.0));
-	ray->pw_height = (ray->distance / (double) TEXTURE_HEIGHT) * (double) WINDOW_HEIGHT;
+	ray->pw_height = (ray->distance / (double) TILE_SIZE) * (double) WINDOW_HEIGHT;
 	// ray->pw_width = (ray->distance / (double) TEXTURE_WIDTH) * (double) WINDOW_WIDTH; // game->image->width
 	ray->pw_width = ray->pw_height;
 	ray->pw_top = ((double)game->image->height - ray->pw_height) / 2;
@@ -69,14 +69,14 @@ void    render_raycast(t_game *game, t_render *render, t_ray *ray)
 	set_projection_values(game, render, ray);
 	ray->texture = get_texture(game, render, ray);
 	// if (render->ray_index > 0 && render->rays[render->ray_index - 1].texture == ray->texture)
-	// 	p_y = fmin(p_y + 1, TEXTURE_HEIGHT - 1);
+	// 	p_y = fmin(p_y + 1, TILE_SIZE - 1);
 	// else
 		p_y = 32;
 	render->img_col = ray->pw_top;
 	render->img_row = render->ray_index;
 	while (render->img_col < (uint32_t)ray->pw_bottom)
 	{
-		// p_x = ((render->img_col - ray->pw_top) * TEXTURE_HEIGHT) / ray->pw_height;
+		// p_x = ((render->img_col - ray->pw_top) * TILE_SIZE) / ray->pw_height;
 		p_x = 32;
 		color = get_pixel_color(ray->texture, p_x, p_y);
 		mlx_put_pixel(game->image, render->img_row, render->img_col, color);

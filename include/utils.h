@@ -40,7 +40,6 @@ typedef enum e_cub_errno
 	CUB_DUPCONFIG,
 	CUB_MISSCONFIG,
 	CUB_INVTEXTEXT,
-	CUB_INVTEXTSIZE,
 	CUB_INVCOLOR,
 	CUB_EMPTYLINE,
 	CUB_NOMAP,
@@ -113,7 +112,7 @@ bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
 
 // pixel.c
-uint32_t	ft_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+uint32_t	get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 uint32_t	get_pixel_color(mlx_texture_t *txt, uint32_t x, uint32_t y);
 void		print_pixel_rgba(uint32_t pixel);
 void		print_pixel_hex(uint32_t pixel);

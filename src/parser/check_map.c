@@ -3,9 +3,9 @@
 static void	map_size(t_parser *parser)
 {
 	if (parser->game->map.height == 0)
-		exit_parser(parser, CUB_NOMAP, NULL);
+		parser_fail(parser, CUB_NOMAP, NULL);
 	if (parser->game->map.height < 3 || parser->game->map.max_width < 3)
-		exit_parser(parser, CUB_SMALLMAP, NULL);
+		parser_fail(parser, CUB_SMALLMAP, NULL);
 }
 
 static double	get_radian(char c)
@@ -35,7 +35,7 @@ static void	player_spawn(t_parser *parser)
 			if (ft_strchr(PLAYER_ORIENTATIONS, parser->game->map.map[i][j]))
 			{
 				if (parser->game->player.pos.x >= 0.0)
-					exit_parser(parser, CUB_DUPPLAYER, NULL);
+					parser_fail(parser, CUB_DUPPLAYER, NULL);
 				parser->game->player.orientation
 					= get_radian(parser->game->map.map[i][j]);
 				parser->game->player.pos.x = i;
@@ -46,13 +46,13 @@ static void	player_spawn(t_parser *parser)
 		i++;
 	}
 	if (parser->game->player.pos.x < 0.0)
-		exit_parser(parser, CUB_MISSPLAYER, NULL);
+		parser_fail(parser, CUB_MISSPLAYER, NULL);
 }
 
 void	check_map(t_parser *parser)
 {
 	if (calc_widths(&parser->game->map) == false)
-		exit_parser(parser, CUB_MEMFAIL, "calculating widths of map");
+		parser_fail(parser, CUB_MEMFAIL, "calculating widths of map");
 	map_size(parser);
 	player_spawn(parser);
 	check_walls(parser);
