@@ -12,6 +12,7 @@ void	generate_render(t_game *game)
 {
 	t_render	render;
 
+	render = init_render(game);
 	render_reset_image(game);
 	// init_raycast_frame(game, &render);
 	// while (render.ray_index < game->image->width)
@@ -23,5 +24,4 @@ void	generate_render(t_game *game)
 	// 	if (render.alpha > 2 * M_PI)
 	// 		render.alpha -= 2 * M_PI;
 	// }
-	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }

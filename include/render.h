@@ -31,15 +31,15 @@ typedef struct s_game	t_game;
 typedef struct s_ray
 {
 	int				id;
-	mlx_texture_t	*texture;
 	double			angle;
 	double			length;
-	double			pw_height;	//  To be replaced
-	double			pw_width;	//  To be replaced
-	double			pw_top;		//  To be replaced
-	double			pw_bottom;	//  To be replaced
+	// double			pw_height;	//  To be replaced
+	// double			pw_width;	//  To be replaced
+	// double			pw_top;		//  To be replaced
+	// double			pw_bottom;	//  To be replaced
 	t_vector		wall_hit;
-	t_pos			pos;
+	// t_pos			pos;
+	mlx_texture_t	*texture;
 }	t_ray;
 
 /**
@@ -58,11 +58,8 @@ typedef struct s_render
 	size_t		ray_index;
 	double		alpha;
 	double		delta;
-	uint32_t	img_row;	// To be replaced by img_pixel
-	uint32_t	img_col;	// To be replaced by img_pixel
 	t_pixel		img_pixel;
-	t_pos		pos; 		// To be replaced by p
-	t_vector	player;	// PLAYER position
+	t_vector	pov;	// PLAYER position
 }	t_render;
 
 /* ************************************************************************** */
@@ -70,18 +67,20 @@ typedef struct s_render
 /* ************************************************************************** */
 
 /* background.c */
-void	render_background(t_game *game);
+void		render_background(t_game *game);
 
-/* init_ray_cast.c */
-void	init_raycast_frame(t_game *game, t_render *render);
-void	init_ray(t_render *render, t_ray *ray);
-void	print_ray(t_ray *ray);
-void	print_render(t_render *render);
+/* init.c */
+void		generate_render(t_game *game);
 
 /* ray_casting.c */
-void    render_raycast(t_game *game, t_render *render, t_ray *ray);
+void		render_raycast(t_game *game, t_render *render, t_ray *ray);
+
+/* ray.c */
+void		init_ray(t_render *render, t_ray *ray);
+void		print_ray(t_ray *ray);
 
 /* render.c */
-void	generate_render(t_game *game);
+t_render	init_render(t_game *game);
+void		print_render(t_render *render);
 
 #endif
