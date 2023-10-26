@@ -3,9 +3,6 @@
 
 void	run_game(t_game *game)
 {
-	a = copy_vector(b);
-	printf("a = copy_vector(b)\n");
-	print_vector(&a, "a", false);
 	transform_map(game);
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!game->mlx)
