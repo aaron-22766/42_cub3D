@@ -1,5 +1,3 @@
-
-
 #include "../../include/cub3D.h"
 
 void	init_game(t_game *game)
@@ -16,8 +14,6 @@ void	init_game(t_game *game)
 	init_player(&game->player);
 }
 
-// To-do: free image, mlx, window, ...
-// terminate game, then
 void	free_game(t_game *game)
 {
 	free_map(&game->map);
@@ -39,14 +35,18 @@ void	print_game(t_game *game)
 {
 	printf("\nGAME:\n");
 	if (game->image)
-		printf("Image - w: %d, h: %d\n", game->image->width,
-			game->image->height);
-	print_map(&game->map);
-	printf("No texture - w: %d, h: %d\n", game->no_texture->width, game->no_texture->height);
-	printf("So texture - w: %d, h: %d\n", game->so_texture->width, game->so_texture->height);
-	printf("We texture - w: %d, h: %d\n", game->we_texture->width, game->we_texture->height);
-	printf("Ea texture - w: %d, h: %d\n", game->ea_texture->width, game->ea_texture->height);
+		printf("Image - w: %d, h: %d\n",
+			game->image->width, game->image->height);
+	printf("No texture - w: %d, h: %d\n",
+		game->no_texture->width, game->no_texture->height);
+	printf("So texture - w: %d, h: %d\n",
+		game->so_texture->width, game->so_texture->height);
+	printf("We texture - w: %d, h: %d\n",
+		game->we_texture->width, game->we_texture->height);
+	printf("Ea texture - w: %d, h: %d\n",
+		game->ea_texture->width, game->ea_texture->height);
 	printf("Ceiling color: %X\n", game->ceiling_color);
 	printf("Floor color: %X\n", game->floor_color);
 	print_player(&game->player);
+	print_map(&game->map);
 }

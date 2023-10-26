@@ -1,4 +1,3 @@
-
 #include "../../include/cub3D.h"
 
 void	init_player(t_player *player)
@@ -10,9 +9,9 @@ void	init_player(t_player *player)
 
 void	print_player(t_player *player)
 {
-	printf("\nPLAYER:\n");
-	printf(" Orientation: %lf\n ", player->orientation);
+	printf("PLAYER:\n");
+	printf("  - Orientation: %lf\n  - ", player->orientation);
 	print_pos(&player->pos);
-	printf(" Field of View: %.5f rad ~ %.1f rad\n",
+	printf("  - Field of View: %.5f rad ~ %.1f rad\n",
 		player->fov, player->fov * 180 / M_PI);
 }

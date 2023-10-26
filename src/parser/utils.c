@@ -31,7 +31,7 @@ void	trim_newline(char *line)
 		*nl = '\0';
 }
 
-void	print_parser(t_parser *parser)//DEBUG
+void	print_parser(t_parser *parser)
 {
 	printf("\nPARSER\n");
 	printf("file: %d\n", parser->scene_file);

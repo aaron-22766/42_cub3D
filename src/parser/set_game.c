@@ -1,20 +1,48 @@
 #include "../../include/parser.h"
 
+static bool	crop_texture(mlx_texture_t **texture)
+{
+	mlx_texture_t	*new;
+	uint32_t		size;
+	uint32_t		i;
+
+	new = malloc(sizeof(mlx_texture_t));
+	if (!new)
+		return (false);
+	size = fmin((*texture)->width, (*texture)->height);
+	new->bytes_per_pixel = (*texture)->bytes_per_pixel;
+	new->pixels = malloc(new->bytes_per_pixel * size * size);
+	if (!new->pixels)
+		return (free(new), false);
+	i = 0;
+	while (i < size)
+	{
+		ft_memcpy(&new->pixels[i * new->bytes_per_pixel * size],
+			&(*texture)->pixels[i * new->bytes_per_pixel * (*texture)->width],
+			new->bytes_per_pixel * size);
+		i++;
+	}
+	mlx_delete_texture(*texture);
+	new->width = size;
+	new->height = size;
+	*texture = new;
+	return (true);
+}
+
 static void	load_texture(t_parser *parser, mlx_texture_t **texture, char *path)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit_parser(parser, CUB_ERRNO, path);
+		parser_fail(parser, CUB_ERRNO, path);
 	close(fd);
 	*texture = mlx_load_png(path);
 	if (!(*texture))
-		exit_parser(parser, CUB_MLXFAIL, path);
-	if ((*texture)->width != (*texture)->height
-		|| !ft_is_power_of_two((*texture)->width)
-		|| !ft_is_power_of_two((*texture)->height))
-		exit_parser(parser, CUB_INVTEXTSIZE, path);
+		parser_fail(parser, CUB_MLXFAIL, path);
+	if ((*texture)->width != (*texture)->height)
+		if (!crop_texture(texture))
+			parser_fail(parser, CUB_MEMFAIL, "cropping texture");
 }
 
 static bool	is_valid_rgb(char *rgb)
@@ -48,44 +76,15 @@ static void	load_color(t_parser *parser, uint32_t *color, char *rgb)
 		|| ft_strlen(elements[2]) > 3)
 	{
 		ft_free_2d_array((void **)elements);
-		exit_parser(parser, CUB_INVCOLOR, rgb);
+		parser_fail(parser, CUB_INVCOLOR, rgb);
 	}
 	red = ft_atoi(elements[0]);
 	green = ft_atoi(elements[1]);
 	blue = ft_atoi(elements[2]);
 	ft_free_2d_array((void **)elements);
 	if (red > 255 || green > 255 || blue > 255)
-		exit_parser(parser, CUB_INVCOLOR, rgb);
-	*color = ft_pixel(red, green, blue, 255);
-}
-
-static size_t	remove_excess_allign(t_map *map)
-{
-	size_t	min;
-	size_t	max;
-	size_t	i;
-	size_t	temp;
-
-	min = -1;
-	max = 0;
-	i = 0;
-	while (i < map->height)
-	{
-		temp = ft_strspn(map->map[i], ALLIGN);
-		if (temp < min)
-			min = temp;
-		temp = ft_strrspn(map->map[i], ALLIGN);
-		if (temp > max)
-			max = temp;
-		map->map[i++][temp + 1] = '\0';
-	}
-	i = 0;
-	while (i < map->height)
-	{
-		ft_memmove(map->map[i], &map->map[i][min], max - min + 2);
-		i++;
-	}
-	return (min);
+		parser_fail(parser, CUB_INVCOLOR, rgb);
+	*color = get_color(red, green, blue, 255);
 }
 
 void	set_game(t_parser *parser)
@@ -96,6 +95,6 @@ void	set_game(t_parser *parser)
 	load_texture(parser, &parser->game->we_texture, parser->we_path);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
-	parser->game->player.pos.y -= remove_excess_allign(&parser->game->map);
-	calc_widths(&parser->game->map);
+	parser->game->player.pos.x += 0.5;
+	parser->game->player.pos.y += 0.5;
 }

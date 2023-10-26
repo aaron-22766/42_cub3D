@@ -63,9 +63,6 @@ void	rotate_player(t_game *game, t_player_action action);
 /* run.c */
 void	run_game(t_game *game);
 
-/* transform.c	*/
-void	transform_map(t_game *game);
-
 /* utils.c	*/
 void	print_rotated_map(t_map *map);
 

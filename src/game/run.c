@@ -3,7 +3,6 @@
 
 void	run_game(t_game *game)
 {
-	transform_map(game);
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!game->mlx)
 		ft_perror(CUB_MLXFAIL, "Failed to initialize MLX");
@@ -13,8 +12,6 @@ void	run_game(t_game *game)
 	render_background(game);
 	if (mlx_image_to_window(game->mlx, game->image, 0, 0))
 		ft_perror(CUB_MLXFAIL, "Failed to create window");
-	game->player.pos.x += 0.5;
-	game->player.pos.y += 0.5;
 	generate_render(game);
 	mlx_loop_hook(game->mlx, hook, game);
 	// mlx_mouse_hook(game->mlx, mouse_hook, game);  // To-do: mouse_hook (bonus)

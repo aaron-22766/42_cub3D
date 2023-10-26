@@ -1,4 +1,3 @@
-
 #include "../../include/cub3D.h"
 
 void	init_map(t_map *map)

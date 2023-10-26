@@ -1,4 +1,3 @@
-
 #include "../../include/cub3D.h"
 
 /* ************************************************************************** */
@@ -23,8 +22,6 @@ static void	print_error(t_cub_errno err, char *context)
 		ft_eprintf("Missing configuration in scene file: %s", context);
 	else if (err == CUB_INVTEXTEXT)
 		ft_eprintf("Invalid texture file extension. Expected: *.png");
-	else if (err == CUB_INVTEXTSIZE)
-		ft_eprintf("Invalid texture size: %s\n", context);
 	else if (err == CUB_INVCOLOR)
 		ft_eprintf("Invalid color: %s", context);
 	else if (err == CUB_EMPTYLINE)

@@ -3,7 +3,7 @@
 static void	set_config(t_parser *parser, char **config)
 {
 	if (*config)
-		exit_parser(parser, CUB_DUPCONFIG, parser->split[0]);
+		parser_fail(parser, CUB_DUPCONFIG, parser->split[0]);
 	*config = ft_strdup(parser->split[1]);
 }
 
@@ -45,9 +45,9 @@ bool	configs(t_parser *parser)
 static void	check_path(t_parser *parser, char *path, char *type)
 {
 	if (!path)
-		exit_parser(parser, CUB_MISSCONFIG, type);
+		parser_fail(parser, CUB_MISSCONFIG, type);
 	if (!ft_strends(path, ".png"))
-		exit_parser(parser, CUB_INVTEXTEXT, type);
+		parser_fail(parser, CUB_INVTEXTEXT, type);
 }
 
 void	check_configs(t_parser *parser)
@@ -57,7 +57,7 @@ void	check_configs(t_parser *parser)
 	check_path(parser, parser->so_path, "SO");
 	check_path(parser, parser->we_path, "WE");
 	if (!parser->ea_path)
-		exit_parser(parser, CUB_MISSCONFIG, "F");
+		parser_fail(parser, CUB_MISSCONFIG, "F");
 	if (!parser->ceiling_color)
-		exit_parser(parser, CUB_MISSCONFIG, "C");
+		parser_fail(parser, CUB_MISSCONFIG, "C");
 }
