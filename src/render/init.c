@@ -1,48 +1,27 @@
 
 #include "../../include/cub3D.h"
 
-void	init_raycast_frame(t_game *game, t_render *render)
+static void	render_reset_image(t_game *game)
 {
-	render->ray_index = 0;
-	render->angle = game->player.orientation - (game->player.fov / 2);
-	render->angle_increment = game->player.fov / (double) game->image->width;
-	// render->pos = set_pos(game->map.max_width - game->player.pos.y, game->player.pos.x, 0);
-	set_pos(&render->pos, game->player.pos.x, game->player.pos.y, 0);
-	render->img_col = 0;
-	render->img_row = 0;
+	mlx_delete_image(game->mlx, game->image);
+	game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	render_background(game);
 }
 
-void	init_single_ray(t_render *render, t_ray *ray)
+void	generate_render(t_game *game)
 {
-	ray->angle = render->angle;
-	ray->distance = 0;
-	ray->pw_height = 0;
-	ray->pw_width = 0;
-	ray->pw_top = 0;
-	ray->pw_bottom = 0;
-	ray->texture = NULL;
-	ray->pos.x = render->pos.x + 0; // Change to	cos(orientation) * something
-	ray->pos.y = render->pos.y + 0; // 			sin(orientation) * something
-	ray->pos.z = 0;					// 
-}
+	t_render	render;
 
-void	print_ray(t_ray *ray)
-{
-	printf("\nRAY:\n");
-	printf(" Angle: %f\n", ray->angle);
-	printf(" Distance: %f\n", ray->distance);
-	printf(" pw_height: %f\n", ray->pw_height);
-	printf(" pw_width: %f\n", ray->pw_width);
-	printf(" pw_top: %f\n", ray->pw_top);
-	printf(" pw_bottom: %f\n", ray->pw_bottom);
-	print_pos(&ray->pos);
-}
-
-void	print_render(t_render *render)
-{
-	printf("\nRENDER:\n");
-	printf(" ray_index: %zu\n", render->ray_index);
-	printf(" angle: %f\n", render->angle);
-	printf(" angle_increment: %f\n", render->angle_increment);
-	print_pos(&render->pos);
+	render_reset_image(game);
+	// init_raycast_frame(game, &render);
+	// while (render.ray_index < game->image->width)
+	// {
+	// 	init_ray(&render, &render.rays[render.ray_index]);
+	// 	render_raycast(game, &render, &render.rays[render.ray_index]);
+	// 	render.ray_index++;
+	// 	render.alpha += render.delta;
+	// 	if (render.alpha > 2 * M_PI)
+	// 		render.alpha -= 2 * M_PI;
+	// }
+	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }

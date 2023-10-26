@@ -16,9 +16,9 @@
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
-# define MOVE_SPEED 0.1
 # define ROTATE_SPEED M_PI / 180 * 15
-# define TILE_SIZE 64
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 # define FOV M_PI / 3
 
 /* ************************************************************************** */
@@ -53,21 +53,16 @@ typedef struct s_game
 
 /* hook.c */
 void	hook(void* param);
-// void	exit_hook(void *param);
 
 /* motions.c */
-// void	move_forward(t_game *game);
-// void	move_backward(t_game *game);
-// void	move_left(t_game *game);
-// void	move_right(t_game *game);
 void	move_player(t_game *game, t_player_action action);
 
 /* rotations.c */
-void	rotate_clockwise(t_game *game);
-void	rotate_counterclockwise(t_game *game);
 void	rotate_player(t_game *game, t_player_action action);
 
 /* run.c */
 void	run_game(t_game *game);
+
+void	transform_map(t_game *game);
 
 #endif

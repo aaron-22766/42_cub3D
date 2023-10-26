@@ -7,7 +7,7 @@
  * 			-	Door collision (if any)
  */
 
-t_pos	get_displacement(t_game *game, t_player_action action)
+static t_pos	get_displacement(t_game *game, t_player_action action)
 {
 	t_pos	displacement;
 
@@ -35,7 +35,7 @@ t_pos	get_displacement(t_game *game, t_player_action action)
 	return (displacement);
 }
 
-t_pos	get_new_pos(t_game *game, t_player_action action)
+static t_pos	get_new_pos(t_game *game, t_player_action action)
 {
 	t_pos	new_pos;
 	t_pos	displacement;
