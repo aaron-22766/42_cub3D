@@ -21,6 +21,8 @@ void	init_game(t_game *game)
 void	free_game(t_game *game)
 {
 	free_map(&game->map);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
 	if (game->image)
 		mlx_delete_image(game->mlx, game->image);
 	if (game->no_texture)

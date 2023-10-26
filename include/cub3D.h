@@ -16,10 +16,9 @@
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
-# define MOVE_SPEED 0.1
 # define ROTATE_SPEED M_PI / 180 * 15
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
+# define TILE_SIZE 64
+# define MOVE_SPEED 0.1
 # define FOV M_PI / 3
 
 /* ************************************************************************** */

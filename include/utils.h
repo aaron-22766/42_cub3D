@@ -87,6 +87,7 @@ typedef struct s_player
 }	t_player;
 
 
+
 typedef struct s_pixel
 {
 	uint32_t	x;	// X is COLUMN in the IMAGE (width)
