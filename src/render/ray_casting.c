@@ -25,10 +25,10 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 	}
 	ray->pos.x -= dx;
 	ray->pos.y -= dy;
-	ray->distance = sqrt(pow((double)fabs(game->player.pos.x - ray->pos.x), 2.0) +
+	ray->length = sqrt(pow((double)fabs(game->player.pos.x - ray->pos.x), 2.0) +
 						pow((double)(game->player.pos.y - ray->pos.y), 2.0));
-	ray->pw_height = (ray->distance / (double) TILE_SIZE) * (double) WINDOW_HEIGHT;
-	// ray->pw_width = (ray->distance / (double) TILE_SIZE) * (double) WINDOW_WIDTH; // game->image->width
+	ray->pw_height = (ray->length / (double) TILE_SIZE) * (double) WINDOW_HEIGHT;
+	// ray->pw_width = (ray->length / (double) TILE_SIZE) * (double) WINDOW_WIDTH; // game->image->width
 	ray->pw_width = ray->pw_height;
 	ray->pw_top = ((double)game->image->height - ray->pw_height) / 2;
 	ray->pw_bottom = ((double)game->image->height + ray->pw_height) / 2;

@@ -1,21 +1,6 @@
 
 #include "../../include/cub3D.h"
 
-void	rotate_counterclockwise(t_game *game)
-{
-	game->player.orientation -= ROTATE_SPEED;
-	if (game->player.orientation < 0)
-		game->player.orientation += 2 * M_PI;
-}
-
-
-void	rotate_clockwise(t_game *game)
-{
-	game->player.orientation += ROTATE_SPEED;
-	if (game->player.orientation >= 2 * M_PI)
-		game->player.orientation -= 2 * M_PI;
-}
-
 void	rotate_player(t_game *game, t_player_action action)
 {
 	double	new_orientation;
