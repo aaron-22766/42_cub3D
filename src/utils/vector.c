@@ -57,6 +57,36 @@ t_vector	copy_vector(t_vector vector)
 }
 
 /**
+ * @brief Sum the given vectors and return the result
+ * 
+ * @param v1 
+ * @param v2 
+ * @return t_vector 
+ */
+
+t_vector	vector_sum(t_vector v1, t_vector v2)
+{
+	t_vector	sum;
+
+	sum.x = v1.x + v2.x;
+	sum.y = v1.y + v2.y;
+	sum.z = v1.z + v2.z;
+	return (sum);
+}
+
+/**
+ * @brief Calculate the length of the given vector
+ * 
+ * @param v
+ * @return int64_t 
+ */
+
+int64_t	vector_length(t_vector v)
+{
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+}
+
+/**
  * @brief Print the given vector
  * 
  * @param vector 

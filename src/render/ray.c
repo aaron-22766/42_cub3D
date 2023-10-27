@@ -12,11 +12,11 @@ void	init_ray(t_render *render)
 	ray = &render->rays[render->ray_index];
 	ray->id = render->ray_index;
 	ray->angle = render->theta;
-	ray->hit = init_vector(0, 0, TILE_SIZE / 2);
+	ray->hit = init_vector(0, 0, 0);
 	ray->origin = copy_vector(render->pov);
 	ray->length = 0;
-	ray->hor_in = init_vector(0, 0, TILE_SIZE / 2);
-	ray->ver_in = init_vector(0, 0, TILE_SIZE / 2);
+	ray->hor_inter = init_vector(0, 0, 0);
+	ray->ver_inter = init_vector(0, 0, 0);
 	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
 		ray->d_ver = init_vector(TILE_SIZE, TILE_SIZE * tan(ray->angle), 0);
 	else

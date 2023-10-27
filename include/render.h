@@ -22,8 +22,8 @@ typedef struct s_game	t_game;
  * @param origin Position of the player's eyes
  * @param hit Position of the first wall hit by the ray
  * @param length Distance between the player and the Projection Plane
- * @param hor_in Horizontal intersection	(parallel to the X axis)
- * @param ver_in Vertical intersection 		(parallel to the Y axis)
+ * @param hor_inter Horizontal intersection	(parallel to the X axis)
+ * @param ver_inter Vertical intersection 		(parallel to the Y axis)
  * @param d_hor Delta of the horizontal intersection
  * @param d_ver Delta of the vertical intersection
  * @param texture Texture of the wall hit by the ray
@@ -40,10 +40,12 @@ typedef struct s_ray
 	t_vector		origin;
 	t_vector		hit;
 	int64_t			length;
-	t_vector		hor_in;
-	t_vector		ver_in;
-	t_vector		d_hor;
-	t_vector		d_ver;
+	t_vector		hor_inter;	// Player's eyes as origin
+	t_vector		ver_inter;	// Player's eyes as origin
+	t_vector		d_hor;		// Player's eyes as origin
+	t_vector		d_ver;		// Player's eyes as origin
+	int64_t			hor_length;	// Player's eyes as origin
+	int64_t			ver_length;	// Player's eyes as origin
 	mlx_texture_t	*texture;
 }	t_ray;
 
