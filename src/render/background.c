@@ -1,5 +1,4 @@
-
-#include "../../include/cub3D.h"
+#include "../../include/render.h"
 
 void	render_background(t_game *game)
 {

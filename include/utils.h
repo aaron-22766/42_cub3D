@@ -85,6 +85,12 @@ typedef struct s_player
 	double	fov;
 }	t_player;
 
+typedef struct s_vector
+{
+	int64_t	x;
+	int64_t	y;
+	int64_t	z;
+}	t_vector;
 
 typedef struct s_pixel
 {
@@ -97,33 +103,41 @@ typedef struct s_pixel
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
-// error.c
+/* error.c */
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
-// game.c
+/* game.c */
 void		init_game(t_game *game);
 void		free_game(t_game *game);
 void		print_game(t_game *game);
 
-// map.c
+/* map.c */
 void		init_map(t_map *map);
 void		free_map(t_map *map);
 bool		calc_widths(t_map *map);
 void		print_map(t_map *map);
 
-// pixel.c
+/* pixel.c */
 uint32_t	get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 uint32_t	get_pixel_color(mlx_texture_t *txt, uint32_t x, uint32_t y);
 void		print_pixel_rgba(uint32_t pixel);
 void		print_pixel_hex(uint32_t pixel);
 
-// player.c
+/* player.c */
 void		init_player(t_player *player);
 void		print_player(t_player *player);
 
-// position.c
+/* position.c */
 void		init_pos(t_pos *pos);
 void		set_pos(t_pos *pos, double x, double y, double z);
 void		print_pos(t_pos *pos);
+
+/* vector.c */
+t_vector	init_vector(int64_t x, int64_t y, int64_t z);
+t_vector	zero_vector(void);
+t_vector	copy_vector(t_vector vector);
+t_vector	vector_sum(t_vector v1, t_vector v2);
+void		print_vector(t_vector *vector, char *name, bool with_map_coords);
+
 
 #endif

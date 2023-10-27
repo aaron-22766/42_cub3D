@@ -1,4 +1,3 @@
-
 #include "../../include/cub3D.h"
 
 void	run_game(t_game *game)
@@ -14,6 +13,5 @@ void	run_game(t_game *game)
 		ft_perror(CUB_MLXFAIL, "Failed to create window");
 	generate_render(game);
 	mlx_loop_hook(game->mlx, hook, game);
-	// mlx_mouse_hook(game->mlx, mouse_hook, game);  // To-do: mouse_hook (bonus)
 	mlx_loop(game->mlx);
 }

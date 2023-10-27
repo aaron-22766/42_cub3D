@@ -1,11 +1,10 @@
-
 #include "../../include/cub3D.h"
 
-void	hook(void* param)
+void	hook(void *param)
 {
 	t_game	*game;
 
-	game = (t_game*)param;
+	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
@@ -20,12 +19,7 @@ void	hook(void* param)
 		rotate_player(game, ROTATE_CCW);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate_player(game, ROTATE_CW);
-	print_pos(&game->player.pos);		// DEBUG
+	// print_pos(&game->player.pos);
 	generate_render(game);
+	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }
-
-/**
- * To-do: mouse_hook
- * 
- */
-
