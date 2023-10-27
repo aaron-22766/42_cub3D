@@ -137,7 +137,6 @@ t_vector	init_vector(int64_t x, int64_t y, int64_t z);
 t_vector	zero_vector(void);
 t_vector	copy_vector(t_vector vector);
 t_vector	vector_sum(t_vector v1, t_vector v2);
-int64_t		vector_length(t_vector v);
 void		print_vector(t_vector *vector, char *name, bool with_map_coords);
 
 

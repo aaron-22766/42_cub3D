@@ -75,18 +75,6 @@ t_vector	vector_sum(t_vector v1, t_vector v2)
 }
 
 /**
- * @brief Calculate the length of the given vector
- * 
- * @param v
- * @return int64_t 
- */
-
-int64_t	vector_length(t_vector v)
-{
-	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
-}
-
-/**
  * @brief Print the given vector
  * 
  * @param vector 

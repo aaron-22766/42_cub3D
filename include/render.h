@@ -100,4 +100,10 @@ void		print_ray(t_ray *ray);
 t_render	init_render(t_game *game);
 void		print_render(t_render *render);
 
+/* utils.c */
+int64_t		get_distance_between(t_vector vector, t_vector origin);
+bool		is_wall(t_game *game, t_vector vector);
+
+
+
 #endif
