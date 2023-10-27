@@ -68,7 +68,8 @@ void	print_vector(t_vector *vector, char *name, bool with_map_coords)
 {
 	if (name)
 		printf("\n%s:\t", name);
-	printf("\n(x, y, z) =\t");
+	else
+		printf("\n(x, y, z) =\t");
 	printf(" (%lld, %lld, %lld)", vector->x, vector->y, vector->z);
 	if (with_map_coords)
 		printf(" -> (%lld, %lld, %lld)",

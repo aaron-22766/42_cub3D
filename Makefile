@@ -19,7 +19,7 @@ MLX_BUILD	=	$(MLX_DIR)/build
 
 # FLAGS #
 
-CFLAGS		=	#-Wall -Wextra -Werror -MMD #-g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -MMD #-g3 -fsanitize=address
 MLXFLAGS	=	-lglfw -framework Cocoa -framework OpenGL -framework IOKit
 RMFLAGS		=	-rf
 INCFLAGS	=	-I./$(INC_DIR) \

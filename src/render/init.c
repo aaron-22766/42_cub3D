@@ -14,14 +14,20 @@ void	generate_render(t_game *game)
 
 	render = init_render(game);
 	render_reset_image(game);
-	// init_raycast_frame(game, &render);
+	while (render.ray_index < game->image->width)
+	{
+		init_ray(&render, &render.rays[render.ray_index]);
+		find_intersections(game, &render, &render.rays[render.ray_index]);
+		render_raycast(game, &render, &render.rays[render.ray_index]);
+		update_ray(&render);
+	}
 	// while (render.ray_index < game->image->width)
 	// {
 	// 	init_ray(&render, &render.rays[render.ray_index]);
 	// 	render_raycast(game, &render, &render.rays[render.ray_index]);
 	// 	render.ray_index++;
-	// 	render.alpha += render.delta;
-	// 	if (render.alpha > 2 * M_PI)
-	// 		render.alpha -= 2 * M_PI;
+	// 	render.theta += render.delta;
+	// 	if (render.theta > 2 * M_PI)
+	// 		render.theta -= 2 * M_PI;
 	// }
 }

@@ -17,28 +17,30 @@ typedef struct s_game	t_game;
 /**
  * @brief Ray structure
  * 
- * @param angle Angle of the ray in radians (0 is right or east,
- * positive angles are counter-clockwise)
- * @param length Distance between the player and the wall
- * @param pw_height	Height of the projected wall in the IMAGE
- * @param pw_width Width of the projected wall in the IMAGE
- * @param pw_top Top of the projected wall in the IMAGE
- * @param pw_bottom	Bottom of the projected wall in the IMAGE
- * @param texture Texture of the wall
- * @param pos Position where the RAY hits a wall
+ * @param id Index of the ray
+ * @param angle Horizontal angle of the ray
+ * @param origin Position of the player's eyes
+ * @param hit Position of the first wall hit by the ray
+ * @param length Distance between the player and the Projection Plane
+ * @param hor_in Horizontal intersection with the wall hit by the ray
+ * @param ver_in Vertical intersection 
+ * @param texture Texture of the wall hit by the ray
+ * 
+ * @attention All angles are in radians
+ * @attention Alpha rotates clockwise (negative in the cartesian plane)
  */
 
 typedef struct s_ray
 {
-	int				id;
-	double			angle;
-	double			length;
-	// double			pw_height;	//  To be replaced
-	// double			pw_width;	//  To be replaced
-	// double			pw_top;		//  To be replaced
-	// double			pw_bottom;	//  To be replaced
-	t_vector		wall_hit;
-	// t_pos			pos;
+	size_t			id;
+	double			alpha;
+	t_vector		origin;
+	t_vector		hit;
+	int64_t			length;
+	t_vector		hor_in;
+	t_vector		d_hor;
+	t_vector		ver_in;
+	t_vector		d_ver;
 	mlx_texture_t	*texture;
 }	t_ray;
 
@@ -47,19 +49,25 @@ typedef struct s_ray
  * 
  * @param rays Array of rays
  * @param ray_index Index of the current ray
- * @param angle Angle of the first (leftmost) ray in radians
- * @param delta Angle increment between two rays
- * @param pos PLAYER position
+ * @param theta Angle of the current ray
+ * @param delta Angle between two rays
+ * @param img_pixel Pixel of the IMAGE
+ * @param distance Distance between the player and the Projection Plane
+ * @param pov Point of View of the player
+ * 
+ * @attention All angles are in radians
+ * @attention Alpha rotates clockwise (negative in the cartesian plane)
  */
 
 typedef struct s_render
 {
 	t_ray		rays[WINDOW_WIDTH];
 	size_t		ray_index;
-	double		alpha;
+	double		theta;
 	double		delta;
 	t_pixel		img_pixel;
-	t_vector	pov;	// PLAYER position
+	int64_t		distance;
+	t_vector	pov;
 }	t_render;
 
 /* ************************************************************************** */
@@ -76,7 +84,8 @@ void		generate_render(t_game *game);
 void		render_raycast(t_game *game, t_render *render, t_ray *ray);
 
 /* ray.c */
-void		init_ray(t_render *render, t_ray *ray);
+void		init_ray(t_render *render);
+void		update_render(t_render *render);
 void		print_ray(t_ray *ray);
 
 /* render.c */
