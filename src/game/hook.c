@@ -21,5 +21,6 @@ void	hook(void *param)
 		rotate_player(game, ROTATE_CW);
 	// print_pos(&game->player.pos);
 	generate_render(game);
+	draw_foreground(game);
 	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }

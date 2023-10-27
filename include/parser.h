@@ -20,6 +20,11 @@
 # define PLAYER_ORIENTATIONS "NESW"
 # define WHITESPACE " \t\v\r\f\n"
 
+# define TORCH1 "./textures/torch/torch1.png"
+# define TORCH2 "./textures/torch/torch2.png"
+# define TORCH3 "./textures/torch/torch3.png"
+# define TORCH4 "./textures/torch/torch4.png"
+
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
 /* ************************************************************************** */

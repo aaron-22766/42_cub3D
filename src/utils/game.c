@@ -12,6 +12,10 @@ void	init_game(t_game *game)
 	game->ceiling_color = 0;
 	game->floor_color = 0;
 	init_player(&game->player);
+	game->torch[0] = NULL;
+	game->torch[1] = NULL;
+	game->torch[2] = NULL;
+	game->torch[3] = NULL;
 }
 
 void	free_game(t_game *game)
@@ -29,6 +33,14 @@ void	free_game(t_game *game)
 		mlx_delete_texture(game->we_texture);
 	if (game->ea_texture)
 		mlx_delete_texture(game->ea_texture);
+	if (game->torch[0])
+		mlx_delete_texture(game->torch[0]);
+	if (game->torch[1])
+		mlx_delete_texture(game->torch[1]);
+	if (game->torch[2])
+		mlx_delete_texture(game->torch[2]);
+	if (game->torch[3])
+		mlx_delete_texture(game->torch[3]);
 }
 
 void	print_game(t_game *game)

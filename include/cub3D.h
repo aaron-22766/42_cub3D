@@ -21,6 +21,13 @@
 # define MOVE_SPEED 0.1
 # define FOV M_PI / 3
 
+# define TORCH_AMOUNT 4
+# define TORCH_HEIGHT 350
+# define TORCH_WIDTH 307
+# define TORCH_X WINDOW_WIDTH / 5 * 3
+# define TORCH_Y WINDOW_HEIGHT - TORCH_HEIGHT
+# define TORCH_SPEED 0.1
+
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
 /* ************************************************************************** */
@@ -45,6 +52,7 @@ typedef struct s_game
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
 	t_player		player;
+	mlx_texture_t	*torch[TORCH_AMOUNT];
 }	t_game;
 
 /* ************************************************************************** */
@@ -62,6 +70,9 @@ void	rotate_player(t_game *game, t_player_action action);
 
 /* run.c */
 void	run_game(t_game *game);
+
+/* foreground.c */
+void	draw_foreground(t_game *game);
 
 /* utils.c	*/
 void	print_rotated_map(t_map *map);

@@ -29,7 +29,8 @@ static bool	crop_texture(mlx_texture_t **texture)
 	return (true);
 }
 
-static void	load_texture(t_parser *parser, mlx_texture_t **texture, char *path)
+static void	load_texture(t_parser *parser, mlx_texture_t **texture,
+	char *path, bool square)
 {
 	int	fd;
 
@@ -40,7 +41,7 @@ static void	load_texture(t_parser *parser, mlx_texture_t **texture, char *path)
 	*texture = mlx_load_png(path);
 	if (!(*texture))
 		parser_fail(parser, CUB_MLXFAIL, path);
-	if ((*texture)->width != (*texture)->height)
+	if (square && (*texture)->width != (*texture)->height)
 		if (!crop_texture(texture))
 			parser_fail(parser, CUB_MEMFAIL, "cropping texture");
 }
@@ -89,10 +90,14 @@ static void	load_color(t_parser *parser, uint32_t *color, char *rgb)
 
 void	set_game(t_parser *parser)
 {
-	load_texture(parser, &parser->game->no_texture, parser->no_path);
-	load_texture(parser, &parser->game->ea_texture, parser->ea_path);
-	load_texture(parser, &parser->game->so_texture, parser->so_path);
-	load_texture(parser, &parser->game->we_texture, parser->we_path);
+	load_texture(parser, &parser->game->no_texture, parser->no_path, true);
+	load_texture(parser, &parser->game->ea_texture, parser->ea_path, true);
+	load_texture(parser, &parser->game->so_texture, parser->so_path, true);
+	load_texture(parser, &parser->game->we_texture, parser->we_path, true);
+	load_texture(parser, &parser->game->torch[0], TORCH1, false);
+	load_texture(parser, &parser->game->torch[1], TORCH2, false);
+	load_texture(parser, &parser->game->torch[2], TORCH3, false);
+	load_texture(parser, &parser->game->torch[3], TORCH4, false);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
 	parser->game->player.pos.x += 0.5;
