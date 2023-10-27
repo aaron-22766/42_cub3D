@@ -22,24 +22,27 @@ typedef struct s_game	t_game;
  * @param origin Position of the player's eyes
  * @param hit Position of the first wall hit by the ray
  * @param length Distance between the player and the Projection Plane
- * @param hor_in Horizontal intersection with the wall hit by the ray
- * @param ver_in Vertical intersection 
+ * @param hor_in Horizontal intersection	(parallel to the X axis)
+ * @param ver_in Vertical intersection 		(parallel to the Y axis)
+ * @param d_hor Delta of the horizontal intersection
+ * @param d_ver Delta of the vertical intersection
  * @param texture Texture of the wall hit by the ray
  * 
  * @attention All angles are in radians
- * @attention Alpha rotates clockwise (negative in the cartesian plane)
+ * @attention Angle rotates clockwise. Negative in the cartesian plane
+ * @attention HOR_IN <-> TILE_SIZE divides ray Y coordinate
  */
 
 typedef struct s_ray
 {
 	size_t			id;
-	double			alpha;
+	double			angle;
 	t_vector		origin;
 	t_vector		hit;
 	int64_t			length;
 	t_vector		hor_in;
-	t_vector		d_hor;
 	t_vector		ver_in;
+	t_vector		d_hor;
 	t_vector		d_ver;
 	mlx_texture_t	*texture;
 }	t_ray;
@@ -79,6 +82,9 @@ void		render_background(t_game *game);
 
 /* init.c */
 void		generate_render(t_game *game);
+
+/* intersection.c */
+void		find_ray_intersection(t_game *game, t_ray *ray);
 
 /* ray_casting.c */
 void		render_raycast(t_game *game, t_render *render, t_ray *ray);

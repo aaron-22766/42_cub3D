@@ -16,8 +16,8 @@ void	generate_render(t_game *game)
 	render_reset_image(game);
 	while (render.ray_index < game->image->width)
 	{
-		init_ray(&render, &render.rays[render.ray_index]);
-		find_intersections(game, &render, &render.rays[render.ray_index]);
+		init_ray(&render);
+		find_intersections(game, &render.rays[render.ray_index]);
 		render_raycast(game, &render, &render.rays[render.ray_index]);
 		update_ray(&render);
 	}

@@ -45,45 +45,76 @@ Ray casting file
 
 */
 
-/**
- * @brief Get the ray horizontal intersection. Parallel to the X axis!
- * 
- * @param game 
- * @param ray 
- */
-
-void	get_horizontal_intersection(t_game *game, t_ray *ray)
+void	find_first_intersections(t_game *game, t_ray *ray)
 {
-	t_vector	intersection;
-	double		x;
-	double		y;
+	int64_t		tile = TILE_SIZE;
+	int64_t		dx;
+	int64_t		dy;
 
-	x = floor(ray->pos.x / TILE_SIZE) * TILE_SIZE;
-	if (ray->angle > 0 && ray->angle < M_PI)
-		x += TILE_SIZE;
-	y = ray->pos.y + (ray->pos.x - x) * tan(ray->angle);
-	intersection = init_vector(x, y, 0);
+	// ray->d_ver.x = tile;
+	// ray->d_ver.y = tile * tan(ray->angle);
+	// ray->d_hor.x = tile / tan(ray->angle);
+	// ray->d_hor.y = tile;
+	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
+	{
+		// Vertical intersection
+		ray->ver_in.x = tile - (ray->origin.x % tile);
+		ray->ver_in.y = ray->ver_in.x * tan(ray->angle);
+	}
+	else
+	{
+		
+	}
 }
+// ray->hor_in.x = TILE_SIZE * ceil(game->player.pos.x);
+// ray->hor_in.y = game->player.pos.y + (game->player.pos.x - ray->hor_in.x) * tan(ray->angle);
+
 
 /**
- * @brief Get the ray vertical intersection. Parallel to the Y axis!
- * 
+ * @brief Initialize the values of:
+ * 		ray->hor_in		Horizontal intersection	(parallel to the X axis)
+ * 		ray->ver_in		Vertical intersection 	(parallel to the Y axis)
+ * Based on the angle of the ray.
  * @param game 
  * @param ray 
  */
-void	get_vertical_intersection(t_game *game, t_ray *ray)
+
+void	init_intersection_vectors(t_game *game, t_ray *ray)
 {
 	
+
+}
+
+void	ini
+
+/**
+ * @brief Find the ray horizontal intersection.
+ * 	Parallel to the X axis!
+ * 
+ * @param game 
+ * @param ray 
+ */
+
+void	find_horizontal_intersection(t_game *game, t_ray *ray)
+{
+	// TODO: Check if the ray is facing up or down
+	// vector v = vector_sum(ray->origin, ray->hor_in); // BETTER TO USE (0, 0, 0) AS ORIGIN instead of player.pos
+	// while valid_cell(v.x / TILE_SIZE, v.y / TILE_SIZE)
+	// 	v = vector_sum(v, ray->d_hor)
 }
 
 
 
-void	find_intersections(t_game *game, t_render *render, t_ray *ray)
+void	find_ray_intersection(t_game *game, t_ray *ray)
 {
-	t_vector	delta;
-	// init_intersection_vectors(ray);
+	int64_t		hor_inter_length;
+	int64_t		ver_inter_length;
+
+	init_intersection_vectors(game, ray);
 	find_horizontal_intersection(game, ray);
 	find_vertical_intersection(game, ray);
+	hor_inter_length = get_vector_length(ray->hor_in);
+	if 
 }
 
 /**
