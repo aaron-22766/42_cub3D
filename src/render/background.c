@@ -25,7 +25,7 @@ void	render_background(t_game *game)
 
 	// Minimap
 	int m = 16;
-	int n = 256;
+	int n = 128;
 	int i = 0;
 	while (i < n) {
 		int j = 0;
@@ -35,9 +35,9 @@ void	render_background(t_game *game)
 				int j2 = 0;
 				while (j2 < m) {
 					if (((i/m) + (j/m)) % 2 == 0)
-						mlx_put_pixel(game->image, i + i2, j + j2, get_color(0, 255, 0, 255));
+						mlx_put_pixel(game->image, i + i2, j + j2, get_color(0, 255, 0, 128));
 					else
-						mlx_put_pixel(game->image, i + i2, j + j2, get_color(0, 0, 255, 255));
+						mlx_put_pixel(game->image, i + i2, j + j2, get_color(0, 0, 255, 128));
 					j2++;
 				}
 				i2++;

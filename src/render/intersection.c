@@ -16,7 +16,7 @@
  * @param ray 
  */
 
-void	init_intersections(t_game *game, t_ray *ray)
+void	init_intersections(t_ray *ray)
 {
 	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
 		ray->ver_inter.x = TILE_SIZE - (ray->origin.x % TILE_SIZE);
@@ -32,7 +32,7 @@ void	init_intersections(t_game *game, t_ray *ray)
 	ray->hor_inter = vector_sum(ray->origin, ray->hor_inter);
 }
 
-void	init_auxiliary_variables(t_game *game, t_ray *ray)
+void	init_auxiliary_variables(t_ray *ray)
 {
 	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
 		ray->d_ver = init_vector(TILE_SIZE, TILE_SIZE * tan(ray->angle), 0);
@@ -91,8 +91,8 @@ void	find_ray_intersection(t_game *game, t_ray *ray)
 	bool	wall_inter_found;
 
 	wall_inter_found = false;
-	init_intersections(game, ray);
-	init_auxiliary_variables(game, ray);
+	init_intersections(ray);
+	init_auxiliary_variables(ray);
 	while (!wall_inter_found)
 	{
 		if (ray->hor_length < ray->ver_length)

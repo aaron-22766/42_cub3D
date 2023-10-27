@@ -38,6 +38,6 @@ void	print_render(t_render *render)
 	printf("  img.x: %d\n", render->img_pixel.x);
 	printf("  img.y: %d\n", render->img_pixel.y);
 	printf("  img.color: %d\n", render->img_pixel.color);
-	printf(" distance (from POV to Projection Plane): %f\n", render->distance);
+	printf(" distance (from POV to Projection Plane): %lld\n", render->distance);
 	print_vector(&render->pov, "  pov:", true);
 }
