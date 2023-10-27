@@ -22,3 +22,4 @@ void	print_rotated_map(t_map *map)
 	}
 	printf("_\n");
 }
+

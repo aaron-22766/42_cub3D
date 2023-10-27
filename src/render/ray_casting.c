@@ -34,23 +34,7 @@ static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 	ray->pw_bottom = ((double)game->image->height + ray->pw_height) / 2;
 }
 
-static mlx_texture_t	*get_texture(t_game *game, t_render *render, t_ray *ray)
-{
-	if (fabs(ray->pos.x - (int)ray->pos.x) < fabs(ray->pos.y - (int)ray->pos.y))
-	{
-		if (ray->angle > 0 && ray->angle < M_PI)
-			return (game->no_texture);
-		else
-			return (game->so_texture);
-	}
-	else
-	{
-		if (ray->angle > M_PI / 2 && ray->angle < 3 * M_PI / 2)
-			return (game->we_texture);
-		else
-			return (game->ea_texture);
-	}	
-}
+static 
 
 /**
  * @brief 

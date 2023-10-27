@@ -17,14 +17,10 @@ void	init_ray(t_render *render)
 	ray->length = 0;
 	ray->hor_inter = init_vector(0, 0, 0);
 	ray->ver_inter = init_vector(0, 0, 0);
-	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
-		ray->d_ver = init_vector(TILE_SIZE, TILE_SIZE * tan(ray->angle), 0);
-	else
-		ray->d_ver = init_vector(-TILE_SIZE, -TILE_SIZE * tan(ray->angle), 0);
-		if (ray->angle < M_PI)
-		ray->d_hor = init_vector(TILE_SIZE / tan(ray->angle), TILE_SIZE, 0);
-	else
-		ray->d_hor = init_vector(-TILE_SIZE / tan(ray->angle), -TILE_SIZE, 0);
+	ray->d_hor = init_vector(0, 0, 0);
+	ray->d_ver = init_vector(0, 0, 0);
+	ray->hor_length = 0;
+	ray->ver_length = 0;
 	ray->texture = NULL;
 }
 
