@@ -1,5 +1,4 @@
-
-#include "../../include/cub3D.h"
+#include "../../include/render.h"
 
 static void	render_reset_image(t_game *game)
 {

@@ -1,4 +1,3 @@
-
 #include "../../include/cub3D.h"
 
 void	rotate_player(t_game *game, t_player_action action)
@@ -16,9 +15,3 @@ void	rotate_player(t_game *game, t_player_action action)
 		new_orientation -= 2 * M_PI;
 	game->player.orientation = new_orientation;
 }
-
-/* To be implemented later
- * rotate_player_up(t_game *game)
- * rotate_player_down(t_game *game)
- * 
- */

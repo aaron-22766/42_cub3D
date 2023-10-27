@@ -1,5 +1,4 @@
-
-#include "../../include/cub3D.h"
+#include "../../include/render.h"
 
 /**
  * @brief Find the coordinates of the first intersections of the ray.
@@ -50,42 +49,32 @@ bool	update_horizontal(t_game *game, t_ray *ray)
 {
 	ray->hor_inter = vector_sum(ray->hor_inter, ray->d_hor);
 	ray->hor_length = get_distance_between(ray->hor_inter, ray->origin);
-	if (is_wall(game, ray->hor_inter))
-	{
-		ray->hit = copy_vector(ray->hor_inter);
-		ray->length = ray->hor_length;
-		if (ray->angle < M_PI)
-			ray->texture = game->so_texture;
-		else
-			ray->texture = game->no_texture;
-		return (true);
-	}
-	return (false);
+	if (!is_wall(game, ray->hor_inter))
+		return (false);
+	ray->hit = copy_vector(ray->hor_inter);
+	ray->length = ray->hor_length;
+	if (ray->angle < M_PI)
+		ray->texture = game->so_texture;
+	else
+		ray->texture = game->no_texture;
+	return (true);
 }
 
 bool	update_vertical(t_game *game, t_ray *ray)
 {
 	ray->ver_inter = vector_sum(ray->ver_inter, ray->d_ver);
 	ray->ver_length = get_distance_between(ray->ver_inter, ray->origin);
-	if (is_wall(game, ray->ver_inter))
-	{
-		ray->hit = copy_vector(ray->ver_inter);
-		ray->length = ray->ver_length;
-		if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
-			ray->texture = game->ea_texture;
-		else
-			ray->texture = game->we_texture;
-		return (true);
-	}
-	return (false);
+	if (!is_wall(game, ray->ver_inter))
+		return (false);
+	ray->hit = copy_vector(ray->ver_inter);
+	ray->length = ray->ver_length;
+	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
+		ray->texture = game->ea_texture;
+	else
+		ray->texture = game->we_texture;
+	return (true);
 }
 
-/**
- * @brief Find the ray intersection.
- * 
- * @param game 
- * @param ray 
- */
 void	find_ray_intersection(t_game *game, t_ray *ray)
 {
 	bool	wall_inter_found;
@@ -96,11 +85,8 @@ void	find_ray_intersection(t_game *game, t_ray *ray)
 	while (!wall_inter_found)
 	{
 		if (ray->hor_length < ray->ver_length)
-		{
 			wall_inter_found = update_horizontal(game, ray);
-		} else
-		{
+		else
 			wall_inter_found = update_vertical(game, ray);
-		}
 	}
 }

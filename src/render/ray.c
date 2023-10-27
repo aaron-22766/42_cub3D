@@ -1,9 +1,4 @@
-
-#include "../../include/cub3D.h"
-
-/**
- * @attention t_vector (x, y, z)
-*/
+#include "../../include/render.h"
 
 void	init_ray(t_render *render)
 {

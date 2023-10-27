@@ -1,13 +1,4 @@
-
-#include "../../include/cub3D.h"
-
-/**
- * @brief Get the Euclidean distance between the given vectors
- * t_vector vector = {x, y, z};
- * @param vector 
- * @param origin 
- * @return int64_t 
- */
+#include "../../include/render.h"
 
 int64_t	get_distance_between(t_vector vector, t_vector origin)
 {
@@ -18,13 +9,6 @@ int64_t	get_distance_between(t_vector vector, t_vector origin)
 	distance.z = vector.z - origin.z;
 	return (sqrt(pow(distance.x, 2) + pow(distance.y, 2) + pow(distance.z, 2)));
 }
-
-/**
- * @brief Check if the given point is a wall
- * 
- * @param game
- * @param vector
- */
 
 bool	is_wall(t_game *game, t_vector vector)
 {

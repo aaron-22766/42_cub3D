@@ -1,5 +1,4 @@
-
-#include "../../include/cub3D.h"
+#include "../../include/render.h"
 
 void	render_background(t_game *game)
 {
@@ -22,29 +21,4 @@ void	render_background(t_game *game)
 		}
 		img_row++;
 	}
-
-	// Minimap
-	int m = 16;
-	int n = 128;
-	int i = 0;
-	while (i < n) {
-		int j = 0;
-		while (j < n) {
-			int i2 = 0;
-			while (i2 < m) {
-				int j2 = 0;
-				while (j2 < m) {
-					if (((i/m) + (j/m)) % 2 == 0)
-						mlx_put_pixel(game->image, i + i2, j + j2, get_color(0, 255, 0, 128));
-					else
-						mlx_put_pixel(game->image, i + i2, j + j2, get_color(0, 0, 255, 128));
-					j2++;
-				}
-				i2++;
-			}
-			j += m;
-		}
-		i += m;
-	}
-	
 }

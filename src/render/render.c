@@ -1,5 +1,4 @@
-
-#include "../../include/cub3D.h"
+#include "../../include/render.h"
 
 t_render	init_render(t_game *game)
 {
@@ -13,8 +12,10 @@ t_render	init_render(t_game *game)
 	render.img_pixel.x = 0;
 	render.img_pixel.y = 0;
 	render.img_pixel.color = 0;
-	render.distance = (game->image->width / 2) / tan(game->player.fov / 2) * TILE_SIZE;
-	render.pov = init_vector(game->player.pos.x, game->player.pos.y, game->player.pos.z);
+	render.distance = (game->image->width / 2)
+		/ tan(game->player.fov / 2) * TILE_SIZE;
+	render.pov = init_vector(game->player.pos.x,
+			game->player.pos.y, game->player.pos.z);
 	return (render);
 }
 
@@ -38,6 +39,7 @@ void	print_render(t_render *render)
 	printf("  img.x: %d\n", render->img_pixel.x);
 	printf("  img.y: %d\n", render->img_pixel.y);
 	printf("  img.color: %d\n", render->img_pixel.color);
-	printf(" distance (from POV to Projection Plane): %lld\n", render->distance);
+	printf(" distance (from POV to Projection Plane): %lld\n",
+		render->distance);
 	print_vector(&render->pov, "  pov:", true);
 }

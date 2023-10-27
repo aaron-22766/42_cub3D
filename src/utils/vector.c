@@ -1,14 +1,4 @@
-
 #include "../../include/cub3D.h"
-
-/**
- * @brief Initialize a t_vector struct with the given values
- * 
- * @param x 
- * @param y 
- * @param z 
- * @return t_vector 
- */
 
 t_vector	init_vector(int64_t x, int64_t y, int64_t z)
 {
@@ -20,15 +10,6 @@ t_vector	init_vector(int64_t x, int64_t y, int64_t z)
 	return (vector);
 }
 
-/**
- * @brief Initialize a t_vector struct with zeros
- * 
- * @param x 
- * @param y 
- * @param z 
- * @return t_vector 
- */
-
 t_vector	zero_vector(void)
 {
 	t_vector	vector;
@@ -38,13 +19,6 @@ t_vector	zero_vector(void)
 	vector.z = 0;
 	return (vector);
 }
-
-/**
- * @brief Copy the given vector
- * 
- * @param vector
- * @return t_vector 
- */
 
 t_vector	copy_vector(t_vector vector)
 {
@@ -56,14 +30,6 @@ t_vector	copy_vector(t_vector vector)
 	return (copy);
 }
 
-/**
- * @brief Sum the given vectors and return the result
- * 
- * @param v1 
- * @param v2 
- * @return t_vector 
- */
-
 t_vector	vector_sum(t_vector v1, t_vector v2)
 {
 	t_vector	sum;
@@ -74,14 +40,6 @@ t_vector	vector_sum(t_vector v1, t_vector v2)
 	return (sum);
 }
 
-/**
- * @brief Print the given vector
- * 
- * @param vector 
- * @param name 
- * @param with_map_coords 
- */
-
 void	print_vector(t_vector *vector, char *name, bool with_map_coords)
 {
 	if (name)
@@ -90,7 +48,7 @@ void	print_vector(t_vector *vector, char *name, bool with_map_coords)
 		printf("\n(x, y, z) =\t");
 	printf(" (%lld, %lld, %lld)", vector->x, vector->y, vector->z);
 	if (with_map_coords)
-		printf(" -> (%lld, %lld, %lld)",
-			vector->x / TILE_SIZE, vector->y / TILE_SIZE, vector->z / TILE_SIZE);
+		printf(" -> (%lld, %lld, %lld)", vector->x / TILE_SIZE,
+			vector->y / TILE_SIZE, vector->z / TILE_SIZE);
 	printf("\n");
 }
