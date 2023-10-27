@@ -41,13 +41,14 @@ void	print_map(t_map *map)
 	size_t	i;
 
 	printf("Map (height: %zu, max_width: %zu)\n", map->height, map->max_width);
-	if (!map->widths)
-		return ;
 	i = 0;
 	while (i < map->height)
 	{
-		printf("%*zu|%-*s|w%zu\n", (int)log10(map->height) + 1, i,
-			(int)map->max_width, map->map[i], map->widths[i]);
+		printf("%*zu|%-*s", (int)log10(map->height) + 1, i,
+			(int)map->max_width, map->map[i]);
+		if (map->widths)
+			printf("|w%zu", map->widths[i]);
+		printf("\n");
 		i++;
 	}
 }

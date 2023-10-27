@@ -63,7 +63,6 @@ void	parse(t_game *game, int argc, char **argv)
 	read_file(&parser);
 	check_configs(&parser);
 	check_map(&parser);
-	// print_parser(&parser);
 	transform_map(&parser);
 	set_game(&parser);
 	free_parser(&parser);
