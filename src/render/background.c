@@ -2,9 +2,9 @@
 
 void	render_background(t_game *game)
 {
-	uint32_t	img_row;
-	uint32_t	img_col;
-	uint32_t	color;
+	size_t	img_row;
+	size_t	img_col;
+	size_t	color;
 
 	img_row = 0;
 	while (img_row < game->image->height)
