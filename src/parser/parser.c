@@ -62,6 +62,7 @@ void	parse(t_game *game, int argc, char **argv)
 	parser.scene_file = get_input(argc, argv);
 	read_file(&parser);
 	check_configs(&parser);
+	// print_parser(&parser);
 	check_map(&parser);
 	transform_map(&parser);
 	set_game(&parser);

@@ -5,7 +5,8 @@ void	init_game(t_game *game)
 	game->mlx = NULL;
 	game->image = NULL;
 	game->foreground = NULL;
-	init_map(&game->map);
+	init_map(&game->fix_map);
+	init_map(&game->flex_map);
 	game->no_texture = NULL;
 	game->so_texture = NULL;
 	game->we_texture = NULL;
@@ -41,7 +42,8 @@ void	free_game(t_game *game)
 	delete_texture(game->torch[1]);
 	delete_texture(game->torch[2]);
 	delete_texture(game->torch[3]);
-	free_map(&game->map);
+	free_map(&game->fix_map);
+	free_map(&game->flex_map);
 }
 
 void	game_fail(t_game *game, t_cub_errno err, char *context)
@@ -68,5 +70,5 @@ void	print_game(t_game *game)
 	printf("Ceiling color: %X\n", game->ceiling_color);
 	printf("Floor color: %X\n", game->floor_color);
 	print_player(&game->player);
-	print_map(&game->map);
+	print_map(&game->fix_map);
 }

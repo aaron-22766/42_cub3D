@@ -6,7 +6,6 @@ static void	draw_background(t_game *game)
 	uint32_t	y;
 
 	y = 0;
-
 	while (y < MINIMAP_SIZE && y + MINIMAP_OFFSET < WINDOW_WIDTH)
 	{
 		x = 0;
@@ -69,21 +68,21 @@ void	draw_map(t_game *game)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < MINIMAP_TILE_AMOUNT)
+	y = 0;
+	while (y < MINIMAP_TILE_AMOUNT)
 	{
-		y = 0;
-		while (y < MINIMAP_TILE_AMOUNT)
+		x = 0;
+		while (x < MINIMAP_TILE_AMOUNT)
 		{
-			if (game->map.map[y][x] == WALL)
-				draw_tile(game, MINIMAP_TILE_SIZE * y,
-					MINIMAP_TILE_SIZE * x, MINIMAP_WALL_COLOR);
-			y++;
+			if (game->fix_map.map[y][x] == WALL)
+				draw_tile(game, MINIMAP_TILE_SIZE * x,
+					MINIMAP_TILE_SIZE * y, MINIMAP_WALL_COLOR);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
-// floor(game->player.pos.x) - (MINIMAP_TILE_AMOUNT + 1) / 2;
+
 void	draw_minimap(t_game *game)
 {
 	draw_background(game);

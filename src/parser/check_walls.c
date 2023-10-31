@@ -4,13 +4,14 @@ static void	create_vis(t_parser *parser)
 {
 	size_t	i;
 
-	parser->vis = ft_calloc(parser->game->map.height + 1, sizeof(char *));
+	parser->vis = ft_calloc(parser->game->fix_map.height + 1, sizeof(char *));
 	if (!parser->vis)
 		parser_fail(parser, CUB_MEMFAIL, "checking walls");
 	i = 0;
-	while (i < parser->game->map.height)
+	while (i < parser->game->fix_map.height)
 	{
-		parser->vis[i] = ft_calloc(parser->game->map.widths[i], sizeof(char));
+		parser->vis[i] = ft_calloc(parser->game->fix_map.widths[i],
+			sizeof(char));
 		if (!parser->vis[i])
 			parser_fail(parser, CUB_MEMFAIL, "checking walls");
 		i++;
@@ -19,14 +20,14 @@ static void	create_vis(t_parser *parser)
 
 static bool	flood(t_parser *parser, int x, int y)
 {
-	if (x < 0 || x >= (int)parser->game->map.height
-		|| y < 0 || y >= (int)parser->game->map.widths[x])
+	if (y < 0 || y >= (int)parser->game->fix_map.height
+		|| x < 0 || x >= (int)parser->game->fix_map.widths[y])
 		parser_fail(parser, CUB_INVWALLS, "hole in wall");
-	if (parser->vis[x][y] || parser->game->map.map[x][y] == WALL)
+	if (parser->vis[y][x] || parser->game->fix_map.map[y][x] == WALL)
 		return (false);
-	if (ft_strchr(ALLIGN, parser->game->map.map[x][y]))
-		parser->game->map.map[x][y] = PATH;
-	parser->vis[x][y] = true;
+	if (ft_strchr(ALLIGN, parser->game->fix_map.map[y][x]))
+		parser->game->fix_map.map[y][x] = PATH;
+	parser->vis[y][x] = true;
 	if (flood(parser, x - 1, y))
 		return (true);
 	if (flood(parser, x, y + 1))
@@ -43,19 +44,20 @@ static void	path_outside_walls(t_parser *parser)
 	size_t	i;
 
 	i = 0;
-	while (i < parser->game->map.height)
+	while (i < parser->game->fix_map.height)
 	{
-		if (parser->game->map.map[i][ft_strspn(parser->game->map.map[i], \
-			ALLIGN)] == PATH)
+		if (parser->game->fix_map.map[i]\
+			[ft_strspn(parser->game->fix_map.map[i], ALLIGN)] == PATH)
 			parser_fail(parser, CUB_INVWALLS, "path outside of left walls");
-		if (parser->game->map.map[i][ft_strrspn(parser->game->map.map[i], \
-			ALLIGN)] == PATH)
+		if (parser->game->fix_map.map[i]\
+			[ft_strrspn(parser->game->fix_map.map[i], ALLIGN)] == PATH)
 			parser_fail(parser, CUB_INVWALLS, "path outside of right walls");
 		i++;
 	}
-	if (ft_strchr(parser->game->map.map[0], PATH))
+	if (ft_strchr(parser->game->fix_map.map[0], PATH))
 		parser_fail(parser, CUB_INVWALLS, "path outside of top walls");
-	if (ft_strchr(parser->game->map.map[parser->game->map.height - 1], PATH))
+	if (ft_strchr(parser->game->fix_map.map[parser->game->fix_map.height - 1],
+			PATH))
 		parser_fail(parser, CUB_INVWALLS, "path outside of bottom walls");
 }
 

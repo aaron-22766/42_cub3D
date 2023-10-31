@@ -1,4 +1,3 @@
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -29,7 +28,8 @@
 # define MINIMAP_FRAME_WIDTH 3
 # define MINIMAP_TILE_SIZE 15
 # define MINIMAP_TILE_AMOUNT 13
-# define MINIMAP_SIZE MINIMAP_TILE_AMOUNT * MINIMAP_TILE_SIZE + MINIMAP_FRAME_WIDTH * 2
+# define MINIMAP_SIZE MINIMAP_TILE_AMOUNT \
+		* MINIMAP_TILE_SIZE + MINIMAP_FRAME_WIDTH * 2
 # define MINIMAP_FRAME_COLOR 0x000000FF
 # define MINIMAP_PATH_COLOR 0x111111AF
 # define MINIMAP_WALL_COLOR 0xAAAAAAAF
@@ -51,15 +51,16 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	mlx_image_t		*foreground;
-	t_map			map;
+	t_map			fix_map;
+	t_map			flex_map;
+	t_player		player;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*so_texture;
 	mlx_texture_t	*we_texture;
 	mlx_texture_t	*ea_texture;
+	mlx_texture_t	*torch[TORCH_AMOUNT];
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
-	t_player		player;
-	mlx_texture_t	*torch[TORCH_AMOUNT];
 }	t_game;
 
 /* ************************************************************************** */
@@ -70,7 +71,7 @@ typedef struct s_game
 void	init_mlx(t_game *game);
 
 /* hook.c */
-void	hook(void* param);
+void	hook(void *param);
 
 /* motions.c */
 void	move_player(t_game *game, t_player_action action);

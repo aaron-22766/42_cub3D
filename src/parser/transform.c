@@ -1,79 +1,81 @@
 #include "../../include/parser.h"
 
-static void	init_new_map(t_parser *parser, t_map *new)
+static size_t	remove_excess_allign(t_map *map)
 {
+	size_t	min;
+	size_t	max;
 	size_t	i;
-
-	new->map = ft_calloc(new->max_width + 1, sizeof(char *));
-	if (!new->map)
-		parser_fail(parser, CUB_MEMFAIL, "transforming map");
-	i = 0;
-	while (i < new->max_width)
-	{
-		new->map[i] = ft_calloc(new->height + 1, sizeof(char));
-		if (!new->map[i])
-			parser_fail(parser, CUB_MEMFAIL, "transforming map");
-		ft_memset(new->map[i], ' ', new->max_width);
-		i++;
-	}
-}
-
-static void	get_limits(t_map *map, size_t *min, size_t *max)
-{
 	size_t	temp;
-	size_t	i;
 
-	*min = -1;
-	*max = 0;
+	min = -1;
+	max = 0;
 	i = 0;
 	while (i < map->height)
 	{
 		temp = ft_strspn(map->map[i], ALLIGN);
-		if (temp < *min)
-			*min = temp;
+		if (temp < min)
+			min = temp;
 		temp = ft_strrspn(map->map[i], ALLIGN);
-		if (temp > *max)
-			*max = temp;
+		if (temp > max)
+			max = temp;
+		map->map[i++][temp + 1] = '\0';
+	}
+	i = 0;
+	while (i < map->height)
+	{
+		ft_memmove(map->map[i], &map->map[i][min], max - min + 2);
 		i++;
 	}
+	return (min);
 }
 
-static void	rotate_cropped(t_map *new, t_map *old, size_t min, size_t max)
+static bool	dup_map(t_map *dst, t_map *src)
 {
 	size_t	i;
-	size_t	j;
 
+	dst->height = src->height;
+	dst->max_width = src->max_width;
+	dst->map = ft_calloc(dst->height + 1, sizeof(char *));
+	if (!dst->map)
+		return (false);
 	i = 0;
-	while (max - i >= min && i <= max)
+	while (i < dst->height)
 	{
-		j = 0;
-		while (j < old->height)
-		{
-			if (max - i < old->widths[j])
-				new->map[i][j] = old->map[j][max - i];
-			else
-				new->map[i][j] = ' ';
-			j++;
-		}
+		dst->map[i] = ft_strdup(src->map[i]);
+		if (!dst->map[i])
+			return (false);
 		i++;
 	}
+	return (true);
+}
+
+static void	setup_flex_map(t_parser *parser)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < parser->game->flex_map.height)
+	{
+		x = 0;
+		while (x < parser->game->flex_map.max_width)
+		{
+			if (parser->game->flex_map.map[y][x] == DOOR)
+				parser->game->flex_map.map[y][x] = WALL;
+			x++;
+		}
+		y++;
+	}
+	parser->game->flex_map.map[(int)(parser->game->player.pos.y)]\
+		[(int)(parser->game->player.pos.x)] = PATH;
 }
 
 void	transform_map(t_parser *parser)
 {
-	t_map	new;
-	size_t	min;
-	size_t	max;
-
-	get_limits(&parser->game->map, &min, &max);
-	init_map(&new);
-	new.height = max - min + 1;
-	new.max_width = parser->game->map.height;
-	init_new_map(parser, &new);
-	rotate_cropped(&new, &parser->game->map, min, max);
-	free_map(&parser->game->map);
-	parser->game->map = new;
+	parser->game->player.pos.x -= remove_excess_allign(&parser->game->fix_map);
+	calc_widths(&parser->game->fix_map);
+	if (dup_map(&parser->game->flex_map, &parser->game->fix_map) == false)
+		parser_fail(parser, CUB_MEMFAIL, "duplicating map");
+	setup_flex_map(parser);
+	print_map(&parser->game->flex_map);
 }
-
-// don't rotate only dup and fill ' '
-// duplicate map to modifiable map

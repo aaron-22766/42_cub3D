@@ -17,7 +17,7 @@ bool	is_wall(t_game *game, t_vector vector)
 
 	x = vector.x / TILE_SIZE;
 	y = vector.y / TILE_SIZE;
-	if (x <= 0 || y <= 0 || x >= game->map.max_width || y >= game->map.height)
+	if (x <= 0 || y <= 0 || x >= game->flex_map.max_width || y >= game->flex_map.height)
 		return (true);
-	return (game->map.map[y][x] == '1' || game->map.map[y][x] == ' ');
+	return (game->flex_map.map[y][x] == '1' || game->flex_map.map[y][x] == ' ');
 }

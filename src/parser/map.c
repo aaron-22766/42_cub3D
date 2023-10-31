@@ -24,11 +24,13 @@ bool	map(t_parser *parser)
 {
 	if (!is_valid_map_line(parser->line))
 		return (false);
-	if (!realloc_arr(&parser->game->map.map, parser->game->map.height + 2))
+	if (!realloc_arr(&parser->game->fix_map.map,
+			parser->game->fix_map.height + 2))
 		parser_fail(parser, CUB_MEMFAIL, "reading map");
-	parser->game->map.map[parser->game->map.height] = ft_strdup(parser->line);
-	if (!parser->game->map.map[parser->game->map.height])
+	parser->game->fix_map.map[parser->game->fix_map.height]\
+		= ft_strdup(parser->line);
+	if (!parser->game->fix_map.map[parser->game->fix_map.height])
 		parser_fail(parser, CUB_MEMFAIL, "reading map");
-	parser->game->map.height++;
+	parser->game->fix_map.height++;
 	return (true);
 }

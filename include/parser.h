@@ -13,10 +13,11 @@
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
 
-# define MAP_CHARACTERS " 01NESW"
+# define MAP_CHARACTERS " 01DNESW"
 # define ALLIGN " "
 # define PATH '0'
 # define WALL '1'
+# define DOOR 'D'
 # define PLAYER_ORIENTATIONS "NESW"
 # define WHITESPACE " \t\v\r\f\n"
 
