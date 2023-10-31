@@ -15,10 +15,8 @@
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
-# define ROTATE_SPEED M_PI / 180 * 15
 # define TILE_SIZE 64
 # define MOVE_SPEED 0.1
-# define FOV M_PI / 3
 
 # define TORCH_AMOUNT 4
 # define TORCH_SPEED 0.125
