@@ -22,11 +22,17 @@
 # define FOV M_PI / 3
 
 # define TORCH_AMOUNT 4
-# define TORCH_HEIGHT 350
-# define TORCH_WIDTH 307
-# define TORCH_X WINDOW_WIDTH / 5 * 3
-# define TORCH_Y WINDOW_HEIGHT - TORCH_HEIGHT
-# define TORCH_SPEED 0.1
+# define TORCH_SPEED 0.125
+# define TORCH_X WINDOW_WIDTH / 7 * 5
+
+# define MINIMAP_OFFSET 10
+# define MINIMAP_FRAME_WIDTH 3
+# define MINIMAP_TILE_SIZE 15
+# define MINIMAP_TILE_AMOUNT 13
+# define MINIMAP_SIZE MINIMAP_TILE_AMOUNT * MINIMAP_TILE_SIZE + MINIMAP_FRAME_WIDTH * 2
+# define MINIMAP_FRAME_COLOR 0x000000FF
+# define MINIMAP_PATH_COLOR 0x111111AF
+# define MINIMAP_WALL_COLOR 0xAAAAAAAF
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
@@ -44,6 +50,7 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*image;
+	mlx_image_t		*foreground;
 	t_map			map;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*so_texture;
@@ -59,6 +66,9 @@ typedef struct s_game
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
+/* init.c */
+void	init_mlx(t_game *game);
+
 /* hook.c */
 void	hook(void* param);
 
@@ -68,13 +78,10 @@ void	move_player(t_game *game, t_player_action action);
 /* rotations.c */
 void	rotate_player(t_game *game, t_player_action action);
 
-/* run.c */
-void	run_game(t_game *game);
-
 /* foreground.c */
-void	draw_foreground(t_game *game);
+void	generate_foreground(t_game *game);
 
-/* utils.c	*/
-void	print_rotated_map(t_map *map);
+/* minimap.c */
+void	draw_minimap(t_game *game);
 
 #endif

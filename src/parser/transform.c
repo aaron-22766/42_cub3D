@@ -4,15 +4,16 @@ static void	init_new_map(t_parser *parser, t_map *new)
 {
 	size_t	i;
 
-	new->map = ft_calloc(new->height + 1, sizeof(char *));
+	new->map = ft_calloc(new->max_width + 1, sizeof(char *));
 	if (!new->map)
 		parser_fail(parser, CUB_MEMFAIL, "transforming map");
 	i = 0;
-	while (i < new->height)
+	while (i < new->max_width)
 	{
-		new->map[i] = ft_calloc(new->max_width + 1, sizeof(char));
+		new->map[i] = ft_calloc(new->height + 1, sizeof(char));
 		if (!new->map[i])
 			parser_fail(parser, CUB_MEMFAIL, "transforming map");
+		ft_memset(new->map[i], ' ', new->max_width);
 		i++;
 	}
 }
@@ -73,3 +74,6 @@ void	transform_map(t_parser *parser)
 	free_map(&parser->game->map);
 	parser->game->map = new;
 }
+
+// don't rotate only dup and fill ' '
+// duplicate map to modifiable map

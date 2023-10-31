@@ -4,6 +4,7 @@ void	init_game(t_game *game)
 {
 	game->mlx = NULL;
 	game->image = NULL;
+	game->foreground = NULL;
 	init_map(&game->map);
 	game->no_texture = NULL;
 	game->so_texture = NULL;
@@ -18,29 +19,36 @@ void	init_game(t_game *game)
 	game->torch[3] = NULL;
 }
 
+static void	delete_texture(mlx_texture_t *texture)
+{
+	if (texture)
+		mlx_delete_texture(texture);
+}
+
 void	free_game(t_game *game)
 {
-	free_map(&game->map);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 	if (game->image)
 		mlx_delete_image(game->mlx, game->image);
-	if (game->no_texture)
-		mlx_delete_texture(game->no_texture);
-	if (game->so_texture)
-		mlx_delete_texture(game->so_texture);
-	if (game->we_texture)
-		mlx_delete_texture(game->we_texture);
-	if (game->ea_texture)
-		mlx_delete_texture(game->ea_texture);
-	if (game->torch[0])
-		mlx_delete_texture(game->torch[0]);
-	if (game->torch[1])
-		mlx_delete_texture(game->torch[1]);
-	if (game->torch[2])
-		mlx_delete_texture(game->torch[2]);
-	if (game->torch[3])
-		mlx_delete_texture(game->torch[3]);
+	if (game->foreground)
+		mlx_delete_image(game->mlx, game->foreground);
+	delete_texture(game->no_texture);
+	delete_texture(game->so_texture);
+	delete_texture(game->we_texture);
+	delete_texture(game->ea_texture);
+	delete_texture(game->torch[0]);
+	delete_texture(game->torch[1]);
+	delete_texture(game->torch[2]);
+	delete_texture(game->torch[3]);
+	free_map(&game->map);
+}
+
+void	game_fail(t_game *game, t_cub_errno err, char *context)
+{
+	ft_perror(err, context);
+	free_game(game);
+	exit(err);
 }
 
 void	print_game(t_game *game)

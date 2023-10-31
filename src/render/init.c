@@ -1,18 +1,11 @@
 #include "../../include/render.h"
 
-static void	render_reset_image(t_game *game)
-{
-	mlx_delete_image(game->mlx, game->image);
-	game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	render_background(game);
-}
-
 void	generate_render(t_game *game)
 {
 	t_render	render;
 
 	render = init_render(game);
-	render_reset_image(game);
+	render_background(game);
 	while (render.ray_index < game->image->width)
 	{
 		init_ray(&render);

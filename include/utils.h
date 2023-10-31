@@ -109,6 +109,7 @@ t_cub_errno	ft_perror(t_cub_errno err, char *context);
 /* game.c */
 void		init_game(t_game *game);
 void		free_game(t_game *game);
+void		game_fail(t_game *game, t_cub_errno err, char *context);
 void		print_game(t_game *game);
 
 /* map.c */
