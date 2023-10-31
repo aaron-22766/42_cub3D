@@ -11,8 +11,9 @@ void	init_game(t_game *game)
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
-	game->ceiling_color = 0;
 	game->floor_color = 0;
+	game->ceiling_color = 0;
+	game->minimap_color = BLACK;
 	init_player(&game->player);
 	game->torch[0] = NULL;
 	game->torch[1] = NULL;

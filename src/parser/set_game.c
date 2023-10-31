@@ -100,6 +100,10 @@ void	set_game(t_parser *parser)
 	load_texture(parser, &parser->game->torch[3], TORCH4, false);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
+	if ((((parser->game->ceiling_color >> 24) & 0xFF)
+		+ ((parser->game->ceiling_color >> 16) & 0xFF)
+		+ ((parser->game->ceiling_color >> 8) & 0xFF)) < (255 * 3) / 2)
+		parser->game->minimap_color = WHITE;
 	parser->game->player.pos.x += 0.5;
 	parser->game->player.pos.y += 0.5;
 }

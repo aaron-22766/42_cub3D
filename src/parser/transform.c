@@ -77,5 +77,4 @@ void	transform_map(t_parser *parser)
 	if (dup_map(&parser->game->flex_map, &parser->game->fix_map) == false)
 		parser_fail(parser, CUB_MEMFAIL, "duplicating map");
 	setup_flex_map(parser);
-	print_map(&parser->game->flex_map);
 }

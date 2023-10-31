@@ -15,24 +15,27 @@
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
-# define ROTATE_SPEED M_PI / 180 * 15
+# define ROTATE_SPEED (M_PI / 180 * 15)
 # define TILE_SIZE 64
 # define MOVE_SPEED 0.1
-# define FOV M_PI / 3
+# define FOV (M_PI / 3)
 
 # define TORCH_AMOUNT 4
 # define TORCH_SPEED 0.125
-# define TORCH_X WINDOW_WIDTH / 7 * 5
+# define TORCH_X (WINDOW_WIDTH / 7 * 5)
 
 # define MINIMAP_OFFSET 10
 # define MINIMAP_FRAME_WIDTH 3
-# define MINIMAP_TILE_SIZE 15
-# define MINIMAP_TILE_AMOUNT 13
-# define MINIMAP_SIZE MINIMAP_TILE_AMOUNT \
-		* MINIMAP_TILE_SIZE + MINIMAP_FRAME_WIDTH * 2
-# define MINIMAP_FRAME_COLOR 0x000000FF
-# define MINIMAP_PATH_COLOR 0x111111AF
-# define MINIMAP_WALL_COLOR 0xAAAAAAAF
+# define MINIMAP_TILE_SIZE 21
+# define MINIMAP_TILE_AMOUNT 11
+# define MINIMAP_SIZE (MINIMAP_TILE_AMOUNT \
+		* MINIMAP_TILE_SIZE + MINIMAP_FRAME_WIDTH * 2)
+# define MINIMAP_WALL_COLOR 0x0000006F
+# define MINIMAP_PATH_COLOR 0x6666666F
+# define MINIMAP_RAY_COLOR 0xDDDDDDDF
+
+# define BLACK 0x000000FF
+# define WHITE 0xFFFFFFFF
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
@@ -61,6 +64,7 @@ typedef struct s_game
 	mlx_texture_t	*torch[TORCH_AMOUNT];
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
+	uint32_t		minimap_color;
 }	t_game;
 
 /* ************************************************************************** */

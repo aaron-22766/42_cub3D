@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 	// atexit(leaks);//DEBUG
 	init_game(&game);
 	parse(&game, argc, argv);
-	print_game(&game);
+	// print_game(&game);
 	init_mlx(&game);
 	mlx_loop_hook(game.mlx, hook, &game);
 	mlx_loop(game.mlx);
