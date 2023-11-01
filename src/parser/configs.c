@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static void	set_config(t_parser *parser, char **config)
 {

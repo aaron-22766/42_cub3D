@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static size_t	remove_excess_allign(t_map *map)
 {

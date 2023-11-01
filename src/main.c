@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	parse(&game, argc, argv);
 	// print_game(&game);
-	init_mlx(&game);
+	setup_game(&game);
 	mlx_loop_hook(game.mlx, hook, &game);
 	mlx_loop(game.mlx);
 	free_game(&game);

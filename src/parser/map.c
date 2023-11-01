@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static bool	realloc_arr(char ***ptr, size_t count)
 {

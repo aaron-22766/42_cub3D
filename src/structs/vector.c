@@ -1,5 +1,9 @@
 #include "../../include/cub3D.h"
 
+// Lorenzo
+// make all these functions void and take a pointer to vector as argument
+// the same we did with the other structs
+
 t_vector	init_vector(int64_t x, int64_t y, int64_t z)
 {
 	t_vector	vector;
@@ -12,12 +16,7 @@ t_vector	init_vector(int64_t x, int64_t y, int64_t z)
 
 t_vector	zero_vector(void)
 {
-	t_vector	vector;
-
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	return (vector);
+	return (init_vector(0, 0, 0));
 }
 
 t_vector	copy_vector(t_vector vector)

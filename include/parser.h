@@ -6,7 +6,6 @@
 /*                                  INCLUDES                                  */
 /* ************************************************************************** */
 
-# include "cub3D.h"
 # include "utils.h"
 
 /* ************************************************************************** */
@@ -20,11 +19,6 @@
 # define DOOR 'D'
 # define PLAYER_ORIENTATIONS "NESW"
 # define WHITESPACE " \t\v\r\f\n"
-
-# define TORCH1 "./textures/torch/torch1.png"
-# define TORCH2 "./textures/torch/torch2.png"
-# define TORCH3 "./textures/torch/torch3.png"
-# define TORCH4 "./textures/torch/torch4.png"
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
@@ -80,6 +74,11 @@ void	transform_map(t_parser *parser);
 
 // set_game.c
 void	set_game(t_parser *parser);
+
+// load.c
+void	load_texture(t_parser *parser, mlx_texture_t **texture,
+	char *path, bool square);
+void	load_color(t_parser *parser, uint32_t *color, char *rgb);
 
 // utils.c
 bool	is_empty_line(char *line);

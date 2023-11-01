@@ -3,8 +3,8 @@
 void	init_game(t_game *game)
 {
 	game->mlx = NULL;
+	init_hud(&game->hud);
 	game->image = NULL;
-	game->foreground = NULL;
 	init_map(&game->fix_map);
 	init_map(&game->flex_map);
 	game->no_texture = NULL;
@@ -13,38 +13,21 @@ void	init_game(t_game *game)
 	game->ea_texture = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
-	game->minimap_color = BLACK;
 	init_player(&game->player);
-	game->torch[0] = NULL;
-	game->torch[1] = NULL;
-	game->torch[2] = NULL;
-	game->torch[3] = NULL;
-}
-
-static void	delete_texture(mlx_texture_t *texture)
-{
-	if (texture)
-		mlx_delete_texture(texture);
 }
 
 void	free_game(t_game *game)
 {
-	if (game->mlx)
-		mlx_terminate(game->mlx);
-	if (game->image)
-		mlx_delete_image(game->mlx, game->image);
-	if (game->foreground)
-		mlx_delete_image(game->mlx, game->foreground);
+	free_map(&game->fix_map);
+	free_map(&game->flex_map);
+	free_hud(game->mlx, &game->hud);
+	delete_image(game->mlx, game->image);
 	delete_texture(game->no_texture);
 	delete_texture(game->so_texture);
 	delete_texture(game->we_texture);
 	delete_texture(game->ea_texture);
-	delete_texture(game->torch[0]);
-	delete_texture(game->torch[1]);
-	delete_texture(game->torch[2]);
-	delete_texture(game->torch[3]);
-	free_map(&game->fix_map);
-	free_map(&game->flex_map);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
 }
 
 void	game_fail(t_game *game, t_cub_errno err, char *context)

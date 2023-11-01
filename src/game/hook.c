@@ -20,5 +20,5 @@ void	hook(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate_player(game, ROTATE_CW);
 	generate_render(game);
-	generate_foreground(game);
+	generate_hud(game);
 }
