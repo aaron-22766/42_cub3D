@@ -1,4 +1,4 @@
-#include "../../include/render.h"
+#include "../../include/cub3D.h"
 
 /**
  * @brief Find the coordinates of the first intersections of the ray.

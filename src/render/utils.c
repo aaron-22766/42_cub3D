@@ -1,4 +1,4 @@
-#include "../../include/render.h"
+#include "../../include/cub3D.h"
 
 int64_t	get_distance_between(t_vector vector, t_vector origin)
 {

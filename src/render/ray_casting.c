@@ -1,5 +1,5 @@
 
-// #include "../../include/render.h"
+// #include "../../include/cub3D.h"
 
 // static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 // {
