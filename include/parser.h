@@ -49,9 +49,8 @@ typedef struct s_parser
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
-// parser.c
+// parse.c
 void	parse(t_game *game, int argc, char **argv);
-void	parser_fail(t_parser *parser, t_cub_errno err, char *context);
 
 // read.c
 void	read_file(t_parser *parser);
@@ -84,6 +83,5 @@ void	load_color(t_parser *parser, uint32_t *color, char *rgb);
 bool	is_empty_line(char *line);
 bool	is_valid_map_line(char *line);
 void	trim_newline(char *line);
-void	print_parser(t_parser *parser);//DEBUG
 
 #endif

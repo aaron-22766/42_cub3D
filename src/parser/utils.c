@@ -30,19 +30,3 @@ void	trim_newline(char *line)
 	if (nl && !nl[1])
 		*nl = '\0';
 }
-
-void	print_parser(t_parser *parser)
-{
-	printf("\nPARSER\n");
-	printf("file: %d\n", parser->scene_file);
-	printf("line: %s\n", parser->line);
-	printf("split: %p\n", parser->split);
-	printf("north: %s\n", parser->no_path);
-	printf("east: %s\n", parser->ea_path);
-	printf("south: %s\n", parser->so_path);
-	printf("west: %s\n", parser->we_path);
-	printf("floor: %s\n", parser->floor_color);
-	printf("ceiling: %s\n", parser->ceiling_color);
-	print_player(&parser->game->player);
-	print_map(&parser->game->fix_map);
-}

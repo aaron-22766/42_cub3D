@@ -5,6 +5,7 @@
 /*                                  TYPEDEFS                                  */
 /* ************************************************************************** */
 
+typedef struct s_parser		t_parser;
 typedef struct s_game		t_game;
 typedef struct s_hud		t_hud;
 typedef enum e_cub_errno	t_cub_errno;
@@ -52,6 +53,12 @@ typedef struct s_player
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
+
+/* parser.c */
+void		init_parser(t_parser *parser);
+void		free_parser(t_parser *parser);
+void		parser_fail(t_parser *parser, t_cub_errno err, char *context);
+void		print_parser(t_parser *parser);
 
 /* game.c */
 void		init_game(t_game *game);
