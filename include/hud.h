@@ -30,8 +30,10 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_FRAME_WIDTH 3
 # define MINIMAP_TILE_SIZE 21
 # define MINIMAP_TILE_AMOUNT 11
-# define MINIMAP_WALL_COLOR 0x0000006F
 # define MINIMAP_PATH_COLOR 0x6666666F
+# define MINIMAP_WALL_COLOR 0x0000006F
+# define MINIMAP_DOOR_CLOSED_COLOR 0x2222226F
+# define MINIMAP_DOOR_OPEN_COLOR 0x4444446F
 # define MINIMAP_RAY_COLOR 0xDDDDDDDF
 
 /* ************************************************************************** */
@@ -41,16 +43,23 @@ typedef struct s_pos	t_pos;
 typedef struct	s_hud
 {
 	mlx_image_t		*image;
+	mlx_texture_t	*player_texture;
 	mlx_texture_t	*torch_texture[TORCH_AMOUNT];
 	t_pos			torch_pos;
 	uint32_t		minimap_color;
 	size_t			minimap_size;
+	size_t			minimap_start;
 	size_t			minimap_center;
+	size_t			minimap_end;
+	double			minimap_half_tile_size;
 }	t_hud;
 
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
+
+/* setup.c */
+void	setup_hud(t_game *game);
 
 /* hud.c */
 void	generate_hud(t_game *game);
@@ -60,5 +69,9 @@ void	animate_torch(t_game *game);
 
 /* minimap.c */
 void	draw_minimap(t_game *game);
+
+/* map.c */
+void	draw_doors(t_game *game);
+void	draw_walls(t_game *game);
 
 #endif

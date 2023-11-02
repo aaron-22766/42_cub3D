@@ -25,9 +25,9 @@
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
 
-# define ROTATE_SPEED (M_PI / 180 * 15) //remove!! Norm
+# define ROTATE_SPEED 0.05//(M_PI / 180 * 15) //remove!! Norm
 # define TILE_SIZE 64
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF

@@ -46,64 +46,11 @@ static void	draw_frame(t_hud *hud)
 		draw_square_line(hud, i++);
 }
 
-static void	draw_tile(mlx_image_t *image, size_t x, size_t y, uint32_t color)
-{
-	uint8_t	tile_x;
-	uint8_t	tile_y;
-
-	tile_y = 0;
-	while (tile_y < MINIMAP_TILE_SIZE)
-	{
-		tile_x = 0;
-		while (tile_x < MINIMAP_TILE_SIZE)
-			mlx_put_pixel(image,
-				MINIMAP_OFFSET + MINIMAP_FRAME_WIDTH + x + tile_x++,
-				MINIMAP_OFFSET + MINIMAP_FRAME_WIDTH + y + tile_y, color);
-		tile_y++;
-	}
-}
-
-void	draw_map(t_game *game)
-{
-	size_t	x;
-	size_t	y;
-
-	y = 0;
-	while (y < MINIMAP_TILE_AMOUNT && y < game->fix_map.height)
-	{
-		x = 0;
-		while (x < MINIMAP_TILE_AMOUNT && x < game->fix_map.max_width)
-		{
-			if (game->fix_map.map[y][x] == WALL)
-				draw_tile(game->hud.image, MINIMAP_TILE_SIZE * x,
-					MINIMAP_TILE_SIZE * y, MINIMAP_WALL_COLOR);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_player(t_hud *hud)
+static void	draw_player(t_hud *hud)
 {
 	int8_t	i;
 	int8_t	j;
 
-	i = -1;
-	while (++i < 4)
-	{
-		j = -2;
-		while (++j <= 1)
-		{
-			mlx_put_pixel(hud->image, hud->minimap_center + j,
-				hud->minimap_center + i, hud->minimap_color);
-			mlx_put_pixel(hud->image, hud->minimap_center + j,
-				hud->minimap_center - i, hud->minimap_color);
-			mlx_put_pixel(hud->image, hud->minimap_center + i,
-				hud->minimap_center + j, hud->minimap_color);
-			mlx_put_pixel(hud->image, hud->minimap_center - i,
-				hud->minimap_center + j, hud->minimap_color);
-		}
-	}
 	i = -3;
 	while (++i < 3)
 	{
@@ -112,12 +59,25 @@ void	draw_player(t_hud *hud)
 			mlx_put_pixel(hud->image, hud->minimap_center + i,
 				hud->minimap_center + j, hud->minimap_color);
 	}
+	i = -2;
+	while (++i < 2)
+	{
+		mlx_put_pixel(hud->image, hud->minimap_center + 3,
+					hud->minimap_center + i, hud->minimap_color);
+		mlx_put_pixel(hud->image, hud->minimap_center - 3,
+					hud->minimap_center + i, hud->minimap_color);
+		mlx_put_pixel(hud->image, hud->minimap_center + i,
+					hud->minimap_center + 3, hud->minimap_color);
+		mlx_put_pixel(hud->image, hud->minimap_center + i,
+					hud->minimap_center - 3, hud->minimap_color);
+	}
 }
 
 void	draw_minimap(t_game *game)
 {
 	draw_background(&game->hud);
-	draw_map(game);
-	draw_frame(&game->hud);
+	draw_doors(game);
+	draw_walls(game);
 	draw_player(&game->hud);
+	draw_frame(&game->hud);
 }

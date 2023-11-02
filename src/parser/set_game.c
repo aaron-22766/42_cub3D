@@ -24,7 +24,5 @@ void	set_game(t_parser *parser)
 	load_texture(parser, &parser->game->we_texture, parser->we_path, true);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
-	parser->game->player.pos.x += 0.5;
-	parser->game->player.pos.y += 0.5;
 	set_hud(parser);
 }

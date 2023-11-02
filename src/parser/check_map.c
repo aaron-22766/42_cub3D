@@ -15,7 +15,7 @@ static double	get_radian(char c)
 	if (c == 'E')
 		return (0.0);
 	if (c == 'S')
-		return ((3 * M_PI) / 2);
+		return (M_PI * 1.5);
 	if (c == 'W')
 		return (M_PI);
 	return (-1);
