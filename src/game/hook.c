@@ -18,6 +18,11 @@ static void	detect_keys(t_game *game)
 		rotate_player(game, ROTATE_CW);
 }
 
+/**
+ * TODO: 
+ * - if no key is pressed only animate_torch
+ * - mlx.delta_time to make a fixed framerate
+ */
 void	hook(void *param)
 {
 	t_game	*game;
@@ -25,5 +30,6 @@ void	hook(void *param)
 	game = (t_game *)param;
 	detect_keys(game);
 	generate_render(game);
-	generate_hud(game);
+	draw_minimap(game);
+	animate_torch(game);
 }

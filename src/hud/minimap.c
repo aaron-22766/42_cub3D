@@ -16,34 +16,32 @@ static void	draw_background(t_hud *hud)
 	}
 }
 
-static void	draw_square_line(t_hud *hud, uint8_t offset)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < (size_t)(hud->minimap_size - offset - 1))
-	{
-		mlx_put_pixel(hud->image, MINIMAP_OFFSET + offset + i, MINIMAP_OFFSET
-			+ offset, hud->minimap_color);
-		mlx_put_pixel(hud->image, MINIMAP_OFFSET + offset, MINIMAP_OFFSET
-			+ offset + i, hud->minimap_color);
-		mlx_put_pixel(hud->image, MINIMAP_OFFSET + offset + i, MINIMAP_OFFSET
-			+ hud->minimap_size - offset - 1, hud->minimap_color);
-		mlx_put_pixel(hud->image, MINIMAP_OFFSET + hud->minimap_size
-			- offset - 1, MINIMAP_OFFSET + offset + i, hud->minimap_color);
-		i++;
-	}
-	mlx_put_pixel(hud->image, MINIMAP_OFFSET + i, MINIMAP_OFFSET + i,
-		hud->minimap_color);
-}
-
 static void	draw_frame(t_hud *hud)
 {
-	uint8_t	i;
+	uint8_t	offset;
+	size_t	i;
 
-	i = 0;
-	while (i < MINIMAP_FRAME_WIDTH)
-		draw_square_line(hud, i++);
+	offset = 0;
+	while (offset < MINIMAP_FRAME_WIDTH)
+	{
+		i = 0;
+		while (i < (size_t)(hud->minimap_size - offset - 1))
+		{
+			mlx_put_pixel(hud->image, MINIMAP_OFFSET + offset + i,
+				MINIMAP_OFFSET + offset, hud->minimap_color);
+			mlx_put_pixel(hud->image, MINIMAP_OFFSET + offset,
+				MINIMAP_OFFSET + offset + i, hud->minimap_color);
+			mlx_put_pixel(hud->image, MINIMAP_OFFSET + offset + i,
+				MINIMAP_OFFSET + hud->minimap_size - offset - 1,
+				hud->minimap_color);
+			mlx_put_pixel(hud->image, MINIMAP_OFFSET + hud->minimap_size
+				- offset - 1, MINIMAP_OFFSET + offset + i, hud->minimap_color);
+			i++;
+		}
+		mlx_put_pixel(hud->image, MINIMAP_OFFSET + i, MINIMAP_OFFSET + i,
+			hud->minimap_color);
+		offset++;
+	}
 }
 
 static void	draw_player(t_hud *hud)
@@ -63,19 +61,20 @@ static void	draw_player(t_hud *hud)
 	while (++i < 2)
 	{
 		mlx_put_pixel(hud->image, hud->minimap_center + 3,
-					hud->minimap_center + i, hud->minimap_color);
+			hud->minimap_center + i, hud->minimap_color);
 		mlx_put_pixel(hud->image, hud->minimap_center - 3,
-					hud->minimap_center + i, hud->minimap_color);
+			hud->minimap_center + i, hud->minimap_color);
 		mlx_put_pixel(hud->image, hud->minimap_center + i,
-					hud->minimap_center + 3, hud->minimap_color);
+			hud->minimap_center + 3, hud->minimap_color);
 		mlx_put_pixel(hud->image, hud->minimap_center + i,
-					hud->minimap_center - 3, hud->minimap_color);
+			hud->minimap_center - 3, hud->minimap_color);
 	}
 }
 
 void	draw_minimap(t_game *game)
 {
 	draw_background(&game->hud);
+	draw_fov(game);
 	draw_doors(game);
 	draw_walls(game);
 	draw_player(&game->hud);

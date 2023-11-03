@@ -20,5 +20,5 @@ void	setup_game(t_game *game)
 	game->player.pos.y += 0.5;
 	setup_world(game);
 	setup_hud(game);
-	printf("%f\n", game->player.orientation);
+	// print_player(&game->player);
 }

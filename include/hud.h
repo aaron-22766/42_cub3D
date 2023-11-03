@@ -34,7 +34,7 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_WALL_COLOR 0x0000006F
 # define MINIMAP_DOOR_CLOSED_COLOR 0x2222226F
 # define MINIMAP_DOOR_OPEN_COLOR 0x4444446F
-# define MINIMAP_RAY_COLOR 0xDDDDDDDF
+# define MINIMAP_FOV_COLOR 0x5A5A5A6F
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
@@ -59,19 +59,26 @@ typedef struct	s_hud
 /* ************************************************************************** */
 
 /* setup.c */
-void	setup_hud(t_game *game);
-
-/* hud.c */
-void	generate_hud(t_game *game);
+void		setup_hud(t_game *game);
 
 /* torch.c */
-void	animate_torch(t_game *game);
+void		animate_torch(t_game *game);
 
 /* minimap.c */
-void	draw_minimap(t_game *game);
+void		draw_minimap(t_game *game);
+
+/* fov.c */
+void		draw_fov(t_game *game);
 
 /* map.c */
-void	draw_doors(t_game *game);
-void	draw_walls(t_game *game);
+void		draw_doors(t_game *game);
+void		draw_walls(t_game *game);
+
+/* tile.c */
+void		draw_tile(t_game *game, size_t x, size_t y, uint32_t color);
+
+/* utils.c */
+void		put_pixel(t_hud *hud, uint32_t x, uint32_t y, uint32_t color);
+uint32_t	rotate(t_game *game, double a, double b, uint8_t scale);
 
 #endif

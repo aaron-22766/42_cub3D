@@ -69,6 +69,7 @@ void		print_game(t_game *game);
 /* hud.c */
 void		init_hud(t_hud *hud);
 void		free_hud(mlx_t *mlx, t_hud *hud);
+void		print_hud(t_hud *hud);
 
 /* map.c */
 void		init_map(t_map *map);
