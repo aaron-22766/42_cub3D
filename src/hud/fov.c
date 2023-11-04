@@ -9,13 +9,13 @@ static void	draw_ray(t_game *game, uint32_t x, uint32_t y)
 
 	dx = ft_abs(x - game->hud.minimap_center);
 	dy = -ft_abs(y - game->hud.minimap_center);
-	sx = (x < game->hud.minimap_center) ? 1 : -1;
+	sx = (x < game->hud.minimap_center) * 2 - 1;
 	err = dx + dy;
 	while (true)
 	{
 		put_pixel(&game->hud, x, y, MINIMAP_FOV_COLOR);
 		if (x == game->hud.minimap_center && y == game->hud.minimap_center)
-			break;
+			break ;
 		if (2 * err >= dy)
 		{
 			err += dy;

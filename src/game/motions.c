@@ -31,6 +31,7 @@ static t_pos	get_displacement(t_game *game, t_player_action action)
 // What was the idea with fmin & fmax here? works better without
 // Also could need some simplifying, reducing functions...
 // And fix being faster if two keys are pressed (W + D for example)
+// Make sliding at wall possible
 
 static t_pos	get_new_pos(t_game *game, t_player_action action)
 {
@@ -61,4 +62,5 @@ void	move_player(t_game *game, t_player_action action)
 		game->player.pos.x = new_pos.x;
 		game->player.pos.y = new_pos.y;
 	}
+	game->update = true;
 }

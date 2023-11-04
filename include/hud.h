@@ -82,6 +82,7 @@ void		draw_walls(t_game *game);
 void		draw_tile(t_game *game, size_t x, size_t y, uint32_t color);
 
 /* utils.c */
+double		distance(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2);
 void		put_pixel(t_hud *hud, uint32_t x, uint32_t y, uint32_t color);
 uint32_t	rotate(t_game *game, double a, double b, uint8_t scale);
 

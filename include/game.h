@@ -27,6 +27,7 @@ typedef struct s_game
 	mlx_texture_t	*ea_texture;
 	uint32_t		floor_color;//wall_textures & colors in separate  struct?
 	uint32_t		ceiling_color;//name: scene
+	bool			update;
 }	t_game;
 
 /* ************************************************************************** */

@@ -7,13 +7,14 @@ void	init_game(t_game *game)
 	game->image = NULL;
 	init_map(&game->fix_map);
 	init_map(&game->flex_map);
+	init_player(&game->player);
 	game->no_texture = NULL;
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
-	init_player(&game->player);
+	game->update = false;
 }
 
 void	free_game(t_game *game)
