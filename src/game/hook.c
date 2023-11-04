@@ -19,9 +19,8 @@ static void	detect_keys(t_game *game)
 }
 
 /**
- * TODO: 
- * - if no key is pressed only animate_torch
- * - mlx.delta_time to make a fixed framerate
+ * TODO:
+ * - only update render and minimap if key is pressed (or player changed?)
  */
 void	hook(void *param)
 {

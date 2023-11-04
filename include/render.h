@@ -1,4 +1,3 @@
-
 #ifndef RENDER_H
 # define RENDER_H
 
@@ -20,7 +19,7 @@ typedef struct s_game	t_game;
 
 /**
  * @brief Ray structure
- * 
+ *
  * @param id Index of the ray
  * @param angle Horizontal angle of the ray
  * @param origin Position of the player's eyes
@@ -31,7 +30,7 @@ typedef struct s_game	t_game;
  * @param d_hor Delta of the horizontal intersection
  * @param d_ver Delta of the vertical intersection
  * @param texture Texture of the wall hit by the ray
- * 
+ *
  * @attention All angles are in radians
  * @attention Angle rotates clockwise. Negative in the cartesian plane
  * @attention HOR_IN <-> TILE_SIZE divides ray Y coordinate
@@ -55,7 +54,7 @@ typedef struct s_ray
 
 /**
  * @brief Render structure
- * 
+ *
  * @param rays Array of rays
  * @param ray_index Index of the current ray
  * @param theta Angle of the current ray
@@ -63,7 +62,7 @@ typedef struct s_ray
  * @param img_pixel Pixel of the IMAGE
  * @param distance Distance between the player and the Projection Plane
  * @param pov Point of View of the player
- * 
+ *
  * @attention All angles are in radians
  * @attention Alpha rotates clockwise (negative in the cartesian plane)
  */
@@ -107,7 +106,5 @@ void		print_render(t_render *render);
 /* utils.c */
 int64_t		get_distance_between(t_vector vector, t_vector origin);
 bool		is_wall(t_game *game, t_vector vector);
-
-
 
 #endif

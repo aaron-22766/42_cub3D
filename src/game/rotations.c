@@ -6,9 +6,9 @@ void	rotate_player(t_game *game, t_player_action action)
 
 	new_orientation = game->player.orientation;
 	if (action == ROTATE_CCW)
-		new_orientation += ROTATE_SPEED;
+		new_orientation += ROTATE_SPEED * game->mlx->delta_time;
 	else if (action == ROTATE_CW)
-		new_orientation -= ROTATE_SPEED;
+		new_orientation -= ROTATE_SPEED * game->mlx->delta_time;
 	if (new_orientation < 0)
 		new_orientation += 2 * M_PI;
 	else if (new_orientation >= 2 * M_PI)

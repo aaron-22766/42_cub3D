@@ -24,12 +24,13 @@ typedef struct s_pos	t_pos;
 # define TORCH4 "./textures/torch/torch4.png"
 
 # define TORCH_AMOUNT 4
-# define TORCH_SPEED 0.125
+# define TORCH_FPS 8
 
 # define MINIMAP_OFFSET 10
 # define MINIMAP_FRAME_WIDTH 3
 # define MINIMAP_TILE_SIZE 21
 # define MINIMAP_TILE_AMOUNT 11
+# define MINIMAP_TILE_GAP -1//-1 makes them overlap (doors look thin), 0 is ugly, 1 has visual gap
 # define MINIMAP_PATH_COLOR 0x6666666F
 # define MINIMAP_WALL_COLOR 0x0000006F
 # define MINIMAP_DOOR_CLOSED_COLOR 0x2222226F
@@ -40,12 +41,15 @@ typedef struct s_pos	t_pos;
 /*                                  STRUCTS                                   */
 /* ************************************************************************** */
 
-typedef struct	s_hud
+typedef struct s_hud
 {
 	mlx_image_t		*image;
 	mlx_texture_t	*player_texture;
 	mlx_texture_t	*torch_texture[TORCH_AMOUNT];
 	t_pos			torch_pos;
+	double			torch_time;
+	double			torch_speed;
+	uint8_t			torch_frame;
 	uint32_t		minimap_color;
 	size_t			minimap_size;
 	size_t			minimap_start;

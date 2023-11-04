@@ -93,5 +93,4 @@ t_vector	copy_vector(t_vector vector);
 t_vector	vector_sum(t_vector v1, t_vector v2);
 void		print_vector(t_vector *vector, char *name, bool with_map_coords);
 
-
 #endif

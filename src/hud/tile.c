@@ -14,13 +14,26 @@ static void	draw_square(t_game *game, uint32_t x, uint32_t y, uint32_t color)
 	int8_t	i;
 	int8_t	j;
 
-	i = -game->hud.minimap_half_tile_size;
-	while (++i < game->hud.minimap_half_tile_size)
+	i = -game->hud.minimap_half_tile_size + MINIMAP_TILE_GAP;
+	while (++i < game->hud.minimap_half_tile_size - 1 - MINIMAP_TILE_GAP)
 	{
-		j = -game->hud.minimap_half_tile_size;
-		while (++j < game->hud.minimap_half_tile_size)
+		j = -game->hud.minimap_half_tile_size + MINIMAP_TILE_GAP;
+		while (++j < game->hud.minimap_half_tile_size - 1 - MINIMAP_TILE_GAP)
 			draw_plus(&game->hud, x + rotate(game, j, i, 1),
 				y + rotate(game, i, -j, 1), color);
+	}
+	i = -game->hud.minimap_half_tile_size - 1 + MINIMAP_TILE_GAP;
+	j = game->hud.minimap_half_tile_size - MINIMAP_TILE_GAP;
+	while (++i < j + 1)
+	{
+		put_pixel(&game->hud, x + rotate(game, j, i, 1),
+			y + rotate(game, i, -j, 1), color);
+		put_pixel(&game->hud, x + rotate(game, -j, i, 1),
+			y + rotate(game, i, j, 1), color);
+		put_pixel(&game->hud, x + rotate(game, i, -j, 1),
+			y + rotate(game, -j, -i, 1), color);
+		put_pixel(&game->hud, x + rotate(game, i, j, 1),
+			y + rotate(game, j, -i, 1), color);
 	}
 }
 

@@ -21,14 +21,11 @@ static void	draw_torch(t_hud *hud, mlx_texture_t *torch)
 
 void	animate_torch(t_game *game)
 {
-	static double	time;
-	static uint8_t	frame;
-
-	time += game->mlx->delta_time;
-	if (time > TORCH_SPEED)
+	game->hud.torch_time += game->mlx->delta_time;
+	if (game->hud.torch_time > game->hud.torch_speed)
 	{
-		time = 0;
-		frame = (frame + 1) % TORCH_AMOUNT;
+		game->hud.torch_time = 0;
+		game->hud.torch_frame = (game->hud.torch_frame + 1) % TORCH_AMOUNT;
+		draw_torch(&game->hud, game->hud.torch_texture[game->hud.torch_frame]);
 	}
-	draw_torch(&game->hud, game->hud.torch_texture[frame]);
 }
