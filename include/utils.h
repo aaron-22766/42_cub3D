@@ -33,11 +33,6 @@
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF
 
-# define NORTH 0
-# define EAST 1
-# define SOUTH 2
-# define WEST 3
-
 /* ************************************************************************** */
 /*                                   ENUMS                                    */
 /* ************************************************************************** */
@@ -73,6 +68,14 @@ typedef enum e_player_action
 	ROTATE_CCW = MLX_KEY_LEFT,
 	ROTATE_CW = MLX_KEY_RIGHT
 }	t_player_action;
+
+typedef enum e_cardinal_point
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST
+}	t_cardinal_point;
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */

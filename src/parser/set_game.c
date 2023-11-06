@@ -2,14 +2,14 @@
 
 void	set_game(t_parser *parser)
 {
-	uint8_t	cardinal_point;
+	t_cardinal_point	i;
 
-	cardinal_point = NORTH;
-	while (cardinal_point <= WEST)
+	i = NORTH;
+	while (i <= WEST)
 	{
-		load_texture(parser, &parser->game->wall_textures[cardinal_point],
-			parser->texture_paths[cardinal_point], true);
-		cardinal_point++;
+		load_texture(parser, &parser->game->wall_textures[i],
+			parser->texture_paths[i], true);
+		i++;
 	}
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
