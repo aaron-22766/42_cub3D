@@ -12,42 +12,41 @@ static void	track_fps(t_game *game)
 	}
 }
 
-static void	detect_keys(t_game *game)
+static t_keys_down	detect_keys(t_game *game)
 {
+	t_keys_down	keys;
+
+	keys = KEY_NONE;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_W)
-		&& !mlx_is_key_down(game->mlx, MLX_KEY_S))
-		move_player(game, MOVE_FORWARD);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_S)
-		&& !mlx_is_key_down(game->mlx, MLX_KEY_W))
-		move_player(game, MOVE_BACKWARD);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_A)
-		&& !mlx_is_key_down(game->mlx, MLX_KEY_D))
-		move_player(game, MOVE_LEFT);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_D)
-		&& !mlx_is_key_down(game->mlx, MLX_KEY_A))
-		move_player(game, MOVE_RIGHT);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT)
-		&& !mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		rotate_player(game, ROTATE_CCW);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT)
-		&& !mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		rotate_player(game, ROTATE_CW);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		keys |= KEY_W;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		keys |= KEY_A;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		keys |= KEY_S;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		keys |= KEY_D;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		keys |= KEY_LEFT;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		keys |= KEY_RIGHT;
+	return (keys);
 }
 
 void	hook(void *param)
 {
-	t_game	*game;
+	t_game		*game;
+	t_keys_down	keys;
 
 	game = (t_game *)param;
-	track_fps(game);
-	detect_keys(game);
-	if (game->update)
+	keys = detect_keys(game);
+	if (keys != KEY_NONE)
 	{
-		game->update = false;
+		do_player_action(game, keys);
 		generate_render(game);
 		draw_minimap(game);
 	}
 	animate_torch(game);
+	track_fps(game);
 }

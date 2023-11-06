@@ -20,5 +20,4 @@ void	setup_game(t_game *game)
 	game->player.pos.y += 0.5;
 	setup_world(game);
 	setup_hud(game);
-	// print_player(&game->player);
 }

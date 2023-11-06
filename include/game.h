@@ -24,7 +24,6 @@ typedef struct s_game
 	mlx_texture_t	*wall_textures[4];
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
-	bool			update;
 	double			time;
 	uint8_t			fps;
 }	t_game;
@@ -39,10 +38,8 @@ void	setup_game(t_game *game);
 /* hook.c */
 void	hook(void *param);
 
-/* motions.c */
-void	move_player(t_game *game, t_player_action action);
-
-/* rotations.c */
-void	rotate_player(t_game *game, t_player_action action);
+/* action.c */
+void	rotate_player(t_game *game, int8_t dir);
+void	do_player_action(t_game *game, t_keys_down keys);
 
 #endif

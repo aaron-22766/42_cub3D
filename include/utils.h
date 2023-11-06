@@ -59,15 +59,16 @@ typedef enum e_cub_errno
 	CUB_INVWALLS
 }	t_cub_errno;
 
-typedef enum e_player_action
+typedef enum e_keys_down
 {
-	MOVE_FORWARD = MLX_KEY_W,
-	MOVE_BACKWARD = MLX_KEY_S,
-	MOVE_LEFT = MLX_KEY_A,
-	MOVE_RIGHT = MLX_KEY_D,
-	ROTATE_CCW = MLX_KEY_LEFT,
-	ROTATE_CW = MLX_KEY_RIGHT
-}	t_player_action;
+	KEY_NONE = 0b0,
+	KEY_W = 0b1,
+	KEY_A = 0b10,
+	KEY_S = 0b100,
+	KEY_D = 0b1000,
+	KEY_LEFT = 0b10000,
+	KEY_RIGHT = 0b100000
+}	t_keys_down;
 
 typedef enum e_cardinal_point
 {

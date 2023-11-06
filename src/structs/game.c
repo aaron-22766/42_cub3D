@@ -15,7 +15,6 @@ void	init_game(t_game *game)
 		game->wall_textures[i++] = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
-	game->update = false;
 	game->time = 0;
 	game->fps = 0;
 }
