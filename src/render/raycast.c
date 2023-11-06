@@ -1,5 +1,5 @@
 
-// #include "../../include/render.h"
+#include "../../include/render.h"
 
 // static void	set_projection_values(t_game *game, t_render *render, t_ray *ray)
 // {
@@ -71,3 +71,41 @@
 // }
 
 // // TODO: Check if the x corresponds to the column and the y to the row
+
+void	render_raycast(t_game *game, t_ray *ray)
+{
+	t_pixel		pixel;
+
+	pixel.x = ray->id;
+	// uint32_t distance_to_projection_plane =  fabs() + (WINDOW_WIDTH / 2) / tan(M_PI / 6);
+	// uint32_t heigth_projection_plane = (TILE_SIZE * distance_to_projection_plane) / ray->length;
+    // uint32_t dtpp = sqrt(pow((WINDOW_WIDTH / 2), 2) + pow(ray->id - (WINDOW_WIDTH / 2), 2) / tan(M_PI / 6));
+	// uint32_t heigth_projection_plane = (TILE_SIZE * dtpp) / ray->length;
+	// pixel.y = (game->image->height - heigth_projection_plane) / 2;
+    double omega = fabs(ray->angle - game->player.orientation) ; //+ game->player.fov / 2;
+    // uint32_t p2pp =  ((double) WINDOW_WIDTH / 2.0) / tan(omega );
+    // uint32_t h = (TILE_SIZE * p2pp) / ray->length;
+    printf("omega: %f\n", omega);
+    printf("ray->length: %lld\n", ray->length);
+    double tile = (double) TILE_SIZE;
+    double iw = (double) game->image->width;
+    double d = (double) ray->length;
+    double h = (tile * ((iw / 2.0) / tan(omega)) / d);
+    printf("h: %f\n", h);
+    u_int32_t uh = (u_int32_t) h;
+
+    pixel.y = fmin((game->image->height - uh) / 2, 10);
+    printf("pixel.y: %d\n", pixel.y);
+    printf("pixel.x: %d\n", pixel.x); 
+    return;
+	while (pixel.y < fmax((game->image->height + uh) / 2, game->image->height-10))
+	{
+        if (fmin(pixel.x, pixel.y) < 0 || fmax(pixel.x, pixel.y) > game->image->width)
+        {
+            pixel.y++;
+            continue;
+        }
+		mlx_put_pixel(game->image, pixel.x, pixel.y, get_pixel_color(ray->texture, 1, 1));
+		pixel.y++;
+	}
+}
