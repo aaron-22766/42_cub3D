@@ -46,6 +46,7 @@ typedef struct s_hud
 	double			torch_time;
 	double			torch_speed;
 	uint8_t			torch_frame;
+	int8_t			torch_next;
 	uint32_t		minimap_color;
 	uint32_t		minimap_center;
 	double			minimap_half_tile_size;
