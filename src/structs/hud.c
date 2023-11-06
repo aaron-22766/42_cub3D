@@ -6,13 +6,12 @@ void	init_hud(t_hud *hud)
 
 	i = 0;
 	while (i < TORCH_AMOUNT)
-		hud->torch_texture[i++] = NULL;
+		hud->torch_textures[i++] = NULL;
 	init_pos(&hud->torch_pos);
 	hud->torch_time = 0;
 	hud->torch_speed = 1.0 / TORCH_FPS;
 	hud->torch_frame = 0;
 	hud->image = NULL;
-	hud->player_texture = NULL;
 	hud->torch_pos.x = (WINDOW_WIDTH / 7) * 5;
 	hud->minimap_center = MINIMAP_OFFSET + MINIMAP_RADIUS;
 	hud->minimap_half_tile_size = MINIMAP_TILE_SIZE / 2.0;
@@ -26,8 +25,7 @@ void	free_hud(mlx_t *mlx, t_hud *hud)
 
 	i = 0;
 	while (i < TORCH_AMOUNT)
-		delete_texture(hud->torch_texture[i++]);
-	delete_texture(hud->player_texture);
+		delete_texture(hud->torch_textures[i++]);
 	delete_image(mlx, hud->image);
 }
 

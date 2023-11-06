@@ -31,17 +31,15 @@ typedef struct s_game	t_game;
 
 typedef struct s_parser
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	*floor_color;
-	char	*ceiling_color;
-	int		scene_file;
-	char	*line;
-	char	**split;
-	char	**vis;
-	t_game	*game;
+	char			*texture_paths[4];
+	char			*floor_color;
+	char			*ceiling_color;
+	int				scene_file;
+	char			*line;
+	char			**split;
+	char			**vis;
+	mlx_texture_t	*torch_sprite_sheet;
+	t_game			*game;
 }	t_parser;
 
 /* ************************************************************************** */

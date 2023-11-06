@@ -66,7 +66,7 @@ static void	setup_flex_map(t_parser *parser)
 		}
 		y++;
 	}
-	parser->game->flex_map.map[(int)(parser->game->player.pos.y)]\
+	parser->game->flex_map.map[(int)(parser->game->player.pos.y)] \
 		[(int)(parser->game->player.pos.x)] = PATH;
 }
 

@@ -18,11 +18,7 @@ typedef struct s_pos	t_pos;
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
 
-# define TORCH1 "./textures/torch/torch1.png"
-# define TORCH2 "./textures/torch/torch2.png"
-# define TORCH3 "./textures/torch/torch3.png"
-# define TORCH4 "./textures/torch/torch4.png"
-
+# define TORCH_PATH "./textures/torch.png"
 # define TORCH_AMOUNT 4
 # define TORCH_FPS 8
 
@@ -36,7 +32,7 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_WALL_COLOR 0x0000006F
 # define MINIMAP_DOOR_CLOSED_COLOR 0x2222226F
 # define MINIMAP_DOOR_OPEN_COLOR 0x4444446F
-# define MINIMAP_FOV_COLOR 0x5A5A5A6F
+# define MINIMAP_FOV_COLOR 0x5656566F
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
@@ -45,8 +41,7 @@ typedef struct s_pos	t_pos;
 typedef struct s_hud
 {
 	mlx_image_t		*image;
-	mlx_texture_t	*player_texture;
-	mlx_texture_t	*torch_texture[TORCH_AMOUNT];
+	mlx_texture_t	*torch_textures[TORCH_AMOUNT];
 	t_pos			torch_pos;
 	double			torch_time;
 	double			torch_speed;
@@ -62,6 +57,7 @@ typedef struct s_hud
 /* ************************************************************************** */
 
 /* setup.c */
+void		set_hud(t_parser *parser);
 void		setup_hud(t_game *game);
 
 /* torch.c */

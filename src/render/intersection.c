@@ -54,9 +54,9 @@ bool	update_horizontal(t_game *game, t_ray *ray)
 	ray->hit = copy_vector(ray->hor_inter);
 	ray->length = ray->hor_length;
 	if (ray->angle < M_PI)
-		ray->texture = game->so_texture;
+		ray->texture = game->wall_textures[SOUTH];
 	else
-		ray->texture = game->no_texture;
+		ray->texture = game->wall_textures[NORTH];
 	return (true);
 }
 
@@ -69,9 +69,9 @@ bool	update_vertical(t_game *game, t_ray *ray)
 	ray->hit = copy_vector(ray->ver_inter);
 	ray->length = ray->ver_length;
 	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
-		ray->texture = game->ea_texture;
+		ray->texture = game->wall_textures[EAST];
 	else
-		ray->texture = game->we_texture;
+		ray->texture = game->wall_textures[WEST];
 	return (true);
 }
 

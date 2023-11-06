@@ -16,17 +16,14 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	// t_render			render; // Also maybe more descriptive name e.g. world
-	t_hud			hud;
 	mlx_image_t		*image;//put inside of render struct
+	t_hud			hud;
 	t_map			fix_map;
 	t_map			flex_map;
 	t_player		player;
-	mlx_texture_t	*no_texture;//*wall_textures[4] ??
-	mlx_texture_t	*so_texture;
-	mlx_texture_t	*we_texture;
-	mlx_texture_t	*ea_texture;
-	uint32_t		floor_color;//wall_textures & colors in separate  struct?
-	uint32_t		ceiling_color;//name: scene
+	mlx_texture_t	*wall_textures[4];
+	uint32_t		floor_color;
+	uint32_t		ceiling_color;
 	bool			update;
 	double			time;
 	uint8_t			fps;

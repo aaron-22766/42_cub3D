@@ -27,7 +27,7 @@ bool	map(t_parser *parser)
 	if (!realloc_arr(&parser->game->fix_map.map,
 			parser->game->fix_map.height + 2))
 		parser_fail(parser, CUB_MEMFAIL, "reading map");
-	parser->game->fix_map.map[parser->game->fix_map.height]\
+	parser->game->fix_map.map[parser->game->fix_map.height] \
 		= ft_strdup(parser->line);
 	if (!parser->game->fix_map.map[parser->game->fix_map.height])
 		parser_fail(parser, CUB_MEMFAIL, "reading map");
