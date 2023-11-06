@@ -11,7 +11,7 @@ INC_DIR		=	include
 LIB_DIR		=	lib
 SRC_DIR		=	src
 BUILD_DIR	=	build
-SUB_DIRS	=	game parser render utils
+SUB_DIRS	=	game parser render hud structs utils
 
 LIBFT_DIR	=	$(LIB_DIR)/libft
 MLX_DIR		=	$(LIB_DIR)/MLX42
@@ -68,11 +68,13 @@ clean:
 fclean: clean
 	$(RM) $(RMFLAGS) $(NAME)
 
+re: fclean all
+
 libclean:
 	$(RM) $(RMFLAGS) $(LIBFT_DIR) $(MLX_DIR)
 
 allclean: libclean fclean
 
-re: fclean all
+libupdate: libclean all
 
-.PHONY: all clean fclean re libclean allclean
+.PHONY: all clean fclean re libclean allclean libupdate
