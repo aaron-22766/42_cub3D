@@ -17,7 +17,7 @@
 
 void	init_intersections(t_ray *ray)
 {
-	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
+	if (ray->angle < M_PI_2 || ray->angle > 3.0 * M_PI_2)
 		ray->ver_inter.x = TILE_SIZE - (ray->origin.x % TILE_SIZE);
 	else
 		ray->ver_inter.x = -(ray->origin.x % TILE_SIZE);
@@ -36,7 +36,7 @@ void	init_auxiliary_variables(t_ray *ray)
 	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
 		ray->d_ver = init_vector(TILE_SIZE, TILE_SIZE * tan(ray->angle), 0);
 	else
-		ray->d_ver = init_vector(-TILE_SIZE, -TILE_SIZE * tan(ray->angle), 0);
+		ray->d_ver = init_vector(-TILE_SIZE, -(TILE_SIZE * tan(ray->angle)), 0);
 	if (ray->angle < M_PI)
 		ray->d_hor = init_vector(TILE_SIZE / tan(ray->angle), TILE_SIZE, 0);
 	else
@@ -68,7 +68,7 @@ bool	update_vertical(t_game *game, t_ray *ray)
 		return (false);
 	ray->hit = copy_vector(ray->ver_inter);
 	ray->length = ray->ver_length;
-	if (ray->angle < M_PI_2 || ray->angle > 3 * M_PI_2)
+	if (ray->angle < M_PI_2 || ray->angle > 3.0 * M_PI_2)
 		ray->texture = game->wall_textures[EAST];
 	else
 		ray->texture = game->wall_textures[WEST];

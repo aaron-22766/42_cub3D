@@ -28,7 +28,7 @@
 # define MOVE_SPEED 3.0
 # define ROTATE_SPEED 1.25
 
-# define TILE_SIZE 64
+# define TILE_SIZE 256
 
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF

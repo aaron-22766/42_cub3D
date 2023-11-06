@@ -92,7 +92,7 @@ void		generate_render(t_game *game);
 void		find_ray_intersection(t_game *game, t_ray *ray);
 
 /* ray_casting.c */
-void		render_raycast(t_game *game, t_render *render, t_ray *ray);
+void		render_raycast(t_game *game, t_ray *ray);
 
 /* ray.c */
 void		init_ray(t_render *render);

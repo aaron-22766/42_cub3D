@@ -12,10 +12,10 @@ t_render	init_render(t_game *game)
 	render.img_pixel.x = 0;
 	render.img_pixel.y = 0;
 	render.img_pixel.color = 0;
-	render.distance = (game->image->width / 2)
-		/ tan(game->player.fov / 2) * TILE_SIZE;
-	render.pov = init_vector(game->player.pos.x,
-			game->player.pos.y, game->player.pos.z);
+	render.distance = (game->image->width / 2) * TILE_SIZE
+		/ tan(game->player.fov / 2);
+	render.pov = init_vector(TILE_SIZE * game->player.pos.x,
+TILE_SIZE * game->player.pos.y, TILE_SIZE * game->player.pos.z);
 	return (render);
 }
 
