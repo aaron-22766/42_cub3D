@@ -1,5 +1,17 @@
 #include "../../include/cub3D.h"
 
+static void	track_fps(t_game *game)
+{
+	game->fps++;
+	game->time += game->mlx->delta_time;
+	if (game->time >= 1.0)
+	{
+		printf("FPS: %d\n\033[K\033[A\r", game->fps);
+		game->time = 0;
+		game->fps = 0;
+	}
+}
+
 static void	detect_keys(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -24,15 +36,12 @@ static void	detect_keys(t_game *game)
 		rotate_player(game, ROTATE_CW);
 }
 
-/**
- * TODO:
- * - only update render and minimap if key is pressed (or player changed?)
- */
 void	hook(void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
+	track_fps(game);
 	detect_keys(game);
 	if (game->update)
 	{

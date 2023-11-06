@@ -28,6 +28,8 @@ typedef struct s_game
 	uint32_t		floor_color;//wall_textures & colors in separate  struct?
 	uint32_t		ceiling_color;//name: scene
 	bool			update;
+	double			time;
+	uint8_t			fps;
 }	t_game;
 
 /* ************************************************************************** */

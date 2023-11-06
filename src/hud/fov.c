@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-static void	draw_ray(t_game *game, uint32_t x, uint32_t y)
+static void	draw_line(t_game *game, uint32_t x, uint32_t y)
 {
 	int32_t	dx;
 	int32_t	dy;
@@ -39,5 +39,5 @@ void	draw_fov(t_game *game)
 	i = game->hud.minimap_center - half_way;
 	max = game->hud.minimap_center + half_way;
 	while (i < max)
-		draw_ray(game, i++, 0);
+		draw_line(game, i++, 0);
 }

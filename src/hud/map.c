@@ -2,8 +2,11 @@
 
 static void	set_limits(size_t *min, size_t *max, double axis, size_t apex)
 {
-	*min = fmax(axis - MINIMAP_TILE_AMOUNT / 2 - 3.5, 0);
-	*max = fmin(axis + MINIMAP_TILE_AMOUNT / 2 + 3.5, apex);
+	uint32_t	nb_tiles;
+
+	nb_tiles = MINIMAP_RADIUS / MINIMAP_TILE_SIZE;
+	*min = fmax(axis - nb_tiles - 1.7, 0);
+	*max = fmin(axis + nb_tiles + 1.7, apex);
 }
 
 void	draw_doors(t_game *game)
