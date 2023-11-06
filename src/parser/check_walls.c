@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static void	create_vis(t_parser *parser)
 {
@@ -11,7 +11,7 @@ static void	create_vis(t_parser *parser)
 	while (i < parser->game->fix_map.height)
 	{
 		parser->vis[i] = ft_calloc(parser->game->fix_map.widths[i],
-			sizeof(char));
+				sizeof(char));
 		if (!parser->vis[i])
 			parser_fail(parser, CUB_MEMFAIL, "checking walls");
 		i++;
@@ -46,10 +46,10 @@ static void	path_outside_walls(t_parser *parser)
 	i = 0;
 	while (i < parser->game->fix_map.height)
 	{
-		if (parser->game->fix_map.map[i]\
+		if (parser->game->fix_map.map[i] \
 			[ft_strspn(parser->game->fix_map.map[i], ALLIGN)] == PATH)
 			parser_fail(parser, CUB_INVWALLS, "path outside of left walls");
-		if (parser->game->fix_map.map[i]\
+		if (parser->game->fix_map.map[i] \
 			[ft_strrspn(parser->game->fix_map.map[i], ALLIGN)] == PATH)
 			parser_fail(parser, CUB_INVWALLS, "path outside of right walls");
 		i++;

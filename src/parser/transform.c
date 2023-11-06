@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static size_t	remove_excess_allign(t_map *map)
 {
@@ -66,7 +66,7 @@ static void	setup_flex_map(t_parser *parser)
 		}
 		y++;
 	}
-	parser->game->flex_map.map[(int)(parser->game->player.pos.y)]\
+	parser->game->flex_map.map[(int)(parser->game->player.pos.y)] \
 		[(int)(parser->game->player.pos.x)] = PATH;
 }
 
@@ -77,5 +77,4 @@ void	transform_map(t_parser *parser)
 	if (dup_map(&parser->game->flex_map, &parser->game->fix_map) == false)
 		parser_fail(parser, CUB_MEMFAIL, "duplicating map");
 	setup_flex_map(parser);
-	print_map(&parser->game->flex_map);
 }

@@ -1,4 +1,3 @@
-
 #ifndef PARSER_H
 # define PARSER_H
 
@@ -6,7 +5,6 @@
 /*                                  INCLUDES                                  */
 /* ************************************************************************** */
 
-# include "cub3D.h"
 # include "utils.h"
 
 /* ************************************************************************** */
@@ -21,11 +19,6 @@
 # define PLAYER_ORIENTATIONS "NESW"
 # define WHITESPACE " \t\v\r\f\n"
 
-# define TORCH1 "./textures/torch/torch1.png"
-# define TORCH2 "./textures/torch/torch2.png"
-# define TORCH3 "./textures/torch/torch3.png"
-# define TORCH4 "./textures/torch/torch4.png"
-
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
 /* ************************************************************************** */
@@ -38,53 +31,54 @@ typedef struct s_game	t_game;
 
 typedef struct s_parser
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	*floor_color;
-	char	*ceiling_color;
-	int		scene_file;
-	char	*line;
-	char	**split;
-	char	**vis;
-	t_game	*game;
+	char			*texture_paths[4];
+	char			*floor_color;
+	char			*ceiling_color;
+	int				scene_file;
+	char			*line;
+	char			**split;
+	char			**vis;
+	mlx_texture_t	*torch_sprite_sheet;
+	t_game			*game;
 }	t_parser;
 
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
 
-// parser.c
+/* parse.c */
 void	parse(t_game *game, int argc, char **argv);
-void	parser_fail(t_parser *parser, t_cub_errno err, char *context);
 
-// read.c
+/* read.c */
 void	read_file(t_parser *parser);
 
-// configs.c
+/* configs.c */
 bool	configs(t_parser *parser);
 void	check_configs(t_parser *parser);
 
-// map.c
+/* map.c */
 bool	map(t_parser *parser);
 
-// check_map.c
+/* check_map.c */
 void	check_map(t_parser *parser);
 
-// check_walls.c
+/* check_walls.c */
 void	check_walls(t_parser *parser);
 
-// transform.c
+/* transform.c */
 void	transform_map(t_parser *parser);
 
-// set_game.c
+/* set_game.c */
 void	set_game(t_parser *parser);
 
-// utils.c
+/* load.c */
+void	load_texture(t_parser *parser, mlx_texture_t **texture,
+	char *path, bool square);
+void	load_color(t_parser *parser, uint32_t *color, char *rgb);
+
+/* utils.c */
 bool	is_empty_line(char *line);
 bool	is_valid_map_line(char *line);
 void	trim_newline(char *line);
-void	print_parser(t_parser *parser);//DEBUG
 
 #endif

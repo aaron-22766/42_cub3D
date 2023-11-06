@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static void	set_config(t_parser *parser, char **config)
 {
@@ -10,13 +10,13 @@ static void	set_config(t_parser *parser, char **config)
 static bool	create_config(t_parser *parser)
 {
 	if (!ft_strcmp(parser->split[0], "NO"))
-		set_config(parser, &parser->no_path);
+		set_config(parser, &parser->texture_paths[NORTH]);
 	else if (!ft_strcmp(parser->split[0], "EA"))
-		set_config(parser, &parser->ea_path);
+		set_config(parser, &parser->texture_paths[EAST]);
 	else if (!ft_strcmp(parser->split[0], "SO"))
-		set_config(parser, &parser->so_path);
+		set_config(parser, &parser->texture_paths[SOUTH]);
 	else if (!ft_strcmp(parser->split[0], "WE"))
-		set_config(parser, &parser->we_path);
+		set_config(parser, &parser->texture_paths[WEST]);
 	else if (!ft_strcmp(parser->split[0], "F"))
 		set_config(parser, &parser->floor_color);
 	else if (!ft_strcmp(parser->split[0], "C"))
@@ -52,11 +52,11 @@ static void	check_path(t_parser *parser, char *path, char *type)
 
 void	check_configs(t_parser *parser)
 {
-	check_path(parser, parser->no_path, "NO");
-	check_path(parser, parser->ea_path, "EA");
-	check_path(parser, parser->so_path, "SO");
-	check_path(parser, parser->we_path, "WE");
-	if (!parser->ea_path)
+	check_path(parser, parser->texture_paths[NORTH], "NO");
+	check_path(parser, parser->texture_paths[EAST], "EA");
+	check_path(parser, parser->texture_paths[SOUTH], "SO");
+	check_path(parser, parser->texture_paths[WEST], "WE");
+	if (!parser->floor_color)
 		parser_fail(parser, CUB_MISSCONFIG, "F");
 	if (!parser->ceiling_color)
 		parser_fail(parser, CUB_MISSCONFIG, "C");

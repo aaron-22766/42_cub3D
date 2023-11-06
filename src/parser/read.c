@@ -1,4 +1,4 @@
-#include "../../include/parser.h"
+#include "../../include/cub3D.h"
 
 static void	read_loop(t_parser *parser, bool (*f)(t_parser *))
 {
