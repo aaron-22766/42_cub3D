@@ -1,4 +1,4 @@
-#include "../../include/render.h"
+#include "../../include/cub3D.h"
 
 void	init_ray(t_render *render)
 {

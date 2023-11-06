@@ -1,4 +1,4 @@
-#include "../../include/render.h"
+#include "../../include/cub3D.h"
 
 t_render	init_render(t_game *game)
 {
