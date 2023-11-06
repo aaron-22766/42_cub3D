@@ -32,15 +32,15 @@ static bool	try_diagonally(t_game *game, t_keys_down keys,
 		return (false);
 	if ((keys & KEY_W) && (keys & KEY_A))
 		move_player(game, M_SQRT1_2 * (cos_angle - sin_angle),
-			M_SQRT1_2 * (cos_angle - sin_angle));
+			M_SQRT1_2 * (-sin_angle - cos_angle));
 	else if ((keys & KEY_W) && (keys & KEY_D))
-		move_player(game, M_SQRT1_2 * (sin_angle - cos_angle),
-			M_SQRT1_2 * (cos_angle - sin_angle));
+		move_player(game, M_SQRT1_2 * (sin_angle + cos_angle),
+			M_SQRT1_2 * (-sin_angle + cos_angle));
 	else if ((keys & KEY_S) && (keys & KEY_A))
-		move_player(game, M_SQRT1_2 * (cos_angle - sin_angle),
-			M_SQRT1_2 * (sin_angle + cos_angle));
+		move_player(game, M_SQRT1_2 * (-cos_angle - sin_angle),
+			M_SQRT1_2 * (sin_angle - cos_angle));
 	else if ((keys & KEY_S) && (keys & KEY_D))
-		move_player(game, M_SQRT1_2 * (sin_angle - cos_angle),
+		move_player(game, M_SQRT1_2 * (-cos_angle + sin_angle),
 			M_SQRT1_2 * (sin_angle + cos_angle));
 	return (true);
 }
