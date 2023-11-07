@@ -48,7 +48,11 @@ void	print_game(t_game *game)
 	if (game->image)
 		printf("Image - w: %d, h: %d\n",
 			game->image->width, game->image->height);
-	printf("No texture - w: %d, h: %d\n",
+	printf("\nFixed map:\n");
+	print_map(&game->fix_map);
+	printf("\nFlexible map:\n");
+	print_player(&game->player);
+	print_map(&game->flex_map);		printf("No texture - w: %d, h: %d\n",
 		game->wall_textures[NORTH]->width, game->wall_textures[NORTH]->height);
 	printf("Ea texture - w: %d, h: %d\n",
 		game->wall_textures[EAST]->width, game->wall_textures[EAST]->height);
@@ -56,8 +60,9 @@ void	print_game(t_game *game)
 		game->wall_textures[SOUTH]->width, game->wall_textures[SOUTH]->height);
 	printf("We texture - w: %d, h: %d\n",
 		game->wall_textures[WEST]->width, game->wall_textures[WEST]->height);
-	printf("Ceiling color: %X\n", game->ceiling_color);
+	printf("\nCeiling color: %X\n", game->ceiling_color);
 	printf("Floor color: %X\n", game->floor_color);
-	print_player(&game->player);
-	print_map(&game->fix_map);
+	printf("Time: %f\n", game->time);
+	printf("FPS: %d\n", (int) game->fps);
+	// printf("Mouse x: %d\n", game->mouse_x);
 }

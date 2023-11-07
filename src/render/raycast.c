@@ -35,13 +35,13 @@ void	render_raycast(t_game *game, t_ray *ray)
     double  d_player_wall = ray->length;
     double  h = tile * (d_player_pp / d_player_wall);
 
-    if (!ray->id) {
-        printf("tile: %f\n", tile);
-        printf("iw_half: %f\n", iw_half);
-        printf("d_player_pp: %f\n", d_player_pp);
-        printf("d_player_wall: %f\n", d_player_wall);
-        printf("h: %f\n", h);
-    }
+    // if (!ray->id) {
+    //     printf("tile: %f\n", tile);
+    //     printf("iw_half: %f\n", iw_half);
+    //     printf("d_player_pp: %f\n", d_player_pp);
+    //     printf("d_player_wall: %f\n", d_player_wall);
+    //     printf("h: %f\n", h);
+    // }
     u_int32_t a = (WINDOW_HEIGHT - h) / 2.0;
     u_int32_t b = (WINDOW_HEIGHT + h) / 2.0;
     t_pixel pixel;

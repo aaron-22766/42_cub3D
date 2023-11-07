@@ -12,7 +12,7 @@ t_render	init_render(t_game *game)
 	render.img_pixel.x = 0;
 	render.img_pixel.y = 0;
 	render.img_pixel.color = 0;
-	render.distance = (game->image->width / 2) * TILE_SIZE
+	render.distance = ((double) TILE_SIZE * (game->image->width / 2))
 		/ tan(game->player.fov / 2);
 	render.pov = init_vector(TILE_SIZE * game->player.pos.x,
 TILE_SIZE * game->player.pos.y, TILE_SIZE * game->player.pos.z);
@@ -39,7 +39,7 @@ void	print_render(t_render *render)
 	printf("  img.x: %d\n", render->img_pixel.x);
 	printf("  img.y: %d\n", render->img_pixel.y);
 	printf("  img.color: %d\n", render->img_pixel.color);
-	printf(" distance (from POV to Projection Plane): %lld\n",
+	printf(" distance (from POV to Projection Plane): %lf\n",
 		render->distance);
 	print_vector(&render->pov, "  pov:", true);
 }

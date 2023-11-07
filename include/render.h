@@ -74,7 +74,7 @@ typedef struct s_render
 	double		theta;
 	double		delta;
 	t_pixel		img_pixel;
-	int64_t		distance;
+	double		distance;
 	t_vector	pov;
 }	t_render;
 
