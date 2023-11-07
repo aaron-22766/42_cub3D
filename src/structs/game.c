@@ -2,7 +2,7 @@
 
 void	init_game(t_game *game)
 {
-	uint8_t	cardinal_point;
+	t_cardinal_point	i;
 
 	game->mlx = NULL;
 	init_hud(&game->hud);
@@ -10,27 +10,27 @@ void	init_game(t_game *game)
 	init_map(&game->fix_map);
 	init_map(&game->flex_map);
 	init_player(&game->player);
-	cardinal_point = NORTH;
-	while (cardinal_point <= WEST)
-		game->wall_textures[cardinal_point++] = NULL;
+	i = NORTH;
+	while (i <= WEST)
+		game->wall_textures[i++] = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
-	game->update = false;
 	game->time = 0;
 	game->fps = 0;
+	game->mouse_x = 0;
 }
 
 void	free_game(t_game *game)
 {
-	uint8_t	cardinal_point;
+	t_cardinal_point	i;
 
 	free_map(&game->fix_map);
 	free_map(&game->flex_map);
 	free_hud(game->mlx, &game->hud);
 	delete_image(game->mlx, game->image);
-	cardinal_point = NORTH;
-	while (cardinal_point <= WEST)
-		delete_texture(game->wall_textures[cardinal_point++]);
+	i = NORTH;
+	while (i <= WEST)
+		delete_texture(game->wall_textures[i++]);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }
