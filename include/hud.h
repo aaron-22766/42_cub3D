@@ -25,9 +25,11 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_OFFSET 10
 # define MINIMAP_FRAME_WIDTH 3
 # define MINIMAP_RADIUS 120
-# define MINIMAP_TILE_SIZE 21
-# define MINIMAP_TILE_GAP -1//-1 makes them overlap (doors look thin), 0 is ugly, 1 has visual gap
+# define MINIMAP_MIN_TILE_SIZE 7
+# define MINIMAP_MAX_TILE_SIZE 59
+# define MINIMAP_DEFAULT_TILE_SIZE 21
 # define MINIMAP_PLAYER_RADIUS 3.5
+
 # define MINIMAP_PATH_COLOR 0x6666666F
 # define MINIMAP_WALL_COLOR 0x0000006F
 # define MINIMAP_DOOR_CLOSED_COLOR 0x2222226F
@@ -48,6 +50,7 @@ typedef struct s_hud
 	double			torch_speed;
 	uint32_t		minimap_color;
 	uint32_t		minimap_center;
+	uint32_t		minimap_tile_size;
 	double			minimap_half_tile_size;
 	uint32_t		minimap_radius_sqrd;
 }	t_hud;
@@ -74,7 +77,7 @@ void		draw_doors(t_game *game);
 void		draw_walls(t_game *game);
 
 /* tile.c */
-void		draw_tile(t_game *game, size_t x, size_t y, uint32_t color);
+void		draw_tile(t_game *game, uint32_t x, uint32_t y, uint32_t color);
 
 /* utils.c */
 void		draw_circle(t_hud *hud, double radius, uint32_t color);

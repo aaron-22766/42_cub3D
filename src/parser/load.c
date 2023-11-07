@@ -48,8 +48,8 @@ void	load_texture(t_parser *parser, mlx_texture_t **texture,
 
 static bool	is_valid_rgb(char *rgb)
 {
-	size_t	i;
-	size_t	comma;
+	uint32_t	i;
+	uint32_t	comma;
 
 	comma = 0;
 	i = 0;

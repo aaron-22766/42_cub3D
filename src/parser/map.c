@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-static bool	realloc_arr(char ***ptr, size_t count)
+static bool	realloc_arr(char ***ptr, uint32_t count)
 {
 	char	**new;
 

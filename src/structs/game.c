@@ -18,7 +18,8 @@ void	init_game(t_game *game)
 	game->time = 0;
 	game->fps = 0;
 	game->mouse_x = 0;
-	game->collision = MINIMAP_PLAYER_RADIUS / MINIMAP_TILE_SIZE;
+	game->collision = MINIMAP_PLAYER_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
+	game->nb_tiles = MINIMAP_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
 }
 
 void	free_game(t_game *game)

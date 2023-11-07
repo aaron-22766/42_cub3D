@@ -15,11 +15,11 @@ static void	move_player(t_game *game, double x, double y)
 
 	dir.x = x * MOVE_SPEED * game->mlx->delta_time;
 	dir.y = y * MOVE_SPEED * game->mlx->delta_time;
-	if (game->flex_map.map[(size_t)game->player.pos.y][(size_t)(game->player. \
-		pos.x + dir.x + game->collision * sign(x))] == PATH)
+	if (game->flex_map.map[(uint32_t)game->player.pos.y][(uint32_t) \
+		(game->player. pos.x + dir.x + game->collision * sign(x))] == PATH)
 		game->player.pos.x += dir.x;
-	if (game->flex_map.map[(size_t)((game->player.pos.y + dir.y + \
-		game->collision * sign(y)))][(size_t)(game->player.pos.x)] == PATH)
+	if (game->flex_map.map[(uint32_t)((game->player.pos.y + dir.y + \
+		game->collision * sign(y)))][(uint32_t)(game->player.pos.x)] == PATH)
 		game->player.pos.y += dir.y;
 }
 

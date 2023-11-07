@@ -1,61 +1,55 @@
 #include "../../include/cub3D.h"
 
-static void	set_limits(size_t *min, size_t *max, double axis, size_t apex)
+static void	set_limits(t_limits *limits, double axis, uint32_t apex,
+	uint32_t nb_tiles)
 {
-	uint32_t	nb_tiles;
-
-	nb_tiles = MINIMAP_RADIUS / MINIMAP_TILE_SIZE;
-	*min = fmax(axis - nb_tiles - 1.7, 0);
-	*max = fmin(axis + nb_tiles + 1.7, apex);
+	limits->min = fmax(axis - nb_tiles - 1.7, 0);
+	limits->max = fmin(axis + nb_tiles + 1.7, apex);
 }
 
 void	draw_doors(t_game *game)
 {
-	size_t	x;
-	size_t	y;
-	size_t	min_x;
-	size_t	max_x;
-	size_t	max_y;
+	uint32_t	x_iter;
+	t_limits	x;
+	t_limits	y;
 
-	set_limits(&min_x, &max_x, game->player.pos.x, game->fix_map.max_width);
-	set_limits(&y, &max_y, game->player.pos.y, game->fix_map.height);
-	while (y < max_y)
+	set_limits(&x, game->player.pos.x, game->fix_map.max_width, game->nb_tiles);
+	set_limits(&y, game->player.pos.y, game->fix_map.height, game->nb_tiles);
+	while (y.min < y.max)
 	{
-		x = min_x;
-		while (x < max_x)
+		x_iter = x.min;
+		while (x_iter < x.max)
 		{
-			if (game->fix_map.map[y][x] == DOOR)
+			if (game->fix_map.map[y.min][x_iter] == DOOR)
 			{
-				if (game->flex_map.map[y][x] == PATH)
-					draw_tile(game, x, y, MINIMAP_DOOR_OPEN_COLOR);
+				if (game->flex_map.map[y.min][x_iter] == PATH)
+					draw_tile(game, x_iter, y.min, MINIMAP_DOOR_OPEN_COLOR);
 				else
-					draw_tile(game, x, y, MINIMAP_DOOR_CLOSED_COLOR);
+					draw_tile(game, x_iter, y.min, MINIMAP_DOOR_CLOSED_COLOR);
 			}
-			x++;
+			x_iter++;
 		}
-		y++;
+		y.min++;
 	}
 }
 
 void	draw_walls(t_game *game)
 {
-	size_t	x;
-	size_t	y;
-	size_t	min_x;
-	size_t	max_x;
-	size_t	max_y;
+	uint32_t	x_iter;
+	t_limits	x;
+	t_limits	y;
 
-	set_limits(&min_x, &max_x, game->player.pos.x, game->fix_map.max_width);
-	set_limits(&y, &max_y, game->player.pos.y, game->fix_map.height);
-	while (y < max_y)
+	set_limits(&x, game->player.pos.x, game->fix_map.max_width, game->nb_tiles);
+	set_limits(&y, game->player.pos.y, game->fix_map.height, game->nb_tiles);
+	while (y.min < y.max)
 	{
-		x = min_x;
-		while (x < max_x)
+		x_iter = x.min;
+		while (x_iter < x.max)
 		{
-			if (game->fix_map.map[y][x] == WALL)
-				draw_tile(game, x, y, MINIMAP_WALL_COLOR);
-			x++;
+			if (game->fix_map.map[y.min][x_iter] == WALL)
+				draw_tile(game, x_iter, y.min, MINIMAP_WALL_COLOR);
+			x_iter++;
 		}
-		y++;
+		y.min++;
 	}
 }

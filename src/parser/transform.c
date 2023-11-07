@@ -1,11 +1,11 @@
 #include "../../include/cub3D.h"
 
-static size_t	remove_excess_allign(t_map *map)
+static uint32_t	remove_excess_allign(t_map *map)
 {
-	size_t	min;
-	size_t	max;
-	size_t	i;
-	size_t	temp;
+	uint32_t	min;
+	uint32_t	max;
+	uint32_t	i;
+	uint32_t	temp;
 
 	min = -1;
 	max = 0;
@@ -31,7 +31,7 @@ static size_t	remove_excess_allign(t_map *map)
 
 static bool	dup_map(t_map *dst, t_map *src)
 {
-	size_t	i;
+	uint32_t	i;
 
 	dst->height = src->height;
 	dst->max_width = src->max_width;
@@ -51,8 +51,8 @@ static bool	dup_map(t_map *dst, t_map *src)
 
 static void	setup_flex_map(t_parser *parser)
 {
-	size_t	x;
-	size_t	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	y = 0;
 	while (y < parser->game->flex_map.height)
