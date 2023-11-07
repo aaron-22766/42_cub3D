@@ -19,7 +19,7 @@ typedef struct s_pos	t_pos;
 /* ************************************************************************** */
 
 # define TORCH_PATH "./textures/torch.png"
-# define TORCH_AMOUNT 4
+# define TORCH_AMOUNT 6
 # define TORCH_FPS 8
 
 # define MINIMAP_OFFSET 10
@@ -46,7 +46,6 @@ typedef struct s_hud
 	double			torch_time;
 	double			torch_speed;
 	uint8_t			torch_frame;
-	int8_t			torch_next;
 	uint32_t		minimap_color;
 	uint32_t		minimap_center;
 	double			minimap_half_tile_size;

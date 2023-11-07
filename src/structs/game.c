@@ -17,6 +17,7 @@ void	init_game(t_game *game)
 	game->ceiling_color = 0;
 	game->time = 0;
 	game->fps = 0;
+	game->mouse_x = 0;
 }
 
 void	free_game(t_game *game)

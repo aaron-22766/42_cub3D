@@ -26,6 +26,7 @@ typedef struct s_game
 	uint32_t		ceiling_color;
 	double			time;
 	uint8_t			fps;
+	int32_t			mouse_x;
 }	t_game;
 
 /* ************************************************************************** */
@@ -39,7 +40,7 @@ void	setup_game(t_game *game);
 void	hook(void *param);
 
 /* action.c */
-void	rotate_player(t_game *game, int8_t dir);
+void	rotate_player(t_game *game, double dir);
 void	do_player_action(t_game *game, t_keys_down keys);
 
 #endif

@@ -34,6 +34,22 @@ static t_keys_down	detect_keys(t_game *game)
 	return (keys);
 }
 
+static bool	mouse_moved(t_game *game)
+{
+	int32_t	new_mouse_x;
+	int32_t	temp_mouse_y;
+
+	mlx_get_mouse_pos(game->mlx, &new_mouse_x, &temp_mouse_y);
+	if (new_mouse_x != game->mouse_x)
+	{
+		rotate_player(game, (double)(game->mouse_x - new_mouse_x)
+			/ MOUSE_DIVISOR);
+		game->mouse_x = new_mouse_x;
+		return (true);
+	}
+	return (false);
+}
+
 void	hook(void *param)
 {
 	t_game		*game;
@@ -42,8 +58,9 @@ void	hook(void *param)
 	game = (t_game *)param;
 	keys = detect_keys(game);
 	if (keys != KEY_NONE)
-	{
 		do_player_action(game, keys);
+	if (mouse_moved(game) || keys != KEY_NONE)
+	{
 		generate_render(game);
 		draw_minimap(game);
 	}

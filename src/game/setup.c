@@ -13,11 +13,15 @@ static void	setup_world(t_game *game) // move to render/world folder
 
 void	setup_game(t_game *game)
 {
+	int32_t	temp_mouse_y;
+
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!game->mlx)
 		game_fail(game, CUB_MLXFAIL, "Failed to initialize MLX");
 	game->player.pos.x += 0.5;
 	game->player.pos.y += 0.5;
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+	mlx_get_mouse_pos(game->mlx, &game->mouse_x, &temp_mouse_y);
 	setup_world(game);
 	setup_hud(game);
 }

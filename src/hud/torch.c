@@ -25,11 +25,7 @@ void	animate_torch(t_game *game)
 	if (game->hud.torch_time > game->hud.torch_speed)
 	{
 		game->hud.torch_time = 0;
-		game->hud.torch_frame += game->hud.torch_next;
 		draw_torch(&game->hud, game->hud.torch_textures[game->hud.torch_frame]);
-		if (game->hud.torch_frame == TORCH_AMOUNT - 1)
-			game->hud.torch_next = -1;
-		else if (game->hud.torch_frame == 0)
-			game->hud.torch_next = 1;
+		game->hud.torch_frame = (game->hud.torch_frame + 1) % TORCH_AMOUNT;
 	}
 }

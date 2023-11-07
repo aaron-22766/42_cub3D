@@ -27,6 +27,7 @@
 
 # define MOVE_SPEED 3.0
 # define ROTATE_SPEED 1.25
+# define MOUSE_DIVISOR 21
 
 # define TILE_SIZE 64
 
