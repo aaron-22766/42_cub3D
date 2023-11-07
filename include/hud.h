@@ -44,8 +44,8 @@ typedef struct s_hud
 	mlx_texture_t	*torch_textures[TORCH_AMOUNT];
 	t_pos			torch_pos;
 	double			torch_time;
-	double			torch_speed;
 	uint8_t			torch_frame;
+	double			torch_speed;
 	uint32_t		minimap_color;
 	uint32_t		minimap_center;
 	double			minimap_half_tile_size;

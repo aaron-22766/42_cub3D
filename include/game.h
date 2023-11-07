@@ -27,6 +27,7 @@ typedef struct s_game
 	double			time;
 	uint8_t			fps;
 	int32_t			mouse_x;
+	double			collision;
 }	t_game;
 
 /* ************************************************************************** */
@@ -42,5 +43,8 @@ void	hook(void *param);
 /* action.c */
 void	rotate_player(t_game *game, double dir);
 void	do_player_action(t_game *game, t_keys_down keys);
+
+/* utils.c */
+int8_t	sign(double x);
 
 #endif
