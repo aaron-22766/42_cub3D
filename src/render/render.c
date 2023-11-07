@@ -5,7 +5,7 @@ t_render	init_render(t_game *game)
 	t_render	render;
 
 	render.ray_index = 0;
-	render.theta = game->player.orientation + (game->player.fov / 2);
+	render.theta = game->player.orientation + (game->player.fov / 2) + M_PI_2;
 	if (render.theta > 2 * M_PI)
 		render.theta -= 2 * M_PI;
 	render.delta = game->player.fov / (double) game->image->width;

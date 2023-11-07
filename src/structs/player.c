@@ -4,7 +4,7 @@ void	init_player(t_player *player)
 {
 	set_pos(&player->pos, -1, -1, 0.5);
 	player->orientation = 0.0;
-	player->fov = M_PI / 3;
+	player->fov = M_PI / 3.0;
 }
 
 void	print_player(t_player *player)
@@ -13,5 +13,5 @@ void	print_player(t_player *player)
 	printf("  - Orientation: %lf\n  - ", player->orientation);
 	print_pos(&player->pos);
 	printf("  - Field of View: %.5f rad ~ %.1f rad\n",
-		player->fov, player->fov * 180 / M_PI);
+		player->fov, player->fov * 180.0 / M_PI);
 }
