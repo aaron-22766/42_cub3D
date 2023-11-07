@@ -19,7 +19,7 @@ typedef struct s_pos	t_pos;
 /* ************************************************************************** */
 
 # define TORCH_PATH "./textures/torch.png"
-# define TORCH_AMOUNT 4
+# define TORCH_AMOUNT 6
 # define TORCH_FPS 8
 
 # define MINIMAP_OFFSET 10
