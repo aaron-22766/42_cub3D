@@ -16,11 +16,13 @@ bool	is_wall(t_game *game, t_vector vector)
 	size_t	x;
 	size_t	y;
 
-	x = floor((double) vector.x / TILE_SIZE);
-	y = floor((double) vector.y / TILE_SIZE);
+	x = vector.x / TILE_SIZE;
+	y = vector.y / TILE_SIZE;
 	if (vector.x < TILE_SIZE || vector.y < TILE_SIZE
 		|| vector.x >= (int64_t) game->flex_map.height * TILE_SIZE
 		|| vector.y >= (int64_t) game->flex_map.max_width * TILE_SIZE)
 		return (1);
-	return (game->flex_map.map[y][x] != '0');
+	if (game->flex_map.map[vector.x / TILE_SIZE][vector.y / TILE_SIZE] != '0')
+		return (1);
+	return (0);
 }

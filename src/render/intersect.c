@@ -6,12 +6,12 @@ static void	init_intersections(t_ray *ray)
 	if (ray->angle > 0 && ray->angle < M_PI)
 		ray->hor_inter.y = TILE_SIZE - (ray->origin.y % TILE_SIZE);
 	else if (ray->angle > M_PI && ray->angle < 2.0 * M_PI)
-		ray->hor_inter.y = -(ray->origin.y % TILE_SIZE);
+		ray->hor_inter.y = -(ray->origin.y % TILE_SIZE) - 1;
 	ray->hor_inter.x = round(((double) ray->hor_inter.y) / tan(ray->angle));
 	if (ray->angle < M_PI_2 || ray->angle > 3.0 * M_PI_2)
 		ray->ver_inter.x = TILE_SIZE - (ray->origin.x % TILE_SIZE);
 	else if (ray->angle > M_PI_2 && ray->angle < 3.0 * M_PI_2)
-		ray->ver_inter.x = -(ray->origin.x % TILE_SIZE);
+		ray->ver_inter.x = -(ray->origin.x % TILE_SIZE) - 1;
 	ray->ver_inter.y = round(((double) ray->ver_inter.x) * tan(ray->angle));
 	ray->ver_inter = vector_sum(ray->origin, ray->ver_inter);
 	ray->hor_inter = vector_sum(ray->origin, ray->hor_inter);

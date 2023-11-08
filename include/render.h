@@ -59,7 +59,6 @@ typedef struct s_ray
  * @param ray_index Index of the current ray
  * @param theta Angle of the current ray
  * @param delta Angle between two rays
- * @param img_pixel Pixel of the IMAGE
  * @param distance Distance between the player and the Projection Plane
  * @param pov Point of View of the player
  *
@@ -73,7 +72,6 @@ typedef struct s_render
 	size_t		ray_index;
 	double		theta;
 	double		delta;
-	t_pixel		img_pixel;
 	double		distance;
 	t_vector	pov;
 }	t_render;
