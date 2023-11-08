@@ -24,7 +24,11 @@ void	print_ray(t_ray *ray)
 	printf("\nRAY:\n");
 	printf(" id: %zu\n", ray->id);
 	printf(" angle: %f\n", ray->angle);
-	printf(" origin: ");
 	print_vector(&ray->origin, "origin", true);
-
+	print_vector(&ray->hit, "hit", true);
+	printf(" length: %lld\n", ray->length);
+	print_vector(&ray->hor_inter, "hor_inter", true);
+	print_vector(&ray->ver_inter, "ver_inter", true);
+	print_vector(&ray->d_hor, "d_hor", true);
+	print_vector(&ray->d_ver, "d_ver", true);
 }

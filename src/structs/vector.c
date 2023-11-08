@@ -42,12 +42,17 @@ t_vector	vector_sum(t_vector v1, t_vector v2)
 void	print_vector(t_vector *vector, char *name, bool with_map_coords)
 {
 	if (name)
-		printf("\n%s:\t", name);
+		printf("%s: ", name);
 	else
-		printf("\n(x, y, z) =\t");
+		printf("(x, y, z) = ");
 	printf(" (%lld, %lld, %lld)", vector->x, vector->y, vector->z);
 	if (with_map_coords)
-		printf(" -> (%lld, %lld, %lld)", vector->x / TILE_SIZE,
-			vector->y / TILE_SIZE, vector->z / TILE_SIZE);
+	{
+		printf(" -> (%.2f, %.2f, %.2f)", (double)vector->x / TILE_SIZE,
+			(double)vector->y / TILE_SIZE, (double)vector->z / TILE_SIZE);
+		size_t X = floor((double) vector->x / TILE_SIZE);
+		size_t Y = floor((double) vector->y / TILE_SIZE);
+		printf(" -> [%zu, %zu]", X, Y);
+	}
 	printf("\n");
 }

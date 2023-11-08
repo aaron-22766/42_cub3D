@@ -43,12 +43,12 @@ typedef struct s_ray
 	t_vector		origin;
 	t_vector		hit;
 	int64_t			length;
-	t_vector		hor_inter;	// Player's eyes as origin
-	t_vector		ver_inter;	// Player's eyes as origin
-	t_vector		d_hor;		// Player's eyes as origin
-	t_vector		d_ver;		// Player's eyes as origin
-	int64_t			hor_length;	// Player's eyes as origin
-	int64_t			ver_length;	// Player's eyes as origin
+	t_vector		hor_inter;
+	t_vector		ver_inter;
+	t_vector		d_hor;
+	t_vector		d_ver;
+	int64_t			hor_length;
+	int64_t			ver_length;
 	mlx_texture_t	*texture;
 }	t_ray;
 

@@ -13,8 +13,4 @@ void	generate_render(t_game *game)
 		render_raycast(game, &render.rays[render.ray_index]);
 		update_render(&render);
 	}
-	print_render(&render);
-	print_ray(&render.rays[0]);
-	print_ray(&render.rays[WINDOW_WIDTH >> 1]);
-	print_ray(&render.rays[WINDOW_WIDTH - 1]);
 }

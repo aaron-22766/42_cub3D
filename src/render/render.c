@@ -5,7 +5,7 @@ t_render	init_render(t_game *game)
 	t_render	render;
 
 	render.ray_index = 0;
-	render.theta = game->player.orientation + (game->player.fov / 2) + M_PI_2;
+	render.theta = game->player.orientation + M_PI_2 - (game->player.fov / 2);
 	if (render.theta > 2 * M_PI)
 		render.theta -= 2 * M_PI;
 	render.delta = game->player.fov / (double) game->image->width;
@@ -22,9 +22,9 @@ TILE_SIZE * game->player.pos.y, TILE_SIZE * game->player.pos.z);
 void	update_render(t_render *render)
 {
 	render->ray_index++;
-	render->theta -= render->delta;
-	if (render->theta < 0)
-		render->theta += 2 * M_PI;
+	render->theta += render->delta;
+	if (render->theta > 2 * M_PI)
+		render->theta -= 2 * M_PI;
 	render->img_pixel.x++;
 	render->img_pixel.y = 0;
 	// Maybe also update render->distance?
