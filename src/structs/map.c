@@ -17,11 +17,11 @@ void	free_map(t_map *map)
 
 bool	calc_widths(t_map *map)
 {
-	uint32_t	i;
-	uint32_t	len;
+	size_t	i;
+	size_t	len;
 
 	if (!map->widths)
-		map->widths = malloc(map->height * sizeof(uint32_t));
+		map->widths = malloc(map->height * sizeof(size_t));
 	if (!map->widths)
 		return (false);
 	map->max_width = 0;
@@ -39,16 +39,16 @@ bool	calc_widths(t_map *map)
 
 void	print_map(t_map *map)
 {
-	uint32_t	i;
+	size_t	i;
 
-	printf("Map (height: %u, max_width: %u)\n", map->height, map->max_width);
+	printf("Map (height: %zu, max_width: %zu)\n", map->height, map->max_width);
 	i = 0;
 	while (i < map->height)
 	{
-		printf("%*u|%-*s", (int)log10(map->height) + 1, i,
+		printf("%*zu|%-*s", (int)log10(map->height) + 1, i,
 			(int)map->max_width, map->map[i]);
 		if (map->widths)
-			printf("|w%u", map->widths[i]);
+			printf("|w%zu", map->widths[i]);
 		printf("\n");
 		i++;
 	}

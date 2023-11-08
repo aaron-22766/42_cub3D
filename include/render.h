@@ -43,12 +43,12 @@ typedef struct s_ray
 	t_vector		origin;
 	t_vector		hit;
 	int64_t			length;
-	t_vector		hor_inter;	// Player's eyes as origin
-	t_vector		ver_inter;	// Player's eyes as origin
-	t_vector		d_hor;		// Player's eyes as origin
-	t_vector		d_ver;		// Player's eyes as origin
-	int64_t			hor_length;	// Player's eyes as origin
-	int64_t			ver_length;	// Player's eyes as origin
+	t_vector		hor_inter;
+	t_vector		ver_inter;
+	t_vector		d_hor;
+	t_vector		d_ver;
+	int64_t			hor_length;
+	int64_t			ver_length;
 	mlx_texture_t	*texture;
 }	t_ray;
 
@@ -59,7 +59,6 @@ typedef struct s_ray
  * @param ray_index Index of the current ray
  * @param theta Angle of the current ray
  * @param delta Angle between two rays
- * @param img_pixel Pixel of the IMAGE
  * @param distance Distance between the player and the Projection Plane
  * @param pov Point of View of the player
  *
@@ -73,8 +72,7 @@ typedef struct s_render
 	size_t		ray_index;
 	double		theta;
 	double		delta;
-	t_pixel		img_pixel;
-	int64_t		distance;
+	double		distance;
 	t_vector	pov;
 }	t_render;
 
@@ -92,7 +90,7 @@ void		generate_render(t_game *game);
 void		find_ray_intersection(t_game *game, t_ray *ray);
 
 /* ray_casting.c */
-void		render_raycast(t_game *game, t_render *render, t_ray *ray);
+void		render_raycast(t_game *game, t_ray *ray);
 
 /* ray.c */
 void		init_ray(t_render *render);

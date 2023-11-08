@@ -23,8 +23,8 @@ static double	get_radian(char c)
 
 static void	player_spawn(t_parser *parser)
 {
-	uint32_t	x;
-	uint32_t	y;
+	size_t	x;
+	size_t	y;
 
 	y = 0;
 	while (y < parser->game->fix_map.height)

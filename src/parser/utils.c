@@ -2,7 +2,7 @@
 
 bool	is_empty_line(char *line)
 {
-	uint32_t	i;
+	size_t	i;
 
 	i = 0;
 	while (line[i])
@@ -13,7 +13,7 @@ bool	is_empty_line(char *line)
 
 bool	is_valid_map_line(char *line)
 {
-	uint32_t	i;
+	size_t	i;
 
 	i = 0;
 	while (line && line[i])

@@ -2,7 +2,7 @@
 
 static void	create_vis(t_parser *parser)
 {
-	uint32_t	i;
+	size_t	i;
 
 	parser->vis = ft_calloc(parser->game->fix_map.height + 1, sizeof(char *));
 	if (!parser->vis)
@@ -41,7 +41,7 @@ static bool	flood(t_parser *parser, int x, int y)
 
 static void	path_outside_walls(t_parser *parser)
 {
-	uint32_t	i;
+	size_t	i;
 
 	i = 0;
 	while (i < parser->game->fix_map.height)
