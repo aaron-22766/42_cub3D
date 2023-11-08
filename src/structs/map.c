@@ -45,10 +45,10 @@ void	print_map(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		printf("%*zu|%-*s", (int)log10(map->height) + 1, i,
-			(int)map->max_width, map->map[i]);
-		if (map->widths)
-			printf("|w%u", map->widths[i]);
+		printf("%*zu|%-*s|w%zu", (int)log10(map->height) + 1, i,
+			(int)map->max_width, map->map[i], ft_strlen(map->map[i]));
+		// if (map->widths)
+		// 	printf("|w%u", map->widths[i]);
 		printf("\n");
 		i++;
 	}

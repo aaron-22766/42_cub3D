@@ -42,9 +42,11 @@ static bool	dup_map(t_map *dst, t_map *src)
 	i = 0;
 	while (i < dst->height)
 	{
-		dst->map[i] = ft_strdup(src->map[i]);
+		dst->map[i] = ft_calloc(dst->max_width + 1, sizeof(char));
 		if (!dst->map[i])
 			return (false);
+		ft_memset(dst->map[i], (ALLIGN)[0], dst->max_width);
+		ft_strncpy(dst->map[i], src->map[i], src->widths[i]);
 		i++;
 	}
 	return (true);
@@ -77,7 +79,14 @@ static void	setup_flex_map(t_parser *parser)
 
 void	transform_map(t_parser *parser)
 {
+	t_map	temp;
+
 	parser->game->player.pos.x -= remove_excess_allign(&parser->game->fix_map);
+	init_map(&temp);
+	if (dup_map(&temp, &parser->game->fix_map) == false)
+		parser_fail(parser, CUB_MEMFAIL, "duplicating map");
+	free_map(&parser->game->fix_map);
+	parser->game->fix_map = temp;
 	calc_widths(&parser->game->fix_map);
 	if (dup_map(&parser->game->flex_map, &parser->game->fix_map) == false)
 		parser_fail(parser, CUB_MEMFAIL, "duplicating map");
