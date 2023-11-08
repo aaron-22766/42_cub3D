@@ -6,8 +6,7 @@ static void	track_fps(t_game *game)
 	game->time += game->mlx->delta_time;
 	if (game->time >= 1.0)
 	{
-		// printf("FPS: %.0f\n\033[K\033[A\r", game->fps / game->time);
-		printf("FPS: %f\n", game->fps / game->time);
+		printf("FPS: %.0f\n\033[K\033[A\r", game->fps / game->time);
 		game->time = 0;
 		game->fps = 0;
 	}

@@ -50,9 +50,6 @@ void	print_vector(t_vector *vector, char *name, bool with_map_coords)
 	{
 		printf(" -> (%.2f, %.2f, %.2f)", (double)vector->x / TILE_SIZE,
 			(double)vector->y / TILE_SIZE, (double)vector->z / TILE_SIZE);
-		size_t X = floor((double) vector->x / TILE_SIZE);
-		size_t Y = floor((double) vector->y / TILE_SIZE);
-		printf(" -> [%zu, %zu]", X, Y);
 	}
 	printf("\n");
 }
