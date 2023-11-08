@@ -19,10 +19,10 @@ static void	draw_torch(t_hud *hud, mlx_texture_t *torch)
 	}
 }
 
-void	animate_torch(t_game *game)
+void	animate_torch(t_game *game, bool force)
 {
 	game->hud.torch_time += game->mlx->delta_time;
-	if (game->hud.torch_time > game->hud.torch_speed)
+	if (force || game->hud.torch_time > game->hud.torch_speed)
 	{
 		game->hud.torch_time = 0;
 		draw_torch(&game->hud, game->hud.torch_textures[game->hud.torch_frame]);

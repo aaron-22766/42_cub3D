@@ -45,9 +45,12 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double	orientation;
 	t_pos	pos;
+	double	orientation;
 	double	fov;
+	double	min_fov;
+	double	max_fov;
+	uint8_t	speed;
 }	t_player;
 
 typedef struct s_limits

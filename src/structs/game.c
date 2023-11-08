@@ -5,6 +5,8 @@ void	init_game(t_game *game)
 	t_cardinal_point	i;
 
 	game->mlx = NULL;
+	game->pause_screen = NULL;
+	game->pause_text = NULL;
 	init_hud(&game->hud);
 	game->image = NULL;
 	init_map(&game->fix_map);
@@ -18,8 +20,8 @@ void	init_game(t_game *game)
 	game->time = 0;
 	game->fps = 0;
 	game->mouse_x = 0;
-	game->collision = MINIMAP_PLAYER_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
 	game->nb_tiles = MINIMAP_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
+	game->paused = true;
 }
 
 void	free_game(t_game *game)
@@ -30,6 +32,8 @@ void	free_game(t_game *game)
 	free_map(&game->flex_map);
 	free_hud(game->mlx, &game->hud);
 	delete_image(game->mlx, game->image);
+	delete_image(game->mlx, game->pause_screen);
+	delete_image(game->mlx, game->pause_text);
 	i = NORTH;
 	while (i <= WEST)
 		delete_texture(game->wall_textures[i++]);

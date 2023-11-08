@@ -19,22 +19,6 @@
 # include "structs.h"
 
 /* ************************************************************************** */
-/*                                  DEFINES                                   */
-/* ************************************************************************** */
-
-# define WINDOW_HEIGHT 720
-# define WINDOW_WIDTH 1080
-
-# define MOVE_SPEED 3.0
-# define ROTATE_SPEED 1.25
-# define MOUSE_DIVISOR 21
-
-# define TILE_SIZE 64
-
-# define BLACK 0x000000FF
-# define WHITE 0xFFFFFFFF
-
-/* ************************************************************************** */
 /*                                   ENUMS                                    */
 /* ************************************************************************** */
 
@@ -69,7 +53,9 @@ typedef enum e_keys_down
 	KEY_D = 0b1000,
 	KEY_LEFT = 0b10000,
 	KEY_RIGHT = 0b100000,
-	KEY_ESCAPE = 0b1000000
+	KEY_PLAYER = 0b111111,
+	KEY_ESCAPE = 0b1000000,
+	KEY_LEFT_SHIFT = 0b10000000,
 }	t_keys_down;
 
 typedef enum e_cardinal_point

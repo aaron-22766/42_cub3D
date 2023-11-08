@@ -46,5 +46,5 @@ void	draw_tile(t_game *game, uint32_t x, uint32_t y, uint32_t color)
 	rel_y = y + 0.5 - game->player.pos.y;
 	draw_square(game, game->hud.minimap_center + rotate(game, rel_x, rel_y,
 			game->hud.minimap_tile_size), game->hud.minimap_center
-			+ rotate(game, rel_y, -rel_x, game->hud.minimap_tile_size), color);
+		+ rotate(game, rel_y, -rel_x, game->hud.minimap_tile_size), color);
 }

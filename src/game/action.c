@@ -1,28 +1,5 @@
 #include "../../include/cub3D.h"
 
-void	rotate_player(t_game *game, double dir)
-{
-	game->player.orientation += dir * ROTATE_SPEED * game->mlx->delta_time;
-	if (game->player.orientation < 0)
-		game->player.orientation += 2 * M_PI;
-	else if (game->player.orientation >= 2 * M_PI)
-		game->player.orientation -= 2 * M_PI;
-}
-
-static void	move_player(t_game *game, double x, double y)
-{
-	t_pos	dir;
-
-	dir.x = x * MOVE_SPEED * game->mlx->delta_time;
-	dir.y = y * MOVE_SPEED * game->mlx->delta_time;
-	if (game->flex_map.map[(uint32_t)game->player.pos.y][(uint32_t) \
-		(game->player. pos.x + dir.x + game->collision * sign(x))] == PATH)
-		game->player.pos.x += dir.x;
-	if (game->flex_map.map[(uint32_t)((game->player.pos.y + dir.y + \
-		game->collision * sign(y)))][(uint32_t)(game->player.pos.x)] == PATH)
-		game->player.pos.y += dir.y;
-}
-
 static bool	no_movement(t_keys_down *keys)
 {
 	if ((*keys & KEY_W) && (*keys & KEY_S))

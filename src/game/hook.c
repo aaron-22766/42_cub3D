@@ -6,7 +6,7 @@ static void	track_fps(t_game *game)
 	game->time += game->mlx->delta_time;
 	if (game->time >= 1.0)
 	{
-		printf("FPS: %.0f\n\033[K\033[A\r", game->fps / game->time);
+		// printf("FPS: %.0f\n\033[K\033[A\r", game->fps / game->time);
 		game->time = 0;
 		game->fps = 0;
 	}
@@ -17,8 +17,6 @@ static t_keys_down	detect_keys(t_game *game)
 	t_keys_down	keys;
 
 	keys = KEY_NONE;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		keys |= KEY_ESCAPE;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		keys |= KEY_W;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
@@ -31,6 +29,10 @@ static t_keys_down	detect_keys(t_game *game)
 		keys |= KEY_LEFT;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		keys |= KEY_RIGHT;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		keys |= KEY_ESCAPE;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		keys |= KEY_LEFT_SHIFT;
 	return (keys);
 }
 
@@ -58,17 +60,16 @@ void	hook(void *param)
 	game = (t_game *)param;
 	keys = detect_keys(game);
 	if (keys & KEY_ESCAPE)
-	{
 		mlx_close_window(game->mlx);
+	if ((keys & KEY_ESCAPE) || game->paused)
 		return ;
-	}
-	if (keys != KEY_NONE)
+	if (keys & KEY_PLAYER)
 		do_player_action(game, keys);
-	if (mouse_moved(game) || keys != KEY_NONE)
+	if (mouse_moved(game) || (keys & KEY_PLAYER))
 	{
 		generate_render(game);
 		draw_minimap(game);
 	}
-	animate_torch(game);
+	animate_torch(game, false);
 	track_fps(game);
 }

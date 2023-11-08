@@ -14,8 +14,9 @@ int	main(int argc, char **argv)
 	parse(&game, argc, argv);
 	setup_game(&game);
 	mlx_loop_hook(game.mlx, hook, &game);
-	mlx_mouse_hook(game.mlx, reset_zoom, &game);
+	mlx_key_hook(game.mlx, pause_key, &game);
 	mlx_scroll_hook(game.mlx, zoom_minimap, &game);
+	mlx_mouse_hook(game.mlx, reset_minimap, &game);
 	mlx_loop(game.mlx);
 	free_game(&game);
 	printf("\033[K\rThanks for playing\n");

@@ -73,7 +73,7 @@ void	set_game(t_parser *parser);
 
 /* load.c */
 void	load_texture(t_parser *parser, mlx_texture_t **texture,
-	char *path, bool square);
+			char *path, bool square);
 void	load_color(t_parser *parser, uint32_t *color, char *rgb);
 
 /* utils.c */

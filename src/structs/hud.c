@@ -1,4 +1,4 @@
-#include "../../include/hud.h"
+#include "../../include/cub3D.h"
 
 void	init_hud(t_hud *hud)
 {
@@ -17,6 +17,8 @@ void	init_hud(t_hud *hud)
 	hud->minimap_tile_size = MINIMAP_DEFAULT_TILE_SIZE;
 	hud->minimap_half_tile_size = MINIMAP_DEFAULT_TILE_SIZE / 2.0;
 	hud->minimap_radius_sqrd = MINIMAP_RADIUS * MINIMAP_RADIUS;
+	hud->minimap_player_radius = MINIMAP_DEFAULT_TILE_SIZE
+		/ MINIMAP_PLAYER_SIZE_DIVISOR;
 	hud->minimap_color = BLACK;
 }
 
