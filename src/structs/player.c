@@ -7,7 +7,7 @@ void	init_player(t_player *player)
 	player->fov = PLAYER_DEFAULT_FOV / 180.0 * M_PI;
 	player->min_fov = PLAYER_MIN_FOV / 180.0 * M_PI;
 	player->max_fov = PLAYER_MAX_FOV / 180.0 * M_PI;
-	player->speed = PLAYER_SPEED;
+	player->speed = PLAYER_NORMAL_SPEED;
 }
 
 void	print_player(t_player *player)

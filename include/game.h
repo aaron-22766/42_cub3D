@@ -15,7 +15,9 @@
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
 
-# define PLAYER_SPEED 3.0
+# define PLAYER_NORMAL_SPEED 3
+# define PLAYER_SNEAK_SPEED 1
+# define PLAYER_SPRINT_SPEED 5
 # define PLAYER_DEFAULT_FOV 60
 # define PLAYER_MIN_FOV 30
 # define PLAYER_MAX_FOV 90
@@ -67,7 +69,7 @@ void	setup_game(t_game *game);
 void	hook(void *param);
 
 /* action.c */
-void	do_player_action(t_game *game, t_keys_down keys);
+void	do_player_action(t_game *game, t_keys_down *keys);
 
 /* player.c */
 void	rotate_player(t_game *game, double dir);

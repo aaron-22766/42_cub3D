@@ -33,6 +33,8 @@ static t_keys_down	detect_keys(t_game *game)
 		keys |= KEY_ESCAPE;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		keys |= KEY_LEFT_SHIFT;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_F))
+		keys |= KEY_F;
 	return (keys);
 }
 
@@ -64,7 +66,7 @@ void	hook(void *param)
 	if ((keys & KEY_ESCAPE) || game->paused)
 		return ;
 	if (keys & KEY_PLAYER)
-		do_player_action(game, keys);
+		do_player_action(game, &keys);
 	if (mouse_moved(game) || (keys & KEY_PLAYER))
 	{
 		generate_render(game);
