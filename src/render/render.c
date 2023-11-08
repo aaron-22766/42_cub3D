@@ -4,6 +4,10 @@ t_render	init_render(t_game *game)
 {
 	t_render	render;
 
+	render.rays = NULL;
+	//render.rays = malloc(game->mlx->width * sizeof(t_ray));
+	// if (!render->rays)
+	// game_fail(game, CUB_MEMFAIL, "creating rays");
 	render.ray_index = 0;
 	render.theta = game->player.orientation + (game->player.fov / 2);
 	if (render.theta > 2 * M_PI)

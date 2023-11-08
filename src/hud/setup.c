@@ -64,7 +64,8 @@ void	set_hud(t_parser *parser)
 
 void	setup_hud(t_game *game)
 {
-	game->hud.image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game->hud.image = mlx_new_image(game->mlx, game->mlx->width,
+			game->mlx->height);
 	if (!game->hud.image)
 		game_fail(game, CUB_MLXFAIL, "Failed to create image");
 	draw_circle(&game->hud, MINIMAP_RADIUS + MINIMAP_FRAME_WIDTH,

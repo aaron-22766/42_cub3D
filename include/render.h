@@ -69,7 +69,7 @@ typedef struct s_ray
 
 typedef struct s_render
 {
-	t_ray		rays[WINDOW_WIDTH];
+	t_ray		*rays;
 	size_t		ray_index;
 	double		theta;
 	double		delta;
@@ -100,6 +100,7 @@ void		update_render(t_render *render);
 void		print_ray(t_ray *ray);
 
 /* render.c */
+void		reset_render(t_game *game, t_render *render);
 t_render	init_render(t_game *game);
 void		print_render(t_render *render);
 

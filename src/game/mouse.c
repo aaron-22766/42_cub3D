@@ -32,7 +32,7 @@ void	zoom_minimap(double xdelta, double ydelta, void *param)
 	bool	redraw;
 
 	game = param;
-	if (game->paused)
+	if (game->paused || game->too_small)
 		return ;
 	redraw = false;
 	if (set_fov(game, game->player.fov + sign(xdelta) / 11.0))
@@ -51,7 +51,7 @@ void	reset_minimap(mouse_key_t button, action_t action,
 
 	(void)mods;
 	game = param;
-	if (game->paused || action != MLX_RELEASE
+	if (game->paused || game->too_small || action != MLX_RELEASE
 		|| button != MLX_MOUSE_BUTTON_MIDDLE)
 		return ;
 	redraw = false;

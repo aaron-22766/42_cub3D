@@ -6,7 +6,7 @@ static void	track_fps(t_game *game)
 	game->time += game->mlx->delta_time;
 	if (game->time >= 1.0)
 	{
-		// printf("FPS: %.0f\n\033[K\033[A\r", game->fps / game->time);
+		printf("FPS: %.0f\n\033[K\033[A\r", game->fps / game->time);
 		game->time = 0;
 		game->fps = 0;
 	}
@@ -63,7 +63,7 @@ void	hook(void *param)
 	keys = detect_keys(game);
 	if (keys & KEY_ESCAPE)
 		mlx_close_window(game->mlx);
-	if ((keys & KEY_ESCAPE) || game->paused)
+	if ((keys & KEY_ESCAPE) || game->paused || game->too_small)
 		return ;
 	if (keys & KEY_PLAYER)
 		do_player_action(game, &keys);

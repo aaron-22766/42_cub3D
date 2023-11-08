@@ -22,6 +22,7 @@ void	init_game(t_game *game)
 	game->mouse_x = 0;
 	game->nb_tiles = MINIMAP_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
 	game->paused = true;
+	game->too_small = false;
 }
 
 void	free_game(t_game *game)

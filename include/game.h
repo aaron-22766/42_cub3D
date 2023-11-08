@@ -12,8 +12,8 @@
 /*                                  DEFINES                                   */
 /* ************************************************************************** */
 
-# define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 720
 
 # define PLAYER_NORMAL_SPEED 3
 # define PLAYER_SNEAK_SPEED 1
@@ -56,6 +56,7 @@ typedef struct s_game
 	int32_t			mouse_x;
 	uint32_t		nb_tiles;
 	bool			paused;
+	bool			too_small;
 }	t_game;
 
 /* ************************************************************************** */
@@ -63,6 +64,7 @@ typedef struct s_game
 /* ************************************************************************** */
 
 /* setup.c */
+void	reset_game(t_game *game);
 void	setup_game(t_game *game);
 
 /* hook.c */
@@ -83,6 +85,9 @@ void	reset_minimap(mouse_key_t button, action_t action, \
 /* pause.c */
 void	render_pause_screen(t_game *game);
 void	pause_key(mlx_key_data_t keydata, void *param);
+
+/* resize.c */
+void	resize(int32_t width, int32_t height, void *param);
 
 /* utils.c */
 int8_t	sign(double x);

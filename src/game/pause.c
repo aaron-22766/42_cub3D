@@ -10,17 +10,18 @@ void	render_pause_screen(t_game *game)
 	if (game->paused)
 		color = PAUSE_SCREEN_BACKGROUND;
 	y = 0;
-	while (y < WINDOW_HEIGHT)
+	while (y < game->pause_screen->height)
 	{
 		x = 0;
-		while (x < WINDOW_WIDTH)
+		while (x < game->pause_screen->width)
 			mlx_put_pixel(game->pause_screen, x++, y, color);
 		y++;
 	}
 	if (game->paused)
 	{
 		game->pause_text = mlx_put_string(game->mlx, "Press P to play",
-				WINDOW_WIDTH / 2 - 75, WINDOW_HEIGHT / 2 - 10);
+				game->pause_screen->width / 2 - 75,
+				game->pause_screen->height / 2 - 10);
 		mlx_set_instance_depth(game->pause_text->instances, 4);
 	}
 	else
