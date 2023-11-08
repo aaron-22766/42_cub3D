@@ -59,13 +59,14 @@ typedef enum e_keys_down
 	KEY_F = 0b100000000
 }	t_keys_down;
 
-typedef enum e_cardinal_point
+typedef enum e_textures
 {
 	NORTH,
 	EAST,
 	SOUTH,
-	WEST
-}	t_cardinal_point;
+	WEST,
+	DOOR
+}	t_textures;
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */

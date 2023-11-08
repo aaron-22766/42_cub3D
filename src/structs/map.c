@@ -6,6 +6,7 @@ void	init_map(t_map *map)
 	map->height = 0;
 	map->max_width = 0;
 	map->widths = NULL;
+	map->has_door = false;
 }
 
 void	free_map(t_map *map)

@@ -41,6 +41,7 @@ typedef struct s_map
 	uint32_t	height;
 	uint32_t	max_width;
 	uint32_t	*widths;
+	bool		has_door;
 }	t_map;
 
 typedef struct s_player

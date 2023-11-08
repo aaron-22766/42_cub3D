@@ -13,6 +13,8 @@ void	draw_doors(t_game *game)
 	t_limits	x;
 	t_limits	y;
 
+	if (!game->fix_map.has_door)
+		return ;
 	set_limits(&x, game->player.pos.x, game->fix_map.max_width, game->nb_tiles);
 	set_limits(&y, game->player.pos.y, game->fix_map.height, game->nb_tiles);
 	while (y.min < y.max)
@@ -20,9 +22,9 @@ void	draw_doors(t_game *game)
 		x_iter = x.min;
 		while (x_iter < x.max)
 		{
-			if (game->fix_map.map[y.min][x_iter] == DOOR)
+			if (game->fix_map.map[y.min][x_iter] == MAP_DOOR)
 			{
-				if (game->flex_map.map[y.min][x_iter] == PATH)
+				if (game->flex_map.map[y.min][x_iter] == MAP_PATH)
 					draw_tile(game, x_iter, y.min, MINIMAP_DOOR_OPEN_COLOR);
 				else
 					draw_tile(game, x_iter, y.min, MINIMAP_DOOR_CLOSED_COLOR);
@@ -46,7 +48,7 @@ void	draw_walls(t_game *game)
 		x_iter = x.min;
 		while (x_iter < x.max)
 		{
-			if (game->fix_map.map[y.min][x_iter] == WALL)
+			if (game->fix_map.map[y.min][x_iter] == MAP_WALL)
 				draw_tile(game, x_iter, y.min, MINIMAP_WALL_COLOR);
 			x_iter++;
 		}

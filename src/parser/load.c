@@ -41,9 +41,9 @@ void	load_texture(t_parser *parser, mlx_texture_t **texture,
 	*texture = mlx_load_png(path);
 	if (!(*texture))
 		parser_fail(parser, CUB_MLXFAIL, path);
-	if (square && (*texture)->width != (*texture)->height)
-		if (!crop_texture(texture))
-			parser_fail(parser, CUB_MEMFAIL, "cropping texture");
+	if (square && (*texture)->width != (*texture)->height
+		&& !crop_texture(texture))
+		parser_fail(parser, CUB_MEMFAIL, "cropping texture");
 }
 
 static bool	is_valid_rgb(char *rgb)

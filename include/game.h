@@ -48,7 +48,7 @@ typedef struct s_game
 	t_map			fix_map;
 	t_map			flex_map;
 	t_player		player;
-	mlx_texture_t	*wall_textures[4];
+	mlx_texture_t	*wall_textures[5];
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
 	double			time;

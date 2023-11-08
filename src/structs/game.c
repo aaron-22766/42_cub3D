@@ -2,7 +2,7 @@
 
 void	init_game(t_game *game)
 {
-	t_cardinal_point	i;
+	t_textures	i;
 
 	game->mlx = NULL;
 	game->pause_screen = NULL;
@@ -13,7 +13,7 @@ void	init_game(t_game *game)
 	init_map(&game->flex_map);
 	init_player(&game->player);
 	i = NORTH;
-	while (i <= WEST)
+	while (i <= DOOR)
 		game->wall_textures[i++] = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
@@ -27,7 +27,7 @@ void	init_game(t_game *game)
 
 void	free_game(t_game *game)
 {
-	t_cardinal_point	i;
+	t_textures	i;
 
 	free_map(&game->fix_map);
 	free_map(&game->flex_map);
@@ -36,7 +36,7 @@ void	free_game(t_game *game)
 	delete_image(game->mlx, game->pause_screen);
 	delete_image(game->mlx, game->pause_text);
 	i = NORTH;
-	while (i <= WEST)
+	while (i <= DOOR)
 		delete_texture(game->wall_textures[i++]);
 	if (game->mlx)
 		mlx_terminate(game->mlx);

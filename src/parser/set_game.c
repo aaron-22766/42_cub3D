@@ -2,10 +2,12 @@
 
 void	set_game(t_parser *parser)
 {
-	t_cardinal_point	i;
+	t_textures	i;
 
+	if (parser->game->fix_map.has_door && !parser->texture_paths[DOOR])
+		parser_fail(parser, CUB_MISSCONFIG, "D");
 	i = NORTH;
-	while (i <= WEST)
+	while (i <= DOOR - !parser->game->fix_map.has_door)
 	{
 		load_texture(parser, &parser->game->wall_textures[i],
 			parser->texture_paths[i], true);

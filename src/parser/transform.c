@@ -35,6 +35,7 @@ static bool	dup_map(t_map *dst, t_map *src)
 
 	dst->height = src->height;
 	dst->max_width = src->max_width;
+	dst->has_door = src->has_door;
 	dst->map = ft_calloc(dst->height + 1, sizeof(char *));
 	if (!dst->map)
 		return (false);
@@ -60,14 +61,18 @@ static void	setup_flex_map(t_parser *parser)
 		x = 0;
 		while (x < parser->game->flex_map.max_width)
 		{
-			if (parser->game->flex_map.map[y][x] == DOOR)
-				parser->game->flex_map.map[y][x] = WALL;
+			if (parser->game->flex_map.map[y][x] == MAP_DOOR)
+			{
+				parser->game->flex_map.map[y][x] = MAP_WALL;
+				parser->game->fix_map.has_door = true;
+				parser->game->flex_map.has_door = true;
+			}
 			x++;
 		}
 		y++;
 	}
-	parser->game->flex_map.map[(int)(parser->game->player.pos.y)] \
-		[(int)(parser->game->player.pos.x)] = PATH;
+	parser->game->flex_map.map[(uint32_t)(parser->game->player.pos.y)] \
+		[(uint32_t)(parser->game->player.pos.x)] = MAP_PATH;
 }
 
 void	transform_map(t_parser *parser)
