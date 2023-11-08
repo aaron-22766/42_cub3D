@@ -50,6 +50,12 @@ typedef struct s_player
 	double	fov;
 }	t_player;
 
+typedef struct s_limits
+{
+	uint32_t	min;
+	uint32_t	max;
+}	t_limits;
+
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
