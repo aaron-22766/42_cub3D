@@ -68,7 +68,8 @@ typedef enum e_keys_down
 	KEY_S = 0b100,
 	KEY_D = 0b1000,
 	KEY_LEFT = 0b10000,
-	KEY_RIGHT = 0b100000
+	KEY_RIGHT = 0b100000,
+	KEY_ESCAPE = 0b1000000
 }	t_keys_down;
 
 typedef enum e_cardinal_point

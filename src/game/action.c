@@ -11,19 +11,16 @@ void	rotate_player(t_game *game, double dir)
 
 static void	move_player(t_game *game, double x, double y)
 {
-	t_pos	new_pos;
+	t_pos	dir;
 
-	new_pos = game->player.pos;
-	new_pos.x = game->player.pos.x + x * MOVE_SPEED * game->mlx->delta_time;
-	new_pos.y = game->player.pos.y + y * MOVE_SPEED * game->mlx->delta_time;
-	if (game->flex_map.map[(size_t)new_pos.y][(size_t)new_pos.x] == PATH)
-	{
-		game->player.pos.x = new_pos.x;
-		game->player.pos.y = new_pos.y;
-	}
-/* ************************************************************************** */
-/*                               SLIDE ON WALLS                               */
-/* ************************************************************************** */
+	dir.x = x * MOVE_SPEED * game->mlx->delta_time;
+	dir.y = y * MOVE_SPEED * game->mlx->delta_time;
+	if (game->flex_map.map[(uint32_t)game->player.pos.y][(uint32_t) \
+		(game->player. pos.x + dir.x + game->collision * sign(x))] == PATH)
+		game->player.pos.x += dir.x;
+	if (game->flex_map.map[(uint32_t)((game->player.pos.y + dir.y + \
+		game->collision * sign(y)))][(uint32_t)(game->player.pos.x)] == PATH)
+		game->player.pos.y += dir.y;
 }
 
 static bool	no_movement(t_keys_down *keys)

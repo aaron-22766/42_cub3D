@@ -9,12 +9,13 @@ void	init_hud(t_hud *hud)
 		hud->torch_textures[i++] = NULL;
 	init_pos(&hud->torch_pos);
 	hud->torch_time = 0;
-	hud->torch_speed = 1.0 / TORCH_FPS;
 	hud->torch_frame = 0;
+	hud->torch_speed = 1.0 / TORCH_FPS;
 	hud->image = NULL;
 	hud->torch_pos.x = (WINDOW_WIDTH / 7) * 5;
 	hud->minimap_center = MINIMAP_OFFSET + MINIMAP_RADIUS;
-	hud->minimap_half_tile_size = MINIMAP_TILE_SIZE / 2.0;
+	hud->minimap_tile_size = MINIMAP_DEFAULT_TILE_SIZE;
+	hud->minimap_half_tile_size = MINIMAP_DEFAULT_TILE_SIZE / 2.0;
 	hud->minimap_radius_sqrd = MINIMAP_RADIUS * MINIMAP_RADIUS;
 	hud->minimap_color = BLACK;
 }

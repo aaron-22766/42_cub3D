@@ -27,6 +27,8 @@ typedef struct s_game
 	double			time;
 	uint8_t			fps;
 	int32_t			mouse_x;
+	double			collision;
+	uint32_t		nb_tiles;
 }	t_game;
 
 /* ************************************************************************** */
@@ -42,5 +44,13 @@ void	hook(void *param);
 /* action.c */
 void	rotate_player(t_game *game, double dir);
 void	do_player_action(t_game *game, t_keys_down keys);
+
+/* mouse.c */
+void	zoom_minimap(double xdelta, double ydelta, void *param);
+void	reset_zoom(mouse_key_t button, action_t action, \
+			modifier_key_t mods, void *param);
+
+/* utils.c */
+int8_t	sign(double x);
 
 #endif
