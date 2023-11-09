@@ -71,6 +71,9 @@ void	setup_hud(t_game *game)
 	draw_circle(&game->hud, MINIMAP_RADIUS + MINIMAP_FRAME_WIDTH,
 		game->hud.minimap_color);
 	draw_minimap(game);
+	game->hud.torch_pos.x = (game->mlx->width / 7) * 5;
+	game->hud.torch_pos.y = game->mlx->height
+		- game->hud.torch_textures[0]->height;
 	animate_torch(game, true);
 	if (mlx_image_to_window(game->mlx, game->hud.image, 0, 0) == -1)
 		game_fail(game, CUB_MLXFAIL, "Failed to render hud");

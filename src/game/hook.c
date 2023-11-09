@@ -60,10 +60,12 @@ void	hook(void *param)
 	t_keys_down	keys;
 
 	game = (t_game *)param;
+	if (game->resized)
+		resize_game(game);
 	keys = detect_keys(game);
 	if (keys & KEY_ESCAPE)
 		mlx_close_window(game->mlx);
-	if ((keys & KEY_ESCAPE) || game->paused || game->too_small)
+	if (game->paused || game->too_small || (keys & KEY_ESCAPE))
 		return ;
 	if (keys & KEY_PLAYER)
 		do_player_action(game, &keys);

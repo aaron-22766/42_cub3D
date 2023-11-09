@@ -82,11 +82,17 @@ typedef struct s_game	t_game;
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
 /* pixel.c */
-uint32_t	get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 uint32_t	get_pixel_txt(mlx_texture_t *txt, uint32_t x, uint32_t y);
 uint32_t	get_pixel_img(mlx_image_t *img, uint32_t x, uint32_t y);
 void		print_pixel_rgba(uint32_t pixel);
 void		print_pixel_hex(uint32_t pixel);
+
+/* color.c */
+uint32_t	get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+uint8_t		red(uint32_t color);
+uint8_t		green(uint32_t color);
+uint8_t		blue(uint32_t color);
+uint8_t		alpha(uint32_t color);
 
 /* mlx_delete.c */
 void		delete_texture(mlx_texture_t *texture);

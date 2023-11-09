@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-static void	setup_world(t_game *game) // move to render/world folder
+void	setup_world(t_game *game) // move to render/world folder
 {
 	game->image = mlx_new_image(game->mlx, game->mlx->width, game->mlx->height);
 	if (!game->image)
@@ -11,22 +11,16 @@ static void	setup_world(t_game *game) // move to render/world folder
 	mlx_set_instance_depth(game->image->instances, 1);
 }
 
-void	reset_game(t_game *game)
+void	setup_pause_screen(t_game *game)
 {
-	delete_image(game->mlx, game->image);
-	delete_image(game->mlx, game->hud.image);
-	delete_image(game->mlx, game->pause_screen);
-	delete_image(game->mlx, game->pause_text);
 	game->pause_screen = mlx_new_image(game->mlx, game->mlx->width,
 			game->mlx->height);
 	if (!game->pause_screen)
 		game_fail(game, CUB_MLXFAIL, "Failed to create image");
+	render_pause_screen(game);
 	if (mlx_image_to_window(game->mlx, game->pause_screen, 0, 0) == -1)
 		game_fail(game, CUB_MLXFAIL, "Failed to render image");
 	mlx_set_instance_depth(game->pause_screen->instances, 3);
-	setup_world(game);
-	setup_hud(game);
-	render_pause_screen(game);
 }
 
 void	setup_game(t_game *game)
@@ -36,5 +30,7 @@ void	setup_game(t_game *game)
 		game_fail(game, CUB_MLXFAIL, "Failed to initialize MLX");
 	game->player.pos.x += 0.5;
 	game->player.pos.y += 0.5;
-	reset_game(game);
+	setup_world(game);
+	setup_hud(game);
+	setup_pause_screen(game);
 }

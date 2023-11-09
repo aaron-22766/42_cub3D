@@ -54,6 +54,7 @@ typedef struct s_game
 	uint32_t		nb_tiles;
 	bool			paused;
 	bool			too_small;
+	bool			resized;
 }	t_game;
 
 /* ************************************************************************** */
@@ -61,7 +62,8 @@ typedef struct s_game
 /* ************************************************************************** */
 
 /* setup.c */
-void	reset_game(t_game *game);
+void	setup_world(t_game *game); // move to render/world folder
+void	setup_pause_screen(t_game *game);
 void	setup_game(t_game *game);
 
 /* hook.c */
@@ -83,8 +85,12 @@ void	reset_minimap(mouse_key_t button, action_t action, \
 void	render_pause_screen(t_game *game);
 void	pause_key(mlx_key_data_t keydata, void *param);
 
+/* blur.c */
+void	create_blur(t_game *game);
+
 /* resize.c */
-void	resize(int32_t width, int32_t height, void *param);
+void	resize_game(t_game *game);
+void	resize_window(int32_t width, int32_t height, void *param);
 
 /* utils.c */
 int8_t	sign(double x);

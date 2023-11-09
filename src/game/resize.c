@@ -1,43 +1,55 @@
 #include "../../include/cub3D.h"
 
-static void	render_black_screen(t_game *game)
+static void	images_set_enabled(t_game *game, bool setting)
 {
-	uint32_t	x;
-	uint32_t	y;
+	game->pause_screen->enabled = setting;
+	game->image->enabled = setting;
+	game->hud.image->enabled = setting;
+}
 
-	y = 0;
-	while (y < game->pause_screen->height)
-	{
-		x = 0;
-		while (x < game->pause_screen->width)
-			mlx_put_pixel(game->pause_screen, x++, y, BLACK);
-		y++;
-	}
+static bool	too_small(t_game *game)
+{
+	if ((uint32_t)game->mlx->height >= game->hud.minimap_center * 2
+		&& (uint32_t)game->mlx->height >= game->hud.torch_textures[0]->height
+		&& (uint32_t)game->mlx->width >= game->hud.minimap_center * 2
+		&& ((uint32_t)game->mlx->width / 7) * 5 <= (uint32_t)game->mlx->width
+		- game->hud.torch_textures[0]->width)
+		return (false);
+	if (game->too_small)
+		return (true);
+	game->too_small = true;
+	images_set_enabled(game, false);
 	delete_image(game->mlx, game->pause_text);
 	game->pause_text = mlx_put_string(game->mlx, "Window too small", 0, 0);
 	mlx_set_instance_depth(game->pause_text->instances, 4);
+	return (true);
 }
 
-void	resize(int32_t width, int32_t height, void *param)
+void	resize_game(t_game *game)
+{
+	game->resized = false;
+	if (too_small(game))
+		return ;
+	game->too_small = false;
+	images_set_enabled(game, true);
+	if (game->pause_screen->width == (uint32_t)game->mlx->width
+		&& game->pause_screen->height == (uint32_t)game->mlx->height)
+		return ;
+	delete_image(game->mlx, game->image);
+	delete_image(game->mlx, game->hud.image);
+	delete_image(game->mlx, game->pause_screen);
+	delete_image(game->mlx, game->pause_text);
+	setup_world(game);
+	setup_hud(game);
+	setup_pause_screen(game);
+}
+
+void	resize_window(int32_t width, int32_t height, void *param)
 {
 	t_game	*game;
 
 	game = param;
-	if ((uint32_t)height < game->hud.minimap_center * 2
-		|| (uint32_t)height < game->hud.torch_textures[0]->height
-		|| (uint32_t)width < game->hud.minimap_center * 2
-		|| ((uint32_t)width / 7) * 5 > (uint32_t)width
-		- game->hud.torch_textures[0]->width)
-	{
-		game->too_small = true;
-		render_black_screen(game);
-		return ;
-	}
-	game->too_small = false;
 	game->mlx->width = width;
 	game->mlx->height = height;
-	game->hud.torch_pos.x = (game->mlx->width / 7) * 5;
-	game->hud.torch_pos.y = game->mlx->height
-		- game->hud.torch_textures[0]->height;
-	reset_game(game);
+	game->resized = true;
 }
