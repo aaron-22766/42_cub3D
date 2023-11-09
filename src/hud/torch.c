@@ -14,7 +14,7 @@ static void	draw_torch(t_game *game, mlx_texture_t *torch)
 			&& game->hud.torch_pos.x + x < game->hud.image->width)
 		{
 			mlx_put_pixel(game->hud.image, game->hud.torch_pos.x + x,
-				game->hud.torch_pos.y + y, get_pixel_color(torch, x, y));
+				game->hud.torch_pos.y + y, get_pixel_txt(torch, x, y));
 			x++;
 		}
 		y++;

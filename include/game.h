@@ -27,11 +27,8 @@
 
 # define TILE_SIZE 64
 
-# define PAUSE_SCREEN_BACKGROUND 0x000000D0
-
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF
-# define INVISIBLE 0x0
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */

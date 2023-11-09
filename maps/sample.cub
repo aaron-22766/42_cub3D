@@ -1,7 +1,7 @@
-NO ./textures/white_64.png
-SO ./textures/white_64.png
-WE ./textures/white_64.png
-EA ./textures/white_64.png
+NO ./textures/test/white_64.png
+SO ./textures/test/white_64.png
+WE ./textures/test/white_64.png
+EA ./textures/test/white_64.png
 F 124,252,0
 C 25,25,112
         1111111111111111111111111

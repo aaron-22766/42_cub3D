@@ -35,7 +35,7 @@ void	render_raycast(t_game *game, t_ray *ray)
 	{
 		uint32_t	row = ((double) (img.y - a) * ray->texture->height) / h;
 		row = row % ray->texture->height;
-		img.color = get_pixel_color(ray->texture, col, row);		
+		img.color = get_pixel_txt(ray->texture, col, row);		
 		mlx_put_pixel(game->image, img.x, img.y, img.color);
 		img.y++;
 	}
