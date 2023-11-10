@@ -13,11 +13,11 @@ int64_t	get_distance_between(t_vector vector, t_vector origin)
 
 bool	is_wall(t_game *game, t_vector vector)
 {
-	size_t	x;
-	size_t	y;
+	// size_t	x;
+	// size_t	y;
 
-	x = vector.x / TILE_SIZE;
-	y = vector.y / TILE_SIZE;
+	// x = vector.x / TILE_SIZE;
+	// y = vector.y / TILE_SIZE;
 	if (vector.x < TILE_SIZE || vector.y < TILE_SIZE
 		|| vector.x >= (int64_t) game->flex_map.height * TILE_SIZE
 		|| vector.y >= (int64_t) game->flex_map.max_width * TILE_SIZE)

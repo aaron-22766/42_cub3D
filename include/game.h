@@ -30,7 +30,7 @@
 
 # define PAUSE_PATH "./textures/pause.png"
 # define BLUR_RADIUS 20
-# define BLUR_DARKEN 1//0.42
+# define BLUR_DARKEN 1
 # define PAUSE_NO_BLUR 0x030303D0
 
 # define BLACK 0x000000FF
