@@ -34,14 +34,18 @@ void	render_pause_screen(t_game *game)
 	}
 }
 
-void	pause_key(mlx_key_data_t keydata, void *param)
+void	keyboard(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 	int32_t	temp_mouse_y;
 
 	game = param;
-	if (game->too_small || keydata.action != MLX_PRESS
-		|| keydata.key != MLX_KEY_P)
+	if (game->too_small)
+		return ;
+	if (!game->paused && keydata.action == MLX_PRESS
+		&& keydata.key == MLX_KEY_SPACE)
+		door(game);
+	if (keydata.action != MLX_PRESS || keydata.key != MLX_KEY_P)
 		return ;
 	game->paused = !game->paused;
 	if (game->paused)

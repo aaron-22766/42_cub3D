@@ -4,9 +4,10 @@ void	init_player(t_player *player)
 {
 	set_pos(&player->pos, -1, -1, 0.5);
 	player->orientation = 0.0;
-	player->fov = PLAYER_DEFAULT_FOV / 180.0 * M_PI;
+	player->default_fov = PLAYER_DEFAULT_FOV / 180.0 * M_PI;
 	player->min_fov = PLAYER_MIN_FOV / 180.0 * M_PI;
 	player->max_fov = PLAYER_MAX_FOV / 180.0 * M_PI;
+	player->fov = player->default_fov;
 	player->speed = PLAYER_NORMAL_SPEED;
 }
 

@@ -26,6 +26,7 @@
 # define COLLISION 0.15
 
 # define TILE_SIZE 64
+# define DOOR_DISTANCE 42
 
 # define BLUR_RADIUS 20
 # define PAUSE_NO_BLUR 0x030303D0
@@ -77,18 +78,21 @@ void	hook(void *param);
 /* action.c */
 void	do_player_action(t_game *game, t_keys_down *keys);
 
+/* door.c */
+void	door(t_game *game);
+
 /* player.c */
 void	rotate_player(t_game *game, double dir);
 void	move_player(t_game *game, double x, double y);
 
 /* mouse.c */
 void	zoom_minimap(double xdelta, double ydelta, void *param);
-void	reset_minimap(mouse_key_t button, action_t action, \
+void	mouse(mouse_key_t button, action_t action, \
 			modifier_key_t mods, void *param);
 
-/* pause.c */
+/* keyboard.c */
 void	render_pause_screen(t_game *game);
-void	pause_key(mlx_key_data_t keydata, void *param);
+void	keyboard(mlx_key_data_t keydata, void *param);
 
 /* blur.c */
 bool	render_blur(t_game *game);

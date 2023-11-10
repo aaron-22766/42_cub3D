@@ -43,7 +43,7 @@ void	zoom_minimap(double xdelta, double ydelta, void *param)
 		draw_minimap(game);
 }
 
-void	reset_minimap(mouse_key_t button, action_t action,
+void	mouse(mouse_key_t button, action_t action,
 	modifier_key_t mods, void *param)
 {
 	t_game	*game;
@@ -51,11 +51,14 @@ void	reset_minimap(mouse_key_t button, action_t action,
 
 	(void)mods;
 	game = param;
-	if (game->paused || game->too_small || action != MLX_RELEASE
-		|| button != MLX_MOUSE_BUTTON_MIDDLE)
+	if (game->paused || game->too_small)
+		return ;
+	if (action == MLX_PRESS && button == MLX_MOUSE_BUTTON_LEFT)
+		door(game);
+	if (action != MLX_RELEASE || button != MLX_MOUSE_BUTTON_MIDDLE)
 		return ;
 	redraw = false;
-	if (set_fov(game, PLAYER_DEFAULT_FOV / 180.0 * M_PI))
+	if (set_fov(game, game->player.default_fov))
 		redraw = true;
 	if (set_zoom(game, MINIMAP_DEFAULT_TILE_SIZE))
 		redraw = true;

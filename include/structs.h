@@ -49,6 +49,7 @@ typedef struct s_player
 	t_pos	pos;
 	double	orientation;
 	double	fov;
+	double	default_fov;
 	double	min_fov;
 	double	max_fov;
 	uint8_t	speed;
