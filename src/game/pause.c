@@ -1,10 +1,26 @@
 #include "../../include/cub3D.h"
 
+static void	render_no_blur(t_game *game)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	y = 0;
+	while (y < game->pause_screen->height)
+	{
+		x = 0;
+		while (x < game->pause_screen->width)
+			mlx_put_pixel(game->pause_screen, x++, y, PAUSE_NO_BLUR);
+		y++;
+	}
+}
+
 void	render_pause_screen(t_game *game)
 {
 	if (game->paused)
 	{
-		create_blur(game);
+		if (!render_blur(game))
+			render_no_blur(game);
 		game->pause_screen->enabled = true;
 		game->pause_text = mlx_put_string(game->mlx, "Press P to play",
 				game->pause_screen->width / 2 - 75,
@@ -29,7 +45,10 @@ void	pause_key(mlx_key_data_t keydata, void *param)
 		return ;
 	game->paused = !game->paused;
 	if (game->paused)
+	{
 		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
+		printf("Game paused\n\033[A\033[K\r");
+	}
 	else
 	{
 		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);

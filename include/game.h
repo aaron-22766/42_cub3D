@@ -27,6 +27,8 @@
 
 # define TILE_SIZE 64
 
+# define PAUSE_NO_BLUR 0x030303D0
+
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF
 
@@ -86,7 +88,7 @@ void	render_pause_screen(t_game *game);
 void	pause_key(mlx_key_data_t keydata, void *param);
 
 /* blur.c */
-void	create_blur(t_game *game);
+bool	render_blur(t_game *game);
 
 /* resize.c */
 void	resize_game(t_game *game);

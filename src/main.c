@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	// atexit(leaks);//DEBUG
+	atexit(leaks);//DEBUG
 	init_game(&game);
 	parse(&game, argc, argv);
 	setup_game(&game);

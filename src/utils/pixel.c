@@ -14,8 +14,6 @@ uint32_t	get_pixel_img(mlx_image_t *img, uint32_t x, uint32_t y)
 	uint32_t	pixel;
 
 	pixel = (y * img->width + x) * sizeof(int32_t);
-	if (pixel >= img->width * img->height * sizeof(int32_t))
-		return (0x0);
 	return (get_color(img->pixels[pixel + 0], img->pixels[pixel + 1],
 			img->pixels[pixel + 2], img->pixels[pixel + 3]));
 }
