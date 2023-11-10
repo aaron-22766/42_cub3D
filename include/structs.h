@@ -54,6 +54,19 @@ typedef struct s_player
 	uint8_t	speed;
 }	t_player;
 
+typedef struct s_limits
+{
+	uint32_t	min;
+	uint32_t	max;
+}	t_limits;
+
+typedef struct s_rgb
+{
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+}	t_rgb;
+
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */

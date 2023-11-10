@@ -1,118 +1,115 @@
 #include "../../include/cub3D.h"
 
-#define BLUR_RADIUS 15
-#define BLUR_AREA ((BLUR_RADIUS * 2 + 1) * (BLUR_RADIUS * 2 + 1))
-
-typedef struct s_rgb
+static uint32_t	avrg_color_edge(t_game *game, uint32_t c_x, uint32_t c_y)
 {
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
-}	t_rgb;
+	t_rgb		**t;
+	uint32_t	area;
+	t_limits	x;
+	t_limits	y;
 
-static void	sum_rgb(t_rgb **sum_table, uint32_t x, uint32_t y)
-{
-	sum_table[y][x].r += sum_table[y - 1][x].r + sum_table[y][x - 1].r
-		- sum_table[y - 1][x - 1].r;
-	sum_table[y][x].g += sum_table[y - 1][x].g + sum_table[y][x - 1].g
-		- sum_table[y - 1][x - 1].g;
-	sum_table[y][x].b += sum_table[y - 1][x].b + sum_table[y][x - 1].b
-		- sum_table[y - 1][x - 1].b;
+	x.min = 0;
+	y.min = 0;
+	x.max = game->pause_screen->width - 1;
+	y.max = game->pause_screen->height - 1;
+	if (c_x > BLUR_RADIUS)
+		x.min = c_x - BLUR_RADIUS;
+	if (c_x < game->pause_screen->width - BLUR_RADIUS)
+		x.max = c_x + BLUR_RADIUS;
+	if (c_y > BLUR_RADIUS)
+		y.min = c_y - BLUR_RADIUS;
+	if (c_y < game->pause_screen->height - BLUR_RADIUS)
+		y.max = c_y + BLUR_RADIUS;
+	area = (x.max - x.min) * (y.max - y.min);
+	t = game->blur_table;
+	return (get_color((t[y.max][x.max].r - t[y.min][x.max].r
+		- t[y.max][x.min].r + t[y.min][x.min].r) / area,
+		(t[y.max][x.max].g - t[y.min][x.max].g
+		- t[y.max][x.min].g + t[y.min][x.min].g) / area,
+		(t[y.max][x.max].b - t[y.min][x.max].b
+		- t[y.max][x.min].b + t[y.min][x.min].b) / area, 0xFF));
 }
 
-static void	get_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y)
+static uint32_t	avrg_color(t_game *game, uint32_t c_x, uint32_t c_y)
 {
-	uint32_t	base;
-	uint32_t	top;
-	uint8_t		a_top;
-	uint8_t		a_base;
+	t_rgb		**t;
+	t_limits	x;
+	t_limits	y;
 
-	base = get_pixel_img(game->image, x, y);
-	top = get_pixel_img(game->hud.image, x, y);
-	a_top = top & 0xFF;
-	a_base = 0xFF - a_top;
-	set->r = (red(top) * a_top + red(base) * a_base) / 0xFF;
-	set->g = (green(top) * a_top + green(base) * a_base) / 0xFF;
-	set->b = (blue(top) * a_top + blue(base) * a_base) / 0xFF;
+	x.min = c_x - BLUR_RADIUS;
+	x.max = c_x + BLUR_RADIUS;
+	y.min = c_y - BLUR_RADIUS;
+	y.max = c_y + BLUR_RADIUS;
+	t = game->blur_table;
+	return (get_color((t[y.max][x.max].r - t[y.min][x.max].r
+		- t[y.max][x.min].r + t[y.min][x.min].r) / game->blur_area,
+		(t[y.max][x.max].g - t[y.min][x.max].g
+		- t[y.max][x.min].g + t[y.min][x.min].g) / game->blur_area,
+		(t[y.max][x.max].b - t[y.min][x.max].b
+		- t[y.max][x.min].b + t[y.min][x.min].b) / game->blur_area, 0xFF));
 }
 
-static void	make_sum_table(t_game *game, t_rgb **sum_table)
+static void	put_row(t_game *game, t_limits x, uint32_t y,
+	uint32_t (*f)(t_game *, uint32_t, uint32_t))
 {
-	uint32_t	height;
-	uint32_t	width;
-	uint32_t	x;
-	uint32_t	y;
-
-	height = game->pause_screen->height + BLUR_RADIUS;
-	width = game->pause_screen->width + BLUR_RADIUS;
-	y = BLUR_RADIUS - 1;
-	while (++y < height)
+	while (x.min < x.max)
 	{
-		x = BLUR_RADIUS - 1;
-		while (++x < width)
-		{
-			get_rgb(game, &sum_table[y][x], x - BLUR_RADIUS, y - BLUR_RADIUS);
-			sum_rgb(sum_table, x, y);
-		}
+		mlx_put_pixel(game->pause_screen, x.min, y, f(game, x.min, y));
+		x.min++;
 	}
 }
 
-static uint32_t	avrg_color(t_rgb **sum_table, uint32_t x, uint32_t y)
+static void	generate_blur(t_game *game)
 {
-	uint32_t	x_min;
-	uint32_t	y_min;
+	t_limits	x;
+	t_limits	y;
 
-	x_min = x - BLUR_RADIUS;
-	y_min = y - BLUR_RADIUS;
-	return (get_color((sum_table[y][x].r - sum_table[y_min][x].r
-		- sum_table[y][x_min].r + sum_table[y_min][x_min].r) / BLUR_AREA,
-		(sum_table[y][x].g - sum_table[y_min][x].g
-		- sum_table[y][x_min].g + sum_table[y_min][x_min].g) / BLUR_AREA,
-		(sum_table[y][x].b - sum_table[y_min][x].b
-		- sum_table[y][x_min].b + sum_table[y_min][x_min].b) / BLUR_AREA,
-		0xFF));
-}
-
-static void	generate_blur(t_game *game, t_rgb **sum_table)
-{
-	uint32_t	height;
-	uint32_t	width;
-	uint32_t	x;
-	uint32_t	y;
-
-	height = game->pause_screen->height + BLUR_RADIUS;
-	width = game->pause_screen->width + BLUR_RADIUS;
-	y = BLUR_RADIUS - 1;
-	while (++y < height)
+	x.min = 0;
+	x.max = game->pause_screen->width;
+	y.min = 0;
+	while (y.min < BLUR_RADIUS)
+		put_row(game, x, y.min++, avrg_color_edge);
+	y.max = game->pause_screen->height - BLUR_RADIUS;
+	while (y.min < y.max)
 	{
-		x = BLUR_RADIUS - 1;
-		while (++x < width)
-			mlx_put_pixel(game->pause_screen, x - BLUR_RADIUS,
-				y - BLUR_RADIUS, avrg_color(sum_table, x, y));
+		x.min = 0;
+		x.max = BLUR_RADIUS;
+		put_row(game, x, y.min, avrg_color_edge);
+		x.min = x.max;
+		x.max = game->pause_screen->width - BLUR_RADIUS;
+		put_row(game, x, y.min, avrg_color);
+		x.min = x.max;
+		x.max = game->pause_screen->width;
+		put_row(game, x, y.min++, avrg_color_edge);
 	}
+	x.min = 0;
+	x.max = game->pause_screen->width;
+	while (y.min < game->pause_screen->height)
+		put_row(game, x, y.min++, avrg_color_edge);
 }
 
 bool	render_blur(t_game *game)
 {
-	t_rgb		**sum_table;
-	uint32_t	height;
-	uint32_t	width;
-	uint32_t	y;
+	uint32_t	i;
 
-	height = game->pause_screen->height + 2 * BLUR_RADIUS;
-	width = game->pause_screen->width + 2 * BLUR_RADIUS;
-	sum_table = ft_calloc(height + 1, sizeof(t_rgb *));
-	if (!sum_table)
+	game->blur_table = ft_calloc(game->pause_screen->height + 1,
+			sizeof(t_rgb *));
+	if (!game->blur_table)
 		return (false);
-	y = 0;
-	while (y < height)
+	i = 0;
+	while (i < game->pause_screen->height)
 	{
-		sum_table[y] = ft_calloc(width, sizeof(t_rgb));
-		if (!sum_table[y])
-			return (ft_free_2d_array((void **)sum_table), false);
-		y++;
+		game->blur_table[i] = ft_calloc(game->pause_screen->width,
+				sizeof(t_rgb));
+		if (!game->blur_table[i++])
+		{
+			ft_free_2d_array((void **)game->blur_table);
+			game->blur_table = NULL;
+			return (false);
+		}
 	}
-	make_sum_table(game, sum_table);
-	generate_blur(game, sum_table);
-	return (ft_free_2d_array((void **)sum_table), true);
+	make_table(game);
+	generate_blur(game);
+	ft_free_2d_array((void **)game->blur_table);
+	game->blur_table = NULL;
+	return (true);
 }

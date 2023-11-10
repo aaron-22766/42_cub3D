@@ -21,6 +21,8 @@ void	init_game(t_game *game)
 	game->fps = 0;
 	game->mouse_x = 0;
 	game->nb_tiles = MINIMAP_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
+	game->blur_table = NULL;
+	game->blur_area = ft_pow(BLUR_RADIUS * 2 + 1, 2);
 	game->paused = true;
 	game->too_small = false;
 	game->resized = false;
@@ -33,6 +35,7 @@ void	free_game(t_game *game)
 	free_map(&game->fix_map);
 	free_map(&game->flex_map);
 	free_hud(game->mlx, &game->hud);
+	ft_free_2d_array((void **)game->blur_table);
 	delete_image(game->mlx, game->image);
 	delete_image(game->mlx, game->pause_screen);
 	delete_image(game->mlx, game->pause_text);

@@ -27,6 +27,7 @@
 
 # define TILE_SIZE 64
 
+# define BLUR_RADIUS 20
 # define PAUSE_NO_BLUR 0x030303D0
 
 # define BLACK 0x000000FF
@@ -54,6 +55,8 @@ typedef struct s_game
 	uint8_t			fps;
 	int32_t			mouse_x;
 	uint32_t		nb_tiles;
+	t_rgb			**blur_table;
+	uint32_t		blur_area;
 	bool			paused;
 	bool			too_small;
 	bool			resized;
@@ -89,6 +92,9 @@ void	pause_key(mlx_key_data_t keydata, void *param);
 
 /* blur.c */
 bool	render_blur(t_game *game);
+
+/* blur_table.c */
+void	make_table(t_game *game);
 
 /* resize.c */
 void	resize_game(t_game *game);

@@ -1,11 +1,5 @@
 #include "../../include/cub3D.h"
 
-typedef struct s_limits
-{
-	uint32_t	min;
-	uint32_t	max;
-}	t_limits;
-
 static void	set_limits(t_limits *limits, double axis, uint32_t apex,
 	uint32_t nb_tiles)
 {
