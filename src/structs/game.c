@@ -6,7 +6,7 @@ void	init_game(t_game *game)
 
 	game->mlx = NULL;
 	game->pause_screen = NULL;
-	game->pause_text = NULL;
+	game->too_small_image = NULL;
 	init_hud(&game->hud);
 	game->image = NULL;
 	init_map(&game->fix_map);
@@ -15,6 +15,7 @@ void	init_game(t_game *game)
 	i = NORTH;
 	while (i <= DOOR)
 		game->wall_textures[i++] = NULL;
+	game->pause_texture = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
 	game->time = 0;
@@ -38,10 +39,11 @@ void	free_game(t_game *game)
 	ft_free_2d_array((void **)game->blur_table);
 	delete_image(game->mlx, game->image);
 	delete_image(game->mlx, game->pause_screen);
-	delete_image(game->mlx, game->pause_text);
+	delete_image(game->mlx, game->too_small_image);
 	i = NORTH;
 	while (i <= DOOR)
 		delete_texture(game->wall_textures[i++]);
+	delete_texture(game->pause_texture);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }

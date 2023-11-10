@@ -28,11 +28,14 @@
 # define TILE_SIZE 64
 # define DOOR_DISTANCE 42
 
+# define PAUSE_PATH "./textures/pause.png"
 # define BLUR_RADIUS 20
 # define PAUSE_NO_BLUR 0x030303D0
 
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF
+
+# define PRINT 0
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
@@ -44,12 +47,13 @@ typedef struct s_game
 	// t_render			render; // Also maybe more descriptive name e.g. world
 	mlx_image_t		*image;//put inside of render struct
 	mlx_image_t		*pause_screen;
-	mlx_image_t		*pause_text;
+	mlx_image_t		*too_small_image;
 	t_hud			hud;
 	t_map			fix_map;
 	t_map			flex_map;
 	t_player		player;
 	mlx_texture_t	*wall_textures[5];
+	mlx_texture_t	*pause_texture;
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
 	double			time;
@@ -72,6 +76,11 @@ void	setup_world(t_game *game); // move to render/world folder
 void	setup_pause_screen(t_game *game);
 void	setup_game(t_game *game);
 
+/* input.c */
+void	keyboard(mlx_key_data_t keydata, void *param);
+void	mouse(mouse_key_t button, action_t action, \
+			modifier_key_t mods, void *param);
+
 /* hook.c */
 void	hook(void *param);
 
@@ -85,14 +94,14 @@ void	door(t_game *game);
 void	rotate_player(t_game *game, double dir);
 void	move_player(t_game *game, double x, double y);
 
-/* mouse.c */
+/* zoom.c */
 void	zoom_minimap(double xdelta, double ydelta, void *param);
-void	mouse(mouse_key_t button, action_t action, \
-			modifier_key_t mods, void *param);
+bool	set_zoom(t_game *game, uint32_t new_tile_size);
+bool	set_fov(t_game *game, double new_fov);
 
-/* keyboard.c */
+/* pause.c */
 void	render_pause_screen(t_game *game);
-void	keyboard(mlx_key_data_t keydata, void *param);
+void	toggle_pause(t_game *game);
 
 /* blur.c */
 bool	render_blur(t_game *game);

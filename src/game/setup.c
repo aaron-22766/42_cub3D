@@ -28,6 +28,10 @@ void	setup_game(t_game *game)
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", true);
 	if (!game->mlx)
 		game_fail(game, CUB_MLXFAIL, "Failed to initialize MLX");
+	game->too_small_image = mlx_put_string(game->mlx, "Window too small", 0, 0);
+	if (!game->too_small_image)
+		game_fail(game, CUB_MLXFAIL, "Failed to create image");
+	mlx_set_instance_depth(game->too_small_image->instances, 0);
 	game->player.pos.x += 0.5;
 	game->player.pos.y += 0.5;
 	setup_world(game);

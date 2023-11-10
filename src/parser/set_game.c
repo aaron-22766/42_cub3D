@@ -13,6 +13,7 @@ void	set_game(t_parser *parser)
 			parser->texture_paths[i], true);
 		i++;
 	}
+	load_texture(parser, &parser->game->pause_texture, PAUSE_PATH, true);
 	load_color(parser, &parser->game->floor_color, parser->floor_color);
 	load_color(parser, &parser->game->ceiling_color, parser->ceiling_color);
 	set_hud(parser);

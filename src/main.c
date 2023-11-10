@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	mlx_resize_hook(game.mlx, resize_window, &game);
 	mlx_loop(game.mlx);
 	free_game(&game);
-	printf("\033[K\rThanks for playing\n");
+	if (PRINT)
+		printf("\033[K\rThanks for playing\n");
 	return (EXIT_SUCCESS);
 }

@@ -9,19 +9,13 @@ static void	images_set_enabled(t_game *game, bool setting)
 
 static bool	too_small(t_game *game)
 {
-	if ((uint32_t)game->mlx->height >= game->hud.minimap_center * 2
-		&& (uint32_t)game->mlx->height >= game->hud.torch_textures[0]->height
-		&& (uint32_t)game->mlx->width >= game->hud.minimap_center * 2
-		&& ((uint32_t)game->mlx->width / 7) * 5 <= (uint32_t)game->mlx->width
-		- game->hud.torch_textures[0]->width)
+	if ((uint32_t)game->mlx->height >= game->pause_texture->height
+		&& (uint32_t)game->mlx->width >= game->pause_texture->width)
 		return (false);
 	if (game->too_small)
 		return (true);
 	game->too_small = true;
 	images_set_enabled(game, false);
-	delete_image(game->mlx, game->pause_text);
-	game->pause_text = mlx_put_string(game->mlx, "Window too small", 0, 0);
-	mlx_set_instance_depth(game->pause_text->instances, 4);
 	return (true);
 }
 
@@ -38,7 +32,6 @@ void	resize_game(t_game *game)
 	delete_image(game->mlx, game->image);
 	delete_image(game->mlx, game->hud.image);
 	delete_image(game->mlx, game->pause_screen);
-	delete_image(game->mlx, game->pause_text);
 	setup_world(game);
 	setup_hud(game);
 	setup_pause_screen(game);
