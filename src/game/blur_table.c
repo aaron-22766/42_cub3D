@@ -11,9 +11,9 @@ static void	set_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y)
 	top = get_pixel_img(game->hud.image, x, y);
 	a_top = top & 0xFF;
 	a_base = 0xFF - a_top;
-	set->r = (red(top) * a_top + red(base) * a_base) / 0xFF;
-	set->g = (green(top) * a_top + green(base) * a_base) / 0xFF;
-	set->b = (blue(top) * a_top + blue(base) * a_base) / 0xFF;
+	set->r = (red(top) * a_top + red(base) * a_base) / 0xFF * BLUR_DARKEN;
+	set->g = (green(top) * a_top + green(base) * a_base) / 0xFF * BLUR_DARKEN;
+	set->b = (blue(top) * a_top + blue(base) * a_base) / 0xFF * BLUR_DARKEN;
 }
 
 static void	sum_rgb_x(t_rgb **t, uint32_t x)

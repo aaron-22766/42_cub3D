@@ -30,12 +30,13 @@
 
 # define PAUSE_PATH "./textures/pause.png"
 # define BLUR_RADIUS 20
+# define BLUR_DARKEN 0.42
 # define PAUSE_NO_BLUR 0x030303D0
 
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF
 
-# define PRINT 0
+# define PRINT 1
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */

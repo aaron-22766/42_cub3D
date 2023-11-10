@@ -3,7 +3,6 @@
 static uint32_t	avrg_color_edge(t_game *game, uint32_t c_x, uint32_t c_y)
 {
 	t_rgb		**t;
-	uint32_t	area;
 	t_limits	x;
 	t_limits	y;
 
@@ -19,14 +18,13 @@ static uint32_t	avrg_color_edge(t_game *game, uint32_t c_x, uint32_t c_y)
 		y.min = c_y - BLUR_RADIUS;
 	if (c_y < game->pause_screen->height - BLUR_RADIUS)
 		y.max = c_y + BLUR_RADIUS;
-	area = (x.max - x.min) * (y.max - y.min);
 	t = game->blur_table;
 	return (get_color((t[y.max][x.max].r - t[y.min][x.max].r
-		- t[y.max][x.min].r + t[y.min][x.min].r) / area,
+		- t[y.max][x.min].r + t[y.min][x.min].r) / game->blur_area,
 		(t[y.max][x.max].g - t[y.min][x.max].g
-		- t[y.max][x.min].g + t[y.min][x.min].g) / area,
+		- t[y.max][x.min].g + t[y.min][x.min].g) / game->blur_area,
 		(t[y.max][x.max].b - t[y.min][x.max].b
-		- t[y.max][x.min].b + t[y.min][x.min].b) / area, 0xFF));
+		- t[y.max][x.min].b + t[y.min][x.min].b) / game->blur_area, 0xFF));
 }
 
 static uint32_t	avrg_color(t_game *game, uint32_t c_x, uint32_t c_y)
