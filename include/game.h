@@ -30,7 +30,7 @@
 
 # define PAUSE_PATH "./textures/pause.png"
 # define BLUR_RADIUS 20
-# define BLUR_DARKEN 0.42
+# define BLUR_DARKEN 1//0.42
 # define PAUSE_NO_BLUR 0x030303D0
 
 # define BLACK 0x000000FF
@@ -107,8 +107,13 @@ void	toggle_pause(t_game *game);
 /* blur.c */
 bool	render_blur(t_game *game);
 
-/* blur_table.c */
-void	make_table(t_game *game);
+/* blur_utils.c */
+void	set_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y);
+void	sum_rgb_x(t_rgb **t, uint32_t x, uint32_t y);
+void	sum_rgb_y(t_rgb **t, uint32_t y);
+void	sum_rgb(t_rgb **t, uint32_t x, uint32_t y);
+void	set_row(t_game *game, uint32_t y, t_pixel i,
+			void (*f)(t_rgb **t, uint32_t x, uint32_t y));
 
 /* resize.c */
 void	resize_game(t_game *game);

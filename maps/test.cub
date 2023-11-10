@@ -3,8 +3,8 @@ SO ./textures/test/south_64.png
 WE ./textures/test/white_64.png
 EA ./textures/test/east_64.png
 D ./textures/test/white_64.png
-F 0,0,100
-C 150,150,250
+C 120,180,250
+F 20,142,255
       111111111111111111
        10000000000000001
 111111110000000000000001

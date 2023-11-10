@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-static void	set_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y)
+void	set_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y)
 {
 	uint32_t	base;
 	uint32_t	top;
@@ -16,52 +16,51 @@ static void	set_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y)
 	set->b = (blue(top) * a_top + blue(base) * a_base) / 0xFF * BLUR_DARKEN;
 }
 
-static void	sum_rgb_x(t_rgb **t, uint32_t x)
+void	sum_rgb_x(t_rgb **t, uint32_t x, uint32_t y)
 {
+	(void)y;
 	t[0][x].r += t[0][x - 1].r;
 	t[0][x].g += t[0][x - 1].g;
 	t[0][x].b += t[0][x - 1].b;
 }
 
-static void	sum_rgb_y(t_rgb **t, uint32_t y)
+void	sum_rgb_y(t_rgb **t, uint32_t y)
 {
 	t[y][0].r += t[y - 1][0].r;
 	t[y][0].g += t[y - 1][0].g;
 	t[y][0].b += t[y - 1][0].b;
 }
 
-static void	sum_rgb(t_rgb **t, uint32_t x, uint32_t y)
+void	sum_rgb(t_rgb **t, uint32_t x, uint32_t y)
 {
 	t[y][x].r += t[y - 1][x].r + t[y][x - 1].r - t[y - 1][x - 1].r;
 	t[y][x].g += t[y - 1][x].g + t[y][x - 1].g - t[y - 1][x - 1].g;
 	t[y][x].b += t[y - 1][x].b + t[y][x - 1].b - t[y - 1][x - 1].b;
 }
 
-void	make_table(t_game *game)
+void	set_row(t_game *game, uint32_t y, t_pixel i,
+	void (*f)(t_rgb **t, uint32_t x, uint32_t y))
 {
-	uint32_t	x;
-	uint32_t	y;
+	t_limits	x;
 
-	y = 0;
-	while (y < game->pause_screen->height)
+	i.x = 0;
+	x.min = 0;
+	while (++x.min < BLUR_RADIUS)
 	{
-		x = 0;
-		set_rgb(game, &game->blur_table[y][x], x, y);
-		while (++x < game->pause_screen->width)
-			set_rgb(game, &game->blur_table[y][x], x, y);
-		y++;
+		set_rgb(game, &game->blur_table[y][x.min], i.x, i.y);
+		f(game->blur_table, x.min, y);
 	}
-	x = 0;
-	while (++x < game->pause_screen->width)
-		sum_rgb_x(game->blur_table, x);
-	y = 0;
-	while (++y < game->pause_screen->height)
-		sum_rgb_y(game->blur_table, y);
-	y = 0;
-	while (++y < game->pause_screen->height)
+	x.max = game->pause_screen->width + BLUR_RADIUS;
+	while (x.min < x.max)
 	{
-		x = 0;
-		while (++x < game->pause_screen->width)
-			sum_rgb(game->blur_table, x, y);
+		set_rgb(game, &game->blur_table[y][x.min], i.x++, i.y);
+		f(game->blur_table, x.min++, y);
+	}
+	i.x--;
+	x.max = game->pause_screen->width + 2 * BLUR_RADIUS;
+	while (x.min < x.max)
+	{
+		set_rgb(game, &game->blur_table[y][x.min], i.x, i.y);
+		f(game->blur_table, x.min++, y);
 	}
 }
