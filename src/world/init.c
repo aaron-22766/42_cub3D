@@ -14,5 +14,4 @@ void	render_world(t_game *game)
 		if (game->world.theta > 2 * M_PI)
 			game->world.theta -= 2 * M_PI;
 	}
-	print_ray(&game->world.rays[game->world.image->width / 2]); // debug
 }

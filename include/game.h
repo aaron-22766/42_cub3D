@@ -26,7 +26,7 @@
 # define COLLISION 0.15
 
 # define TILE_SIZE 1024
-# define DOOR_DISTANCE 42
+# define MAX_DOOR_DISTANCE 3
 
 # define PAUSE_PATH "./textures/pause.png"
 # define BLUR_RADIUS 20
