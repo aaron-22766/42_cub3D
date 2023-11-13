@@ -7,7 +7,7 @@ void	set_rgb(t_game *game, t_rgb *set, uint32_t x, uint32_t y)
 	uint8_t		a_top;
 	uint8_t		a_base;
 
-	base = get_pixel_img(game->image, x, y);
+	base = get_pixel_img(game->world.image, x, y);
 	top = get_pixel_img(game->hud.image, x, y);
 	a_top = top & 0xFF;
 	a_base = 0xFF - a_top;

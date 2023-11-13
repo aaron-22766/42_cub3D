@@ -45,8 +45,7 @@
 typedef struct s_game
 {
 	mlx_t			*mlx;
-	t_world			world; 	// Also maybe more descriptive name e.g. world
-	mlx_image_t		*image;	//put inside of world struct
+	t_world			world;
 	mlx_image_t		*pause_screen;
 	mlx_image_t		*too_small_image;
 	t_hud			hud;

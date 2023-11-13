@@ -9,7 +9,7 @@ void	init_game(t_game *game)
 	game->pause_screen = NULL;
 	game->too_small_image = NULL;
 	init_hud(&game->hud);
-	game->image = NULL;
+	game->world.image = NULL;
 	init_map(&game->fix_map);
 	init_map(&game->flex_map);
 	init_player(&game->player);
@@ -38,7 +38,7 @@ void	free_game(t_game *game)
 	free_map(&game->flex_map);
 	free_hud(game->mlx, &game->hud);
 	ft_free_2d_array((void **)game->blur_table);
-	delete_image(game->mlx, game->image);
+	delete_image(game->mlx, game->world.image);
 	delete_image(game->mlx, game->pause_screen);
 	delete_image(game->mlx, game->too_small_image);
 	i = NORTH;
@@ -59,9 +59,9 @@ void	game_fail(t_game *game, t_cub_errno err, char *context)
 void	print_game(t_game *game)
 {
 	printf("\nGAME:\n");
-	if (game->image)
+	if (game->world.image)
 		printf("Image - w: %d, h: %d\n",
-			game->image->width, game->image->height);
+			game->world.image->width, game->world.image->height);
 	printf("\nFixed map:\n");
 	print_map(&game->fix_map);
 	printf("\nFlexible map:\n");

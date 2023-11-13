@@ -3,7 +3,7 @@
 static void	images_set_enabled(t_game *game, bool setting)
 {
 	game->pause_screen->enabled = setting;
-	game->image->enabled = setting;
+	game->world.image->enabled = setting;
 	game->hud.image->enabled = setting;
 }
 
@@ -34,7 +34,7 @@ void	resize_game(t_game *game)
 		game->resized = false;
 		return ;
 	}
-	delete_image(game->mlx, game->image);
+	delete_image(game->mlx, game->world.image);
 	delete_image(game->mlx, game->hud.image);
 	delete_image(game->mlx, game->pause_screen);
 	setup_world(game);

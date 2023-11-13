@@ -68,6 +68,7 @@ typedef struct s_ray
 
 typedef struct s_world
 {
+	mlx_image_t	*image;
 	t_ray		*rays;
 	size_t		ray_index;
 	double		theta;

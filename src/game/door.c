@@ -14,17 +14,10 @@ void	door(t_game *game)
 {
 	t_ray	*aim;
 
-	printf("DOOR\n");
 	aim = &game->world.rays[game->mlx->width / 2];
 	if (aim->length > DOOR_DISTANCE * TILE_SIZE
 		|| is_door(game, aim->hit) == false)
 		return ;
-	// if (game->flex_map.map[aim.target.y][aim.target.x] == MAP_WALL)
-	// 	game->flex_map.map[aim.target.y][aim.target.x] == MAP_PATH;
-	// else
-	// 	game->flex_map.map[aim.target.y][aim.target.x] == MAP_WALL;
-	// draw_minimap(game);
-	// generate_render(game);
 	game->flex_map.map[aim->hit.x / TILE_SIZE][aim->hit.y / TILE_SIZE] -= '0';
 	game->flex_map.map[aim->hit.x / TILE_SIZE][aim->hit.y / TILE_SIZE]++;
 	game->flex_map.map[aim->hit.x / TILE_SIZE][aim->hit.y / TILE_SIZE] %= 2;

@@ -4,7 +4,7 @@ void	generate_render(t_game *game)
 {
 	reset_render(game);
 	render_background(game);
-	while (game->world.ray_index < game->image->width)
+	while (game->world.ray_index < game->world.image->width)
 	{
 		init_ray(&game->world);
 		find_ray_intersection(game, &game->world.rays[game->world.ray_index]);
