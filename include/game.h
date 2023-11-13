@@ -25,7 +25,7 @@
 # define MOUSE_DIVISOR 21
 # define COLLISION 0.15
 
-# define TILE_SIZE 64
+# define TILE_SIZE 1024
 # define DOOR_DISTANCE 42
 
 # define PAUSE_PATH "./textures/pause.png"
