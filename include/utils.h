@@ -19,22 +19,6 @@
 # include "structs.h"
 
 /* ************************************************************************** */
-/*                                  DEFINES                                   */
-/* ************************************************************************** */
-
-# define WINDOW_HEIGHT 720
-# define WINDOW_WIDTH 1080
-
-# define MOVE_SPEED 3.0
-# define ROTATE_SPEED 1.25
-# define MOUSE_DIVISOR 21
-
-# define TILE_SIZE 128
-
-# define BLACK 0x000000FF
-# define WHITE 0xFFFFFFFF
-
-/* ************************************************************************** */
 /*                                   ENUMS                                    */
 /* ************************************************************************** */
 
@@ -69,16 +53,20 @@ typedef enum e_keys_down
 	KEY_D = 0b1000,
 	KEY_LEFT = 0b10000,
 	KEY_RIGHT = 0b100000,
-	KEY_ESCAPE = 0b1000000
+	KEY_PLAYER = 0b111111,
+	KEY_ESCAPE = 0b1000000,
+	KEY_LEFT_SHIFT = 0b10000000,
+	KEY_F = 0b100000000
 }	t_keys_down;
 
-typedef enum e_cardinal_point
+typedef enum e_textures
 {
 	NORTH,
 	EAST,
 	SOUTH,
-	WEST
-}	t_cardinal_point;
+	WEST,
+	DOOR
+}	t_textures;
 
 /* ************************************************************************** */
 /*                                  TYPEDEFS                                  */
@@ -94,10 +82,17 @@ typedef struct s_game	t_game;
 t_cub_errno	ft_perror(t_cub_errno err, char *context);
 
 /* pixel.c */
-uint32_t	get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-uint32_t	get_pixel_color(mlx_texture_t *txt, uint32_t x, uint32_t y);
+uint32_t	get_pixel_txt(mlx_texture_t *txt, uint32_t x, uint32_t y);
+uint32_t	get_pixel_img(mlx_image_t *img, uint32_t x, uint32_t y);
 void		print_pixel_rgba(uint32_t pixel);
 void		print_pixel_hex(uint32_t pixel);
+
+/* color.c */
+uint32_t	get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+uint8_t		red(uint32_t color);
+uint8_t		green(uint32_t color);
+uint8_t		blue(uint32_t color);
+uint8_t		alpha(uint32_t color);
 
 /* mlx_delete.c */
 void		delete_texture(mlx_texture_t *texture);

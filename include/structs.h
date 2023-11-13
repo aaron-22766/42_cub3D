@@ -37,17 +37,22 @@ typedef struct s_pixel
 
 typedef struct s_map
 {
-	char	**map;
-	size_t	height;
-	size_t	max_width;
-	size_t	*widths;
+	char		**map;
+	uint32_t	height;
+	uint32_t	max_width;
+	uint32_t	*widths;
+	bool		has_door;
 }	t_map;
 
 typedef struct s_player
 {
-	double	orientation;
 	t_pos	pos;
+	double	orientation;
 	double	fov;
+	double	default_fov;
+	double	min_fov;
+	double	max_fov;
+	uint8_t	speed;
 }	t_player;
 
 typedef struct s_limits
@@ -55,6 +60,13 @@ typedef struct s_limits
 	uint32_t	min;
 	uint32_t	max;
 }	t_limits;
+
+typedef struct s_rgb
+{
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+}	t_rgb;
 
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */

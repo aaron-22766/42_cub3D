@@ -13,9 +13,9 @@
 
 # define MAP_CHARACTERS " 01DNESW"
 # define ALLIGN " "
-# define PATH '0'
-# define WALL '1'
-# define DOOR 'D'
+# define MAP_PATH '0'
+# define MAP_WALL '1'
+# define MAP_DOOR 'D'
 # define PLAYER_ORIENTATIONS "NESW"
 # define WHITESPACE " \t\v\r\f\n"
 
@@ -31,7 +31,7 @@ typedef struct s_game	t_game;
 
 typedef struct s_parser
 {
-	char			*texture_paths[4];
+	char			*texture_paths[5];
 	char			*floor_color;
 	char			*ceiling_color;
 	int				scene_file;
@@ -73,7 +73,7 @@ void	set_game(t_parser *parser);
 
 /* load.c */
 void	load_texture(t_parser *parser, mlx_texture_t **texture,
-	char *path, bool square);
+			char *path, bool square);
 void	load_color(t_parser *parser, uint32_t *color, char *rgb);
 
 /* utils.c */

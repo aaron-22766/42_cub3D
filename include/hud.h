@@ -28,7 +28,8 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_MIN_TILE_SIZE 7
 # define MINIMAP_MAX_TILE_SIZE 59
 # define MINIMAP_DEFAULT_TILE_SIZE 21
-# define MINIMAP_PLAYER_RADIUS 3.5
+# define MINIMAP_PLAYER_SIZE_DIVISOR 6.0
+# define MINIMAP_MIN_PLAYER_SIZE 2
 
 # define MINIMAP_PATH_COLOR 0x6666666F
 # define MINIMAP_WALL_COLOR 0x0000006F
@@ -53,6 +54,7 @@ typedef struct s_hud
 	uint32_t		minimap_tile_size;
 	double			minimap_half_tile_size;
 	uint32_t		minimap_radius_sqrd;
+	double			minimap_player_radius;
 }	t_hud;
 
 /* ************************************************************************** */
@@ -64,7 +66,7 @@ void		set_hud(t_parser *parser);
 void		setup_hud(t_game *game);
 
 /* torch.c */
-void		animate_torch(t_game *game);
+void		animate_torch(t_game *game, bool force);
 
 /* minimap.c */
 void		draw_minimap(t_game *game);
