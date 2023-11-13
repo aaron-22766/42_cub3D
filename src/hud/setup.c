@@ -64,13 +64,17 @@ void	set_hud(t_parser *parser)
 
 void	setup_hud(t_game *game)
 {
-	game->hud.image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game->hud.image = mlx_new_image(game->mlx, game->mlx->width,
+			game->mlx->height);
 	if (!game->hud.image)
 		game_fail(game, CUB_MLXFAIL, "Failed to create image");
 	draw_circle(&game->hud, MINIMAP_RADIUS + MINIMAP_FRAME_WIDTH,
 		game->hud.minimap_color);
 	draw_minimap(game);
-	animate_torch(game);
+	game->hud.torch_pos.x = (game->mlx->width / 7) * 5;
+	game->hud.torch_pos.y = game->mlx->height
+		- game->hud.torch_textures[0]->height;
+	animate_torch(game, true);
 	if (mlx_image_to_window(game->mlx, game->hud.image, 0, 0) == -1)
 		game_fail(game, CUB_MLXFAIL, "Failed to render hud");
 	mlx_set_instance_depth(game->hud.image->instances, 2);
