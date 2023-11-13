@@ -94,7 +94,6 @@ void		render_raycast(t_game *game, t_ray *ray);
 
 /* ray.c */
 void		init_ray(t_world *world);
-void		update_render(t_world *world);
 void		print_ray(t_ray *ray);
 
 /* render.c */
@@ -103,7 +102,7 @@ void		resize_world(t_game *game);
 void		print_render(t_world *world);
 
 /* setup.c */
-void		setup_world(t_game *game); // move to render/world folder
+void		setup_world(t_game *game);
 
 /* utils.c */
 int64_t		get_distance_between(t_vector vector, t_vector origin);
