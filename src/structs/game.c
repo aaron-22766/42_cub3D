@@ -74,6 +74,8 @@ void	print_game(t_game *game)
 		game->wall_textures[SOUTH]->width, game->wall_textures[SOUTH]->height);
 	printf("We texture - w: %d, h: %d\n",
 		game->wall_textures[WEST]->width, game->wall_textures[WEST]->height);
+	printf("Door texture - w: %d, h: %d\n",
+		game->wall_textures[DOOR]->width, game->wall_textures[DOOR]->height);
 	printf("\nCeiling color: %X\n", game->ceiling_color);
 	printf("Floor color: %X\n", game->floor_color);
 	printf("Time: %f\n", game->time);

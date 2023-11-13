@@ -7,11 +7,11 @@ static uint32_t get_txt_pix_col(t_game *game, t_ray *ray)
 
 	col = TILE_SIZE / 2;
 	if (game->wall_textures[SOUTH] == ray->texture)
-		col = TILE_SIZE - (ray->hit.x % TILE_SIZE);
+		col = TILE_SIZE - (uint32_t) (ray->hit.x % TILE_SIZE);
 	else if (game->wall_textures[NORTH] == ray->texture)
 		col = ray->hit.x % TILE_SIZE;
 	else if (game->wall_textures[EAST] == ray->texture)
-		col = TILE_SIZE - (ray->hit.y % TILE_SIZE);
+		col = TILE_SIZE - (uint32_t) (ray->hit.y % TILE_SIZE);
 	else if (game->wall_textures[WEST] == ray->texture)
 		col = ray->hit.y % TILE_SIZE;
 	return (col % ray->texture->width);
@@ -24,7 +24,7 @@ void	render_raycast(t_game *game, t_ray *ray)
 	double	iw_half = (double) game->image->width / 2.0;
 	double	d_player_pp = iw_half / tan(game->player.fov / 2.0);
 	double	d_player_wall = ray->length;
-	double	h = (tile * d_player_pp) / d_player_wall;
+	double	h = tile * (d_player_pp / d_player_wall);
 
 	u_int32_t	a = fmax((game->image->height - h) / 2.0, 0.0);
 	u_int32_t	b = fmin((game->image->height + h) / 2.0, game->image->height);
