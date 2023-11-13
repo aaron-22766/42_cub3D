@@ -1,0 +1,29 @@
+NO ./textures/hall/wall.png
+SO ./textures/hall/wall.png
+WE ./textures/hall/wall.png
+EA ./textures/hall/wall.png
+D ./textures/hall/column.png
+C 200,200,200
+F 20,20,20
+
+                     11111111
+                     1      1
+                     1      1
+1111111111111111111111      11111111111
+1                                     111
+1                                       11
+1    D   D   D   D   D      D   D   D    11
+1                                    D    11
+1                                     D    1
+1                                      D   11
+1E                                     0    1
+1                                      D   11
+1                                     D    1
+1                                    D    11
+1    D   D   D   D   D      D   D   D    11
+1                                       11
+1                                     111
+1111111111111111111111      11111111111
+                     1      1
+                     1      1
+                     11111111
