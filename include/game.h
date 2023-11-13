@@ -73,7 +73,6 @@ typedef struct s_game
 /* ************************************************************************** */
 
 /* setup.c */
-void	setup_world(t_game *game); // move to render/world folder
 void	setup_pause_screen(t_game *game);
 void	setup_game(t_game *game);
 

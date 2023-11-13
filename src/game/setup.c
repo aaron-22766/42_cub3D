@@ -28,17 +28,6 @@ static void	resize_textures(t_game *game)
 		resize_texture(game, game->wall_textures[i++]);
 }
 
-void	setup_world(t_game *game) // move to render/world folder
-{
-	game->image = mlx_new_image(game->mlx, game->mlx->width, game->mlx->height);
-	if (!game->image)
-		game_fail(game, CUB_MLXFAIL, "Failed to create image");
-	generate_render(game);
-	if (mlx_image_to_window(game->mlx, game->image, 0, 0) == -1)
-		game_fail(game, CUB_MLXFAIL, "Failed to render image");
-	mlx_set_instance_depth(game->image->instances, 1);
-}
-
 void	setup_pause_screen(t_game *game)
 {
 	game->pause_screen = mlx_new_image(game->mlx, game->mlx->width,
