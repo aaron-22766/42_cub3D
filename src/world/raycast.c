@@ -5,22 +5,22 @@ static uint32_t get_txt_pix_col(t_game *game, t_ray *ray)
 {
 	uint32_t	col;
 
-	col = TILE_SIZE / 2;
+	col = ray->texture->width / 2;
 	if (game->wall_textures[SOUTH] == ray->texture)
-		col = TILE_SIZE - (uint32_t) (ray->hit.x % TILE_SIZE);
+		col = ray->texture->width - (uint32_t) (ray->hit.x % ray->texture->width);
 	else if (game->wall_textures[NORTH] == ray->texture)
-		col = ray->hit.x % TILE_SIZE;
+		col = ray->hit.x % ray->texture->width;
 	else if (game->wall_textures[EAST] == ray->texture)
-		col = TILE_SIZE - (uint32_t) (ray->hit.y % TILE_SIZE);
+		col = ray->texture->width - (uint32_t) (ray->hit.y % ray->texture->width);
 	else if (game->wall_textures[WEST] == ray->texture)
-		col = ray->hit.y % TILE_SIZE;
+		col = ray->hit.y % ray->texture->width;
 	return (col % ray->texture->width);
 }
 
 void	render_raycast(t_game *game, t_ray *ray)
 {
 	t_pixel	img;
-	double	tile = (double) TILE_SIZE;
+	double	tile = (double) ray->texture->width;
 	double	iw_half = (double) game->image->width / 2.0;
 	double	d_player_pp = iw_half / tan(game->player.fov / 2.0);
 	double	d_player_wall = ray->length;
@@ -31,12 +31,14 @@ void	render_raycast(t_game *game, t_ray *ray)
 	img.x = game->image->width - ray->id - 1;
 	img.y = a;
 	uint32_t	col = get_txt_pix_col(game, ray);
+	uint32_t	row = 0;
 	while (img.y < b)
 	{
-		uint32_t	row = ((double) (img.y - a) * ray->texture->height) / h;
+		row = ((double) (img.y - a) * ray->texture->height) / h;
 		row = row % ray->texture->height;
 		img.color = get_pixel_txt(ray->texture, col, row);		
 		mlx_put_pixel(game->image, img.x, img.y, img.color);
 		img.y++;
 	}
+	// if (ray->id % game->image->width == 0) printf("col: %d, row: %d\n", col, row); //DEBUG
 }

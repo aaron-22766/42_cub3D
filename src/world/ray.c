@@ -1,14 +1,14 @@
 #include "../../include/cub3D.h"
 
-void	init_ray(t_render *render)
+void	init_ray(t_world *world)
 {
 	t_ray	*ray;
 
-	ray = &render->rays[render->ray_index];
-	ray->id = render->ray_index;
-	ray->angle = render->theta;
+	ray = &world->rays[world->ray_index];
+	ray->id = world->ray_index;
+	ray->angle = world->theta;
 	ray->hit = init_vector(0, 0, 0);
-	ray->origin = copy_vector(render->pov);
+	ray->origin = copy_vector(world->pov);
 	ray->length = 0;
 	ray->hor_inter = init_vector(0, 0, 0);
 	ray->ver_inter = init_vector(0, 0, 0);

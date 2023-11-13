@@ -11,7 +11,7 @@ INC_DIR		=	include
 LIB_DIR		=	lib
 SRC_DIR		=	src
 BUILD_DIR	=	build
-SUB_DIRS	=	game parser render hud structs utils
+SUB_DIRS	=	game parser world hud structs utils
 
 LIBFT_DIR	=	$(LIB_DIR)/libft
 MLX_DIR		=	$(LIB_DIR)/MLX42

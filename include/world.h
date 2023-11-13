@@ -1,5 +1,5 @@
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef WORLD_H
+# define WORLD_H
 
 /* ************************************************************************** */
 /*                                  INCLUDES                                  */
@@ -66,7 +66,7 @@ typedef struct s_ray
  * @attention Alpha rotates clockwise (negative in the cartesian plane)
  */
 
-typedef struct s_render
+typedef struct s_world
 {
 	t_ray		*rays;
 	size_t		ray_index;
@@ -74,7 +74,7 @@ typedef struct s_render
 	double		delta;
 	double		distance;
 	t_vector	pov;
-}	t_render;
+}	t_world;
 
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
@@ -93,14 +93,14 @@ void		find_ray_intersection(t_game *game, t_ray *ray);
 void		render_raycast(t_game *game, t_ray *ray);
 
 /* ray.c */
-void		init_ray(t_render *render);
-void		update_render(t_render *render);
+void		init_ray(t_world *world);
+void		update_render(t_world *world);
 void		print_ray(t_ray *ray);
 
-/* render.c */
-void		reset_render(t_game *game, t_render *render);
-t_render	init_render(t_game *game);
-void		print_render(t_render *render);
+/* world.c */
+void		reset_render(t_game *game, t_world *world);
+t_world	init_render(t_game *game);
+void		print_render(t_world *world);
 
 /* utils.c */
 int64_t		get_distance_between(t_vector vector, t_vector origin);
