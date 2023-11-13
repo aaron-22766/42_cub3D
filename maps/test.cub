@@ -2,7 +2,7 @@ NO ./textures/test/north_64.png
 SO ./textures/test/south_64.png
 WE ./textures/test/white_64.png
 EA ./textures/test/east_64.png
-D ./textures/test/white_64.png
+D ./textures/test/desktop.png
 C 120,180,250
 F 20,142,255
       111111111111111111

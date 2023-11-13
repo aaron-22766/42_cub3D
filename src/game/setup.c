@@ -9,7 +9,6 @@ static void	resize_texture(t_game *game, mlx_texture_t *texture)
 	if (!temp || !mlx_resize_image(temp, TILE_SIZE, TILE_SIZE))
 		game_fail(game, CUB_MLXFAIL, "resizing texture");
 	free(texture->pixels);
-	texture->pixels = NULL;
 	text_size = TILE_SIZE * TILE_SIZE * sizeof(int32_t);
 	texture->pixels = malloc(text_size);
 	if (!texture->pixels)
