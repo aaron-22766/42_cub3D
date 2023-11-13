@@ -35,15 +35,18 @@ static bool	dup_map(t_map *dst, t_map *src)
 
 	dst->height = src->height;
 	dst->max_width = src->max_width;
+	dst->has_door = src->has_door;
 	dst->map = ft_calloc(dst->height + 1, sizeof(char *));
 	if (!dst->map)
 		return (false);
 	i = 0;
 	while (i < dst->height)
 	{
-		dst->map[i] = ft_strdup(src->map[i]);
+		dst->map[i] = ft_calloc(dst->max_width + 1, sizeof(char));
 		if (!dst->map[i])
 			return (false);
+		ft_memset(dst->map[i], (ALLIGN)[0], dst->max_width);
+		ft_strncpy(dst->map[i], src->map[i], src->widths[i]);
 		i++;
 	}
 	return (true);
@@ -60,19 +63,30 @@ static void	setup_flex_map(t_parser *parser)
 		x = 0;
 		while (x < parser->game->flex_map.max_width)
 		{
-			if (parser->game->flex_map.map[y][x] == DOOR)
-				parser->game->flex_map.map[y][x] = WALL;
+			if (parser->game->flex_map.map[y][x] == MAP_DOOR)
+			{
+				parser->game->flex_map.map[y][x] = MAP_WALL;
+				parser->game->fix_map.has_door = true;
+				parser->game->flex_map.has_door = true;
+			}
 			x++;
 		}
 		y++;
 	}
-	parser->game->flex_map.map[(int)(parser->game->player.pos.y)] \
-		[(int)(parser->game->player.pos.x)] = PATH;
+	parser->game->flex_map.map[(uint32_t)(parser->game->player.pos.y)] \
+		[(uint32_t)(parser->game->player.pos.x)] = MAP_PATH;
 }
 
 void	transform_map(t_parser *parser)
 {
+	t_map	temp;
+
 	parser->game->player.pos.x -= remove_excess_allign(&parser->game->fix_map);
+	init_map(&temp);
+	if (dup_map(&temp, &parser->game->fix_map) == false)
+		parser_fail(parser, CUB_MEMFAIL, "duplicating map");
+	free_map(&parser->game->fix_map);
+	parser->game->fix_map = temp;
 	calc_widths(&parser->game->fix_map);
 	if (dup_map(&parser->game->flex_map, &parser->game->fix_map) == false)
 		parser_fail(parser, CUB_MEMFAIL, "duplicating map");

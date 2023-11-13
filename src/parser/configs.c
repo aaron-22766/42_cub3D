@@ -17,6 +17,8 @@ static bool	create_config(t_parser *parser)
 		set_config(parser, &parser->texture_paths[SOUTH]);
 	else if (!ft_strcmp(parser->split[0], "WE"))
 		set_config(parser, &parser->texture_paths[WEST]);
+	else if (!ft_strcmp(parser->split[0], "D"))
+		set_config(parser, &parser->texture_paths[DOOR]);
 	else if (!ft_strcmp(parser->split[0], "F"))
 		set_config(parser, &parser->floor_color);
 	else if (!ft_strcmp(parser->split[0], "C"))
@@ -44,9 +46,9 @@ bool	configs(t_parser *parser)
 
 static void	check_path(t_parser *parser, char *path, char *type)
 {
-	if (!path)
+	if (!path && ft_strcmp(type, "D"))
 		parser_fail(parser, CUB_MISSCONFIG, type);
-	if (!ft_strends(path, ".png"))
+	if (path && !ft_strends(path, ".png"))
 		parser_fail(parser, CUB_INVTEXTEXT, type);
 }
 
@@ -56,6 +58,7 @@ void	check_configs(t_parser *parser)
 	check_path(parser, parser->texture_paths[EAST], "EA");
 	check_path(parser, parser->texture_paths[SOUTH], "SO");
 	check_path(parser, parser->texture_paths[WEST], "WE");
+	check_path(parser, parser->texture_paths[DOOR], "D");
 	if (!parser->floor_color)
 		parser_fail(parser, CUB_MISSCONFIG, "F");
 	if (!parser->ceiling_color)
