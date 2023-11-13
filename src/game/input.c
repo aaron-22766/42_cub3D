@@ -31,7 +31,10 @@ void	mouse(mouse_key_t button, action_t action,
 		return ;
 	redraw = false;
 	if (set_fov(game, game->player.default_fov))
+	{
+		render_world(game);
 		redraw = true;
+	}
 	if (set_zoom(game, MINIMAP_DEFAULT_TILE_SIZE))
 		redraw = true;
 	if (redraw)

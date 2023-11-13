@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-void	generate_render(t_game *game)
+void	render_world(t_game *game)
 {
 	reset_render(game);
 	render_background(game);

@@ -52,7 +52,7 @@ static void	set_hit_vector(t_game *game, t_ray *ray)
 	{
 		ray->hit = copy_vector(ray->hor_inter);
 		ray->length = ray->hor_length;
-		if (game->fix_map.map[ray->hit.x / TILE_SIZE][ray->hit.y / TILE_SIZE] == 'D')
+		if (is_door(game, ray->hit) == true)
 			ray->texture = game->wall_textures[DOOR];
 		else if (ray->angle > 0 && ray->angle < M_PI)
 			ray->texture = game->wall_textures[EAST];
@@ -63,7 +63,7 @@ static void	set_hit_vector(t_game *game, t_ray *ray)
 	{
 		ray->hit = copy_vector(ray->ver_inter);
 		ray->length = ray->ver_length;
-		if (game->fix_map.map[ray->hit.x / TILE_SIZE][ray->hit.y / TILE_SIZE] == 'D')
+		if (is_door(game, ray->hit) == true)
 			ray->texture = game->wall_textures[DOOR];
 		else if (ray->angle < M_PI_2 || ray->angle > 3.0 * M_PI_2)
 			ray->texture = game->wall_textures[SOUTH];

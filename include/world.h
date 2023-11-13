@@ -74,6 +74,7 @@ typedef struct s_world
 	double		theta;
 	double		delta;
 	double		distance;
+	double		fov_2;
 	t_vector	pov;
 }	t_world;
 
@@ -85,7 +86,7 @@ typedef struct s_world
 void		render_background(t_game *game);
 
 /* init.c */
-void		generate_render(t_game *game);
+void		render_world(t_game *game);
 
 /* intersection.c */
 void		find_ray_intersection(t_game *game, t_ray *ray);

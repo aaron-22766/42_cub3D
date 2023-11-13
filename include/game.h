@@ -119,5 +119,6 @@ void	resize_window(int32_t width, int32_t height, void *param);
 
 /* utils.c */
 int8_t	sign(double x);
+bool	is_door(t_game *game, t_vector vector);
 
 #endif

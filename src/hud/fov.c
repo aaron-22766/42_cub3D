@@ -35,7 +35,7 @@ void	draw_fov(t_game *game)
 	uint32_t	i;
 	uint32_t	max;
 
-	half_way = tan(game->player.fov / 2) * game->hud.minimap_center;
+	half_way = tan(game->world.fov_2) * game->hud.minimap_center;
 	i = game->hud.minimap_center - half_way;
 	max = game->hud.minimap_center + half_way;
 	while (i < max)
