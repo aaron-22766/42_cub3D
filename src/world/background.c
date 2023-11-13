@@ -10,14 +10,16 @@ void	render_background(t_game *game)
 	{
 		img_col = 0;
 		while (img_col < game->world.image->width)
-			mlx_put_pixel(game->world.image, img_col++, img_row, game->ceiling_color);
+			mlx_put_pixel(game->world.image,
+				img_col++, img_row, game->ceiling_color);
 		img_row++;
 	}
 	while (img_row < game->world.image->height)
 	{
 		img_col = 0;
 		while (img_col < game->world.image->width)
-			mlx_put_pixel(game->world.image, img_col++, img_row, game->floor_color);
+			mlx_put_pixel(game->world.image,
+				img_col++, img_row, game->floor_color);
 		img_row++;
 	}
 }

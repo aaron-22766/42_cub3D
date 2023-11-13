@@ -1,15 +1,5 @@
 #include "../../include/cub3D.h"
 
-static bool	is_door(t_game *game, t_vector vector)
-{
-	if (vector.x < TILE_SIZE || vector.y < TILE_SIZE
-		|| vector.x >= (int64_t) game->flex_map.height * TILE_SIZE
-		|| vector.y >= (int64_t) game->flex_map.max_width * TILE_SIZE
-		|| game->fix_map.map[vector.x / TILE_SIZE][vector.y / TILE_SIZE] != 'D')
-		return (false);	
-	return (true);
-}
-
 void	door(t_game *game)
 {
 	t_ray	*aim;
@@ -23,5 +13,5 @@ void	door(t_game *game)
 	game->flex_map.map[aim->hit.x / TILE_SIZE][aim->hit.y / TILE_SIZE] %= 2;
 	game->flex_map.map[aim->hit.x / TILE_SIZE][aim->hit.y / TILE_SIZE] += '0';
 	draw_minimap(game);
-	generate_render(game);
+	render_world(game);
 }
