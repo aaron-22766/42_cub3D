@@ -13,6 +13,8 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	parse(&game, argc, argv);
 	setup_game(&game);
+	print_map(&game.fix_map);	// Debug
+	print_map(&game.flex_map);	// Debug
 	mlx_loop_hook(game.mlx, hook, &game);
 	mlx_key_hook(game.mlx, keyboard, &game);
 	mlx_scroll_hook(game.mlx, zoom_minimap, &game);

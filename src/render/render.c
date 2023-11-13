@@ -5,9 +5,9 @@ t_render	init_render(t_game *game)
 	t_render	render;
 
 	render.rays = NULL;
-	//render.rays = malloc(game->mlx->width * sizeof(t_ray));
-	// if (!render->rays)
-	// game_fail(game, CUB_MEMFAIL, "creating rays");
+	render.rays = (t_ray *) malloc(game->mlx->width * sizeof(t_ray));
+	if (!render.rays)
+	game_fail(game, CUB_MEMFAIL, "creating rays");
 	render.ray_index = 0;
 	render.theta = game->player.orientation + M_PI_2 - (game->player.fov / 2);
 	if (render.theta > 2 * M_PI)
@@ -15,8 +15,8 @@ t_render	init_render(t_game *game)
 	render.delta = game->player.fov / (double) game->image->width;
 	render.distance = ((double) TILE_SIZE * (game->image->width / 2))
 		/ tan(game->player.fov / 2);
-	render.pov = init_vector(TILE_SIZE * game->player.pos.x,
-TILE_SIZE * game->player.pos.y, TILE_SIZE * game->player.pos.z);
+	render.pov = init_vector(TILE_SIZE * game->player.pos.y,
+TILE_SIZE * game->player.pos.x, TILE_SIZE * game->player.pos.z);
 	return (render);
 }
 

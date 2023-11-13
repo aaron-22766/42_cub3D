@@ -21,14 +21,14 @@ void	render_raycast(t_game *game, t_ray *ray)
 {
 	t_pixel	img;
 	double	tile = (double) TILE_SIZE;
-	double	iw_half = (double) WINDOW_WIDTH / 2.0;
+	double	iw_half = (double) game->image->width / 2.0;
 	double	d_player_pp = iw_half / tan(game->player.fov / 2.0);
 	double	d_player_wall = ray->length;
-	double	h = tile * (d_player_pp / d_player_wall);
+	double	h = (tile * d_player_pp) / d_player_wall;
 
-	u_int32_t	a = fmax((WINDOW_HEIGHT - h) / 2.0, 0.0);
-	u_int32_t	b = fmin((WINDOW_HEIGHT + h) / 2.0, WINDOW_HEIGHT);
-	img.x = WINDOW_WIDTH - ray->id - 1;
+	u_int32_t	a = fmax((game->image->height - h) / 2.0, 0.0);
+	u_int32_t	b = fmin((game->image->height + h) / 2.0, game->image->height);
+	img.x = game->image->width - ray->id - 1;
 	img.y = a;
 	uint32_t	col = get_txt_pix_col(game, ray);
 	while (img.y < b)
