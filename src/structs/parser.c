@@ -2,11 +2,11 @@
 
 void	init_parser(t_parser *parser)
 {
-	uint8_t	cardinal_point;
+	t_textures	i;
 
-	cardinal_point = NORTH;
-	while (cardinal_point <= WEST)
-		parser->texture_paths[cardinal_point++] = NULL;
+	i = NORTH;
+	while (i <= DOOR)
+		parser->texture_paths[i++] = NULL;
 	parser->floor_color = NULL;
 	parser->ceiling_color = NULL;
 	parser->scene_file = -1;
@@ -19,11 +19,11 @@ void	init_parser(t_parser *parser)
 
 void	free_parser(t_parser *parser)
 {
-	uint8_t	cardinal_point;
+	t_textures	i;
 
-	cardinal_point = NORTH;
-	while (cardinal_point <= WEST)
-		free(parser->texture_paths[cardinal_point++]);
+	i = NORTH;
+	while (i <= DOOR)
+		free(parser->texture_paths[i++]);
 	free(parser->floor_color);
 	free(parser->ceiling_color);
 	close(parser->scene_file);

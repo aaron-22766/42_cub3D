@@ -6,6 +6,7 @@ void	init_map(t_map *map)
 	map->height = 0;
 	map->max_width = 0;
 	map->widths = NULL;
+	map->has_door = false;
 }
 
 void	free_map(t_map *map)
@@ -40,14 +41,14 @@ void	print_map(t_map *map)
 {
 	size_t	i;
 
-	printf("Map (height: %zu, max_width: %zu)\n", map->height, map->max_width);
+	printf("Map (height: %u, max_width: %u)\n", map->height, map->max_width);
 	i = 0;
 	while (i < map->height)
 	{
-		printf("%*zu|%-*s", (int)log10(map->height) + 1, i,
-			(int)map->max_width, map->map[i]);
-		if (map->widths)
-			printf("|w%zu", map->widths[i]);
+		printf("%*zu|%-*s|w%zu", (int)log10(map->height) + 1, i,
+			(int)map->max_width, map->map[i], ft_strlen(map->map[i]));
+		// if (map->widths)
+		// 	printf("|w%u", map->widths[i]);
 		printf("\n");
 		i++;
 	}

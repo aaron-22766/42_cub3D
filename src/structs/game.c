@@ -2,37 +2,48 @@
 
 void	init_game(t_game *game)
 {
-	t_cardinal_point	i;
+	t_textures	i;
 
 	game->mlx = NULL;
+	game->pause_screen = NULL;
+	game->too_small_image = NULL;
 	init_hud(&game->hud);
 	game->image = NULL;
 	init_map(&game->fix_map);
 	init_map(&game->flex_map);
 	init_player(&game->player);
 	i = NORTH;
-	while (i <= WEST)
+	while (i <= DOOR)
 		game->wall_textures[i++] = NULL;
+	game->pause_texture = NULL;
 	game->floor_color = 0;
 	game->ceiling_color = 0;
 	game->time = 0;
 	game->fps = 0;
 	game->mouse_x = 0;
-	game->collision = MINIMAP_PLAYER_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
 	game->nb_tiles = MINIMAP_RADIUS / MINIMAP_DEFAULT_TILE_SIZE;
+	game->blur_table = NULL;
+	game->blur_area = ft_pow(BLUR_RADIUS * 2 + 1, 2);
+	game->paused = true;
+	game->too_small = false;
+	game->resized = false;
 }
 
 void	free_game(t_game *game)
 {
-	t_cardinal_point	i;
+	t_textures	i;
 
 	free_map(&game->fix_map);
 	free_map(&game->flex_map);
 	free_hud(game->mlx, &game->hud);
+	ft_free_2d_array((void **)game->blur_table);
 	delete_image(game->mlx, game->image);
+	delete_image(game->mlx, game->pause_screen);
+	delete_image(game->mlx, game->too_small_image);
 	i = NORTH;
-	while (i <= WEST)
+	while (i <= DOOR)
 		delete_texture(game->wall_textures[i++]);
+	delete_texture(game->pause_texture);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }
