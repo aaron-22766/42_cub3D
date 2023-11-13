@@ -6,7 +6,7 @@
 /* ************************************************************************** */
 
 # include "hud.h"
-// # include "world.h"
+# include "world.h"
 
 /* ************************************************************************** */
 /*                                  DEFINES                                   */
@@ -45,7 +45,7 @@
 typedef struct s_game
 {
 	mlx_t			*mlx;
-	// t_world		world; 	// Also maybe more descriptive name e.g. world
+	t_world			world; 	// Also maybe more descriptive name e.g. world
 	mlx_image_t		*image;	//put inside of world struct
 	mlx_image_t		*pause_screen;
 	mlx_image_t		*too_small_image;

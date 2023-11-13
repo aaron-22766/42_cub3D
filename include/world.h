@@ -97,13 +97,13 @@ void		init_ray(t_world *world);
 void		update_render(t_world *world);
 void		print_ray(t_ray *ray);
 
-/* world.c */
-void		reset_render(t_game *game, t_world *world);
-t_world		init_render(t_game *game);
+/* render.c */
+void		reset_render(t_game *game);
+void		resize_world(t_game *game);
 void		print_render(t_world *world);
 
 /* setup.c */
-void	setup_world(t_game *game); // move to render/world folder
+void		setup_world(t_game *game); // move to render/world folder
 
 /* utils.c */
 int64_t		get_distance_between(t_vector vector, t_vector origin);

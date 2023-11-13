@@ -5,6 +5,7 @@ void	init_game(t_game *game)
 	t_textures	i;
 
 	game->mlx = NULL;
+	game->world.rays = NULL;
 	game->pause_screen = NULL;
 	game->too_small_image = NULL;
 	init_hud(&game->hud);
