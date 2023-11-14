@@ -51,6 +51,7 @@ typedef struct s_ray
 	int64_t			ver_length;
 	t_pixel			img;
 	mlx_texture_t	*texture;
+	t_textures		txt_id;
 }	t_ray;
 
 /**

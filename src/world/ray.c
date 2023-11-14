@@ -24,6 +24,7 @@ void	init_ray(t_world *world)
 	ray->img.x = 0;
 	ray->img.y = 0;
 	ray->img.color = 0;
+	ray->txt_id = 0;
 	ray->texture = NULL;
 }
 

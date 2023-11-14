@@ -3,31 +3,38 @@
 static double	get_projection_height(t_game *game, t_ray *ray)
 {
 	double	tile;
-	double	iw_half;
-	double	d_player_pp;
 	double	d_player_wall;
 
 	tile = (double) ray->texture->width;
-	iw_half = (double) game->world.image->width / 2.0;
-	d_player_pp = iw_half / tan(game->world.fov_2);
 	d_player_wall = ray->length;
-	return ((tile * d_player_pp) / d_player_wall);
+	return ((tile * game->world.distance) / d_player_wall);
 }
 
-static uint32_t	get_txt_pix_col(t_game *game, t_ray *ray)
-{
-	uint32_t	col;
+// static uint32_t	get_txt_pix_col(t_game *game, t_ray *ray)
+// {
+// 	uint32_t	col;
 
-	col = ray->texture->width / 2;
-	if (game->wall_textures[SOUTH] == ray->texture)
-		col = ray->texture->width - (ray->hit.x % ray->texture->width);
-	else if (game->wall_textures[NORTH] == ray->texture)
-		col = ray->hit.x % ray->texture->width;
-	else if (game->wall_textures[EAST] == ray->texture)
-		col = ray->texture->width - (ray->hit.y % ray->texture->width);
-	else if (game->wall_textures[WEST] == ray->texture)
-		col = ray->hit.y % ray->texture->width;
-	return (col % ray->texture->width);
+// 	col = ray->texture->width / 2;
+// 	if (game->wall_textures[SOUTH] == ray->texture)
+// 		col = ray->texture->width - (((uint32_t)ray->hit.x) % ray->texture->width);
+// 	else if (game->wall_textures[NORTH] == ray->texture)
+// 		col = ((uint32_t)ray->hit.x) % ray->texture->width;
+// 	else if (game->wall_textures[EAST] == ray->texture)
+// 		col = ray->texture->width - (((uint32_t)ray->hit.y) % ray->texture->width);
+// 	else if (game->wall_textures[WEST] == ray->texture)
+// 		col = ((uint32_t)ray->hit.y) % ray->texture->width;
+// 	return (col % ray->texture->width);
+// }
+
+static uint32_t	get_txt_slice(t_ray *ray)
+{
+	if (ray->txt_id == NORTH || ray->txt_id == SOUTH)
+		return (ray->texture->width - (((uint32_t)ray->hit.y) % ray->texture->width));
+	else if (ray->txt_id == EAST || ray->txt_id == WEST)
+		return (((uint32_t)ray->hit.x) % ray->texture->width);
+	else if (ray->length == ray->ver_length)
+		return (ray->texture->width - (((uint32_t)ray->hit.y) % ray->texture->width));
+	return (((uint32_t)ray->hit.x) % ray->texture->width);
 }
 
 void	draw_wall_slice(t_game *game, t_ray *ray)
@@ -43,7 +50,7 @@ void	draw_wall_slice(t_game *game, t_ray *ray)
 	p_w_ends = (game->world.image->height + p_h) / 2.0;
 	ray->img.x = game->world.image->width - ray->id - 1;
 	ray->img.y = fmax(p_w_start, 0.0);
-	col = get_txt_pix_col(game, ray);
+	col = get_txt_slice(ray);
 	while (ray->img.y < game->world.image->height)
 	{
 		row = ((double)(ray->img.y - p_w_start) * (ray->texture->height)) / p_h;

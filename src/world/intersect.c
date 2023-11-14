@@ -53,22 +53,22 @@ static void	set_hit_vector(t_game *game, t_ray *ray)
 		ray->hit = copy_vector(ray->hor_inter);
 		ray->length = ray->hor_length;
 		if (is_door(game, ray->hit) == true)
-			ray->texture = game->wall_textures[DOOR];
+			ray->txt_id = DOOR;
 		else if (ray->angle > 0 && ray->angle < M_PI)
-			ray->texture = game->wall_textures[EAST];
+			ray->txt_id = EAST;
 		else
-			ray->texture = game->wall_textures[WEST];
+			ray->txt_id = WEST;
 	}
 	else
 	{
 		ray->hit = copy_vector(ray->ver_inter);
 		ray->length = ray->ver_length;
 		if (is_door(game, ray->hit) == true)
-			ray->texture = game->wall_textures[DOOR];
+			ray->txt_id = DOOR;
 		else if (ray->angle < M_PI_2 || ray->angle > 3.0 * M_PI_2)
-			ray->texture = game->wall_textures[SOUTH];
+			ray->txt_id = SOUTH;
 		else
-			ray->texture = game->wall_textures[NORTH];
+			ray->txt_id = NORTH;
 	}
 }
 
@@ -78,4 +78,5 @@ void	find_ray_intersection(t_game *game, t_ray *ray)
 	init_auxiliary_variables(ray);
 	intersect_wall(game, ray);
 	set_hit_vector(game, ray);
+	ray->texture = game->wall_textures[ray->txt_id];
 }

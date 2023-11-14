@@ -1,7 +1,7 @@
 EA textures/bricks/dark.png
-NO textures/bricks/dark.png
-WE textures/bricks/dark.png
-SO textures/bricks/dark.png
+NO textures/bricks/flat.png
+WE textures/bricks/grey.png
+SO textures/bricks/brown.png
 D textures/test/door.png
 F 69,69,69
 C 173,216,230
