@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-double find_distance_to_projection_plane(t_game *game)
+double	find_distance_to_projection_plane(t_game *game)
 {
 	double	iw_half;
 
@@ -19,7 +19,6 @@ void	init_world(t_game *game)
 	game->world.pov = init_vector(TILE_SIZE * game->player.pos.y,
 			TILE_SIZE * game->player.pos.x, TILE_SIZE * game->player.pos.z);
 	game->world.distance = find_distance_to_projection_plane(game);
-	// game->world.distance = ((double) TILE_SIZE * (game->world.image->width / 2))
 }
 
 void	print_world(t_world *world)

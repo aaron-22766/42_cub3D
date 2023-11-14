@@ -10,27 +10,11 @@ static double	get_projection_height(t_game *game, t_ray *ray)
 	tile = (double) ray->texture->width;
 	d_player_wall = ray->length;
 	d_player_pp = tile * game->world.distance;
-	omega = fabs(ray->angle - (game->world.theta + game->world.fov_2));
+	omega = fabs(ray->angle + 2.0 * M_PI - (game->world.theta + game->world.fov_2));
 	if (cos(omega) != 0)
 		d_player_pp = d_player_pp / cos(omega);
 	return (d_player_pp / d_player_wall);
 }
-
-// static uint32_t	get_txt_pix_col(t_game *game, t_ray *ray)
-// {
-// 	uint32_t	col;
-
-// 	col = ray->texture->width / 2;
-// 	if (game->wall_textures[SOUTH] == ray->texture)
-// 		col = ray->texture->width - (((uint32_t)ray->hit.x) % ray->texture->width);
-// 	else if (game->wall_textures[NORTH] == ray->texture)
-// 		col = ((uint32_t)ray->hit.x) % ray->texture->width;
-// 	else if (game->wall_textures[EAST] == ray->texture)
-// 		col = ray->texture->width - (((uint32_t)ray->hit.y) % ray->texture->width);
-// 	else if (game->wall_textures[WEST] == ray->texture)
-// 		col = ((uint32_t)ray->hit.y) % ray->texture->width;
-// 	return (col % ray->texture->width);
-// }
 
 static uint32_t	get_txt_slice(t_ray *ray)
 {
