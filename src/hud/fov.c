@@ -40,11 +40,4 @@ void	draw_fov(t_game *game)
 	max = game->hud.minimap_center + half_way;
 	while (i < max)
 		draw_line(game, i++, 0, MINIMAP_FOV_COLOR);
-	i = 0;
-	while (i < (uint32_t)game->mlx->width)
-	{
-		// printf("x = %lld, y = %lld\n", game->world.rays[i].hit.x / TILE_SIZE, game->world.rays[i].hit.y / TILE_SIZE);
-		// draw_line(game, game->world.rays[i].hit.x, game->world.rays[i].hit.y, MINIMAP_RAY_COLOR);
-		i++;
-	}
 }

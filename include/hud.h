@@ -35,8 +35,7 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_WALL_COLOR 0x000000AF
 # define MINIMAP_DOOR_CLOSED_COLOR 0x222222AF
 # define MINIMAP_DOOR_OPEN_COLOR 0x444444AF
-# define MINIMAP_FOV_COLOR 0x606060AF
-# define MINIMAP_RAY_COLOR 0x505050AF
+# define MINIMAP_FOV_COLOR 0x565656AF
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
