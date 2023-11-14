@@ -92,10 +92,6 @@ void	draw_background(t_game *game);
 /* door.c */
 void	draw_door(t_game *game);
 
-/* init.c */
-void	init_world(t_game *game);
-void	print_world(t_world *world);
-
 /* intersect.c */
 void	find_ray_intersection(t_game *game, t_ray *ray);
 
@@ -104,8 +100,9 @@ void	init_ray(t_world *world);
 void	print_ray(t_ray *ray);
 
 /* setup.c */
-void	resize_world(t_game *game);
+void	reset_world(t_game *game);
 void	setup_world(t_game *game);
+
 /* utils.c */
 int64_t	get_distance_between(t_vector vector, t_vector origin);
 bool	is_door(t_game *game, t_vector vector);

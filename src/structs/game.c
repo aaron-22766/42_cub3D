@@ -5,11 +5,10 @@ void	init_game(t_game *game)
 	t_textures	i;
 
 	game->mlx = NULL;
-	game->world.rays = NULL;
 	game->pause_screen = NULL;
 	game->too_small_image = NULL;
+	init_world(game);
 	init_hud(&game->hud);
-	game->world.image = NULL;
 	init_map(&game->fix_map);
 	init_map(&game->flex_map);
 	init_player(&game->player);
@@ -34,9 +33,10 @@ void	free_game(t_game *game)
 {
 	t_textures	i;
 
+	free_world(&game->world);
+	free_hud(game->mlx, &game->hud);
 	free_map(&game->fix_map);
 	free_map(&game->flex_map);
-	free_hud(game->mlx, &game->hud);
 	ft_free_2d_array((void **)game->blur_table);
 	delete_image(game->mlx, game->world.image);
 	delete_image(game->mlx, game->pause_screen);

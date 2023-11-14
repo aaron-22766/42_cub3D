@@ -2,7 +2,7 @@
 
 void	draw_texture(t_game *game)
 {
-	t_pixel		pixel;
+	t_pixel	pixel;
 
 	pixel.y = 0;
 	while (pixel.y < game->world.image->height)
@@ -21,7 +21,7 @@ void	draw_texture(t_game *game)
 
 void	draw_world(t_game *game)
 {
-	init_world(game);
+	reset_world(game);
 	draw_background(game);
 	while (game->world.ray_index < game->world.image->width)
 	{

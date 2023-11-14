@@ -7,6 +7,7 @@
 
 typedef struct s_parser		t_parser;
 typedef struct s_game		t_game;
+typedef struct s_world		t_world;
 typedef struct s_hud		t_hud;
 typedef enum e_cub_errno	t_cub_errno;
 
@@ -83,6 +84,11 @@ void		init_game(t_game *game);
 void		free_game(t_game *game);
 void		game_fail(t_game *game, t_cub_errno err, char *context);
 void		print_game(t_game *game);
+
+/* world.c */
+void		init_world(t_game *game);
+void		free_world(t_world *world);
+void		print_world(t_world *world);
 
 /* hud.c */
 void		init_hud(t_hud *hud);

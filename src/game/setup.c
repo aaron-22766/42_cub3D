@@ -5,6 +5,8 @@ static void	resize_texture(t_game *game, mlx_texture_t *texture)
 	mlx_image_t	*temp;
 	size_t		text_size;
 
+	if (texture->width == TILE_SIZE && texture->height == TILE_SIZE)
+		return ;
 	temp = mlx_texture_to_image(game->mlx, texture);
 	if (!temp || !mlx_resize_image(temp, TILE_SIZE, TILE_SIZE))
 		game_fail(game, CUB_MLXFAIL, "resizing texture");
