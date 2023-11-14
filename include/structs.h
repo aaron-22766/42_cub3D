@@ -52,7 +52,7 @@ typedef struct s_player
 	double	default_fov;
 	double	min_fov;
 	double	max_fov;
-	uint8_t	speed;
+	double	speed;
 }	t_player;
 
 typedef struct s_limits

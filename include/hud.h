@@ -31,11 +31,12 @@ typedef struct s_pos	t_pos;
 # define MINIMAP_PLAYER_SIZE_DIVISOR 6.0
 # define MINIMAP_MIN_PLAYER_SIZE 2
 
-# define MINIMAP_PATH_COLOR 0x6666666F
-# define MINIMAP_WALL_COLOR 0x0000006F
-# define MINIMAP_DOOR_CLOSED_COLOR 0x2222226F
-# define MINIMAP_DOOR_OPEN_COLOR 0x4444446F
-# define MINIMAP_FOV_COLOR 0x5656566F
+# define MINIMAP_PATH_COLOR 0x666666AF
+# define MINIMAP_WALL_COLOR 0x000000AF
+# define MINIMAP_DOOR_CLOSED_COLOR 0x222222AF
+# define MINIMAP_DOOR_OPEN_COLOR 0x444444AF
+# define MINIMAP_FOV_COLOR 0x606060AF
+# define MINIMAP_RAY_COLOR 0x505050AF
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */

@@ -79,6 +79,7 @@ typedef struct s_world
 	double		distance;
 	double		fov_2;
 	t_vector	pov;
+	uint32_t	window_height_2;
 }	t_world;
 
 /* ************************************************************************** */

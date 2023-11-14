@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-static void	draw_line(t_game *game, uint32_t x, uint32_t y)
+static void	draw_line(t_game *game, uint32_t x, uint32_t y, uint32_t color)
 {
 	int32_t	dx;
 	int32_t	dy;
@@ -13,7 +13,7 @@ static void	draw_line(t_game *game, uint32_t x, uint32_t y)
 	err = dx + dy;
 	while (true)
 	{
-		put_pixel(&game->hud, x, y, MINIMAP_FOV_COLOR);
+		put_pixel(&game->hud, x, y, color);
 		if (x == game->hud.minimap_center && y == game->hud.minimap_center)
 			break ;
 		if (2 * err >= dy)
@@ -39,5 +39,12 @@ void	draw_fov(t_game *game)
 	i = game->hud.minimap_center - half_way;
 	max = game->hud.minimap_center + half_way;
 	while (i < max)
-		draw_line(game, i++, 0);
+		draw_line(game, i++, 0, MINIMAP_FOV_COLOR);
+	i = 0;
+	while (i < (uint32_t)game->mlx->width)
+	{
+		// printf("x = %lld, y = %lld\n", game->world.rays[i].hit.x / TILE_SIZE, game->world.rays[i].hit.y / TILE_SIZE);
+		// draw_line(game, game->world.rays[i].hit.x, game->world.rays[i].hit.y, MINIMAP_RAY_COLOR);
+		i++;
+	}
 }

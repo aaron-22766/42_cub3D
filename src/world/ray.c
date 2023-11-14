@@ -2,12 +2,12 @@
 
 static void	init_wall_tools(t_ray *ray)
 {
-	ray->hit = init_vector(0, 0, 0);
+	ray->hit = zero_vector();
 	ray->length = 0;
-	ray->hor_inter = init_vector(0, 0, 0);
-	ray->ver_inter = init_vector(0, 0, 0);
-	ray->d_hor = init_vector(0, 0, 0);
-	ray->d_ver = init_vector(0, 0, 0);
+	ray->hor_inter = zero_vector();
+	ray->ver_inter = zero_vector();
+	ray->d_hor = zero_vector();
+	ray->d_ver = zero_vector();
 	ray->hor_length = 0;
 	ray->ver_length = 0;
 }
