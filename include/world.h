@@ -55,6 +55,7 @@ typedef struct s_ray
 /**
  * @brief Render structure
  *
+ * @param image Image of the render
  * @param rays Array of rays
  * @param ray_index Index of the current ray
  * @param theta Angle of the current ray
@@ -83,31 +84,34 @@ typedef struct s_world
 /* ************************************************************************** */
 
 /* background.c */
-void		render_background(t_game *game);
+void	draw_background(t_game *game);
+
+/* door.c */
+void	draw_door(t_game *game);
 
 /* init.c */
-void		render_world(t_game *game);
+void	init_world(t_game *game);
+void	print_world(t_world *world);
 
-/* intersection.c */
-void		find_ray_intersection(t_game *game, t_ray *ray);
-
-/* ray_casting.c */
-void		render_raycast(t_game *game, t_ray *ray);
+/* intersect.c */
+void	find_ray_intersection(t_game *game, t_ray *ray);
 
 /* ray.c */
-void		init_ray(t_world *world);
-void		print_ray(t_ray *ray);
-
-/* render.c */
-void		reset_render(t_game *game);
-void		resize_world(t_game *game);
-void		print_render(t_world *world);
+void	init_ray(t_world *world);
+void	print_ray(t_ray *ray);
 
 /* setup.c */
-void		setup_world(t_game *game);
-
+void	resize_world(t_game *game);
+void	setup_world(t_game *game);
 /* utils.c */
-int64_t		get_distance_between(t_vector vector, t_vector origin);
-bool		is_wall(t_game *game, t_vector vector);
+int64_t	get_distance_between(t_vector vector, t_vector origin);
+bool	is_door(t_game *game, t_vector vector);
+bool	is_wall(t_game *game, t_vector vector);
+
+/* wall.c */
+void	draw_wall_slice(t_game *game, t_ray *ray);
+
+/* world.c */
+void	draw_world(t_game *game);
 
 #endif

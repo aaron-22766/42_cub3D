@@ -33,7 +33,7 @@ static uint32_t get_txt_pix_col(t_game *game, t_ray *ray)
 	return (col % ray->texture->width);
 }
 
-void	render_raycast(t_game *game, t_ray *ray)
+void	draw_wall_slice(t_game *game, t_ray *ray)
 {
 	t_pixel		img;
 	double		p_h;

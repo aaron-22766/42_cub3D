@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-void	render_background(t_game *game)
+void	draw_background(t_game *game)
 {
 	size_t	img_row;
 	size_t	img_col;

@@ -86,8 +86,6 @@ void	hook(void *param);
 /* action.c */
 void	do_player_action(t_game *game, t_keys_down *keys);
 
-/* door.c */
-void	door(t_game *game);
 
 /* player.c */
 void	rotate_player(t_game *game, double dir);
@@ -119,6 +117,5 @@ void	resize_window(int32_t width, int32_t height, void *param);
 
 /* utils.c */
 int8_t	sign(double x);
-bool	is_door(t_game *game, t_vector vector);
 
 #endif

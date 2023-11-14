@@ -72,7 +72,7 @@ void	hook(void *param)
 		do_player_action(game, &keys);
 	if (mouse_moved(game) || (keys & KEY_PLAYER))
 	{
-		render_world(game);
+		draw_world(game);
 		draw_minimap(game);
 	}
 	animate_torch(game, false);
