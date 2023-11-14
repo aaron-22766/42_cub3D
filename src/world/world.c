@@ -11,7 +11,7 @@ void	draw_texture(t_game *game)
 		while (pixel.x < game->world.image->width)
 		{
 			pixel.color = get_pixel_txt(game->wall_textures[NORTH],
-				pixel.x, pixel.y);
+					pixel.x, pixel.y);
 			mlx_put_pixel(game->world.image, pixel.x, pixel.y, pixel.color);
 			pixel.x++;
 		}

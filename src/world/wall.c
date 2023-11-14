@@ -10,7 +10,8 @@ static double	get_projection_height(t_game *game, t_ray *ray)
 	tile = (double) ray->texture->width;
 	d_player_wall = ray->length;
 	d_player_pp = tile * game->world.distance;
-	omega = fabs(ray->angle + 2.0 * M_PI - (game->world.theta + game->world.fov_2));
+	omega = fabs(ray->angle + 2.0 * M_PI
+			- (game->world.theta + game->world.fov_2));
 	if (cos(omega) != 0)
 		d_player_pp = d_player_pp / cos(omega);
 	return (d_player_pp / d_player_wall);
@@ -18,13 +19,16 @@ static double	get_projection_height(t_game *game, t_ray *ray)
 
 static uint32_t	get_txt_slice(t_ray *ray)
 {
+	uint32_t	tile;
+
+	tile = ray->texture->width;
 	if (ray->txt_id == NORTH || ray->txt_id == SOUTH)
-		return (ray->texture->width - (((uint32_t)ray->hit.y) % ray->texture->width));
+		return (tile - (((uint32_t)ray->hit.y) % tile));
 	else if (ray->txt_id == EAST || ray->txt_id == WEST)
-		return (((uint32_t)ray->hit.x) % ray->texture->width);
-	else if (ray->length == ray->ver_length)
-		return (ray->texture->width - (((uint32_t)ray->hit.y) % ray->texture->width));
-	return (((uint32_t)ray->hit.x) % ray->texture->width);
+		return (((uint32_t)ray->hit.x) % tile);
+	else if (ray->length == ray->hor_length)
+		return (((uint32_t)ray->hit.x) % tile);
+	return (tile - (((uint32_t)ray->hit.y) % tile));
 }
 
 void	draw_wall_slice(t_game *game, t_ray *ray)
