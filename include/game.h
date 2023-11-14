@@ -86,7 +86,6 @@ void	hook(void *param);
 /* action.c */
 void	do_player_action(t_game *game, t_keys_down *keys);
 
-
 /* player.c */
 void	rotate_player(t_game *game, double dir);
 void	move_player(t_game *game, double x, double y);

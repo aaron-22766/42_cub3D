@@ -48,7 +48,7 @@ static void	set_hit_vector(t_game *game, t_ray *ray)
 {
 	if (is_wall(game, ray->hor_inter) && (!is_wall(game, ray->ver_inter)
 			|| (is_wall(game, ray->ver_inter)
-			&& ray->hor_length < ray->ver_length)))
+				&& ray->hor_length < ray->ver_length)))
 	{
 		ray->hit = copy_vector(ray->hor_inter);
 		ray->length = ray->hor_length;

@@ -38,7 +38,7 @@ void	zoom_minimap(double xdelta, double ydelta, void *param)
 	if (set_fov(game, game->player.fov + sign(xdelta) / 11.0))
 	{
 		draw_world(game);
-		redraw = true;	
+		redraw = true;
 	}
 	if (set_zoom(game, game->hud.minimap_tile_size + sign(ydelta) * 2))
 		redraw = true;

@@ -11,7 +11,7 @@ void	init_world(t_game *game)
 	game->world.distance = ((double) TILE_SIZE * (game->world.image->width / 2))
 		/ tan(game->world.fov_2);
 	game->world.pov = init_vector(TILE_SIZE * game->player.pos.y,
-		TILE_SIZE * game->player.pos.x, TILE_SIZE * game->player.pos.z);
+			TILE_SIZE * game->player.pos.x, TILE_SIZE * game->player.pos.z);
 }
 
 void	print_world(t_world *world)

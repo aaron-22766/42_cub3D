@@ -17,7 +17,7 @@ static t_vector	get_door_vector(t_game *game)
 	{
 		distance++;
 		door = init_vector(aim->origin.x + dx * distance,
-		aim->origin.y + dy * distance, aim->origin.z);
+				aim->origin.y + dy * distance, aim->origin.z);
 	}
 	return (door);
 }

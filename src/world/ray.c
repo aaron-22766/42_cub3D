@@ -1,5 +1,15 @@
 #include "../../include/cub3D.h"
 
+static void	init_wall_tools(t_ray *ray)
+{
+	ray->hor_inter = init_vector(0, 0, 0);
+	ray->ver_inter = init_vector(0, 0, 0);
+	ray->d_hor = init_vector(0, 0, 0);
+	ray->d_ver = init_vector(0, 0, 0);
+	ray->hor_length = 0;
+	ray->ver_length = 0;
+}
+
 void	init_ray(t_world *world)
 {
 	t_ray	*ray;
@@ -7,15 +17,13 @@ void	init_ray(t_world *world)
 	ray = &world->rays[world->ray_index];
 	ray->id = world->ray_index;
 	ray->angle = world->theta;
-	ray->hit = init_vector(0, 0, 0);
 	ray->origin = copy_vector(world->pov);
+	ray->hit = init_vector(0, 0, 0);
 	ray->length = 0;
-	ray->hor_inter = init_vector(0, 0, 0);
-	ray->ver_inter = init_vector(0, 0, 0);
-	ray->d_hor = init_vector(0, 0, 0);
-	ray->d_ver = init_vector(0, 0, 0);
-	ray->hor_length = 0;
-	ray->ver_length = 0;
+	init_wall_tools(ray);
+	ray->img.x = 0;
+	ray->img.y = 0;
+	ray->img.color = 0;
 	ray->texture = NULL;
 }
 

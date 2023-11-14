@@ -49,6 +49,7 @@ typedef struct s_ray
 	t_vector		d_ver;
 	int64_t			hor_length;
 	int64_t			ver_length;
+	t_pixel			img;
 	mlx_texture_t	*texture;
 }	t_ray;
 
