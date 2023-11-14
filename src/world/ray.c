@@ -2,6 +2,8 @@
 
 static void	init_wall_tools(t_ray *ray)
 {
+	ray->hit = init_vector(0, 0, 0);
+	ray->length = 0;
 	ray->hor_inter = init_vector(0, 0, 0);
 	ray->ver_inter = init_vector(0, 0, 0);
 	ray->d_hor = init_vector(0, 0, 0);
@@ -17,9 +19,11 @@ void	init_ray(t_world *world)
 	ray = &world->rays[world->ray_index];
 	ray->id = world->ray_index;
 	ray->angle = world->theta;
+	if (ray->id > 0)
+		ray->angle = world->rays[ray->id - 1].angle + world->delta;
+	if (ray->angle > 2 * M_PI)
+		ray->angle -= 2 * M_PI;
 	ray->origin = copy_vector(world->pov);
-	ray->hit = init_vector(0, 0, 0);
-	ray->length = 0;
 	init_wall_tools(ray);
 	ray->img.x = 0;
 	ray->img.y = 0;

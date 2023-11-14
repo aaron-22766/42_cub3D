@@ -28,9 +28,6 @@ void	draw_world(t_game *game)
 		init_ray(&game->world);
 		find_ray_intersection(game, &game->world.rays[game->world.ray_index]);
 		draw_wall_slice(game, &game->world.rays[game->world.ray_index]);
-		game->world.theta += game->world.delta;
-		if (game->world.theta > 2 * M_PI)
-			game->world.theta -= 2 * M_PI;
 		game->world.ray_index++;
 	}
 }

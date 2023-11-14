@@ -3,11 +3,17 @@
 static double	get_projection_height(t_game *game, t_ray *ray)
 {
 	double	tile;
+	double	d_player_pp;
 	double	d_player_wall;
+	double	omega;
 
 	tile = (double) ray->texture->width;
 	d_player_wall = ray->length;
-	return ((tile * game->world.distance) / d_player_wall);
+	d_player_pp = tile * game->world.distance;
+	omega = fabs(ray->angle - (game->world.theta + game->world.fov_2));
+	if (cos(omega) != 0)
+		d_player_pp = d_player_pp / cos(omega);
+	return (d_player_pp / d_player_wall);
 }
 
 // static uint32_t	get_txt_pix_col(t_game *game, t_ray *ray)

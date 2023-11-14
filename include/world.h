@@ -60,7 +60,7 @@ typedef struct s_ray
  * @param image Image of the render
  * @param rays Array of rays
  * @param ray_index Index of the current ray
- * @param theta Angle of the current ray
+ * @param theta Angle of the first ray (fixed)
  * @param delta Angle between two rays
  * @param distance Distance between the player and the Projection Plane
  * @param pov Point of View of the player
