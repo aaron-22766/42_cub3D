@@ -23,12 +23,12 @@ static uint32_t	get_txt_slice(t_ray *ray)
 
 	tile = ray->texture->width;
 	if (ray->txt_id == NORTH || ray->txt_id == SOUTH)
-		return (tile - (((uint32_t)ray->hit.y) % tile));
+		return (tile - (((uint32_t)ray->hit.y) % tile) - 1);
 	else if (ray->txt_id == EAST || ray->txt_id == WEST)
 		return (((uint32_t)ray->hit.x) % tile);
 	else if (ray->length == ray->hor_length)
 		return (((uint32_t)ray->hit.x) % tile);
-	return (tile - (((uint32_t)ray->hit.y) % tile));
+	return (tile - (((uint32_t)ray->hit.y) % tile) - 1);
 }
 
 void	draw_wall_slice(t_game *game, t_ray *ray)

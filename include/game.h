@@ -13,7 +13,7 @@
 /* ************************************************************************** */
 
 # define WINDOW_WIDTH 1080
-# define WINDOW_HEIGHT 720
+# define WINDOW_HEIGHT 1080
 
 # define PLAYER_NORMAL_SPEED 1.5
 # define PLAYER_SNEAK_SPEED 0.5

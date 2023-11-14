@@ -1,16 +1,16 @@
 #include "../../include/cub3D.h"
 
-void	draw_texture(t_game *game)
+void	draw_texture(t_game *game, mlx_texture_t *texture)
 {
 	t_pixel	pixel;
 
 	pixel.y = 0;
-	while (pixel.y < game->world.image->height)
+	while (pixel.y < texture->height)
 	{
 		pixel.x = 0;
-		while (pixel.x < game->world.image->width)
+		while (pixel.x < texture->width)
 		{
-			pixel.color = get_pixel_txt(game->wall_textures[NORTH],
+			pixel.color = get_pixel_txt(texture,
 					pixel.x, pixel.y);
 			mlx_put_pixel(game->world.image, pixel.x, pixel.y, pixel.color);
 			pixel.x++;
