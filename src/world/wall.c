@@ -35,13 +35,11 @@ void	draw_wall_slice(t_game *game, t_ray *ray)
 {
 	double		p_h;
 	double		p_w_start;
-	double		p_w_ends;
 	u_int32_t	col;
 	u_int32_t	row;
 
 	p_h = get_projection_height(game, ray);
 	p_w_start = (game->world.image->height - p_h) / 2.0;
-	p_w_ends = (game->world.image->height + p_h) / 2.0;
 	ray->img.x = game->world.image->width - ray->id - 1;
 	ray->img.y = fmax(p_w_start, 0.0);
 	col = get_txt_slice(ray);
