@@ -51,7 +51,44 @@ make
 * **Change fov**: `SCROLL LEFT/RIGHT` (`SHIFT`+`UP/DOWN` on mice without LEFT/RIGHT)
 * **Exit**: `ESCAPE`
 
-### Maps/Scene Description
+For the program's input, either use a map we provide or check the [requirements for the map file](#Scene-Description-File-(Map)) to learn how to write one yourself. You can always just try out and the errors will help you figure it out as well!
+
+## 💬 Description
+
+### Mandatory
+
+* Look and move around in a seemingly 3D environment using your keyboard
+
+### Bonus
+
+* **Player collides with wall**
+* **A minimap system**
+  - shows a top-down view of a section of the map
+  - when player walks or rotates, the map around the centered player moves to keep the player always facing straight up
+  - shows walls, open and closed doors, as well as the player's fov
+  - can be zoomed in and out using the scroll wheel
+* **Doors which can open and close**
+* **Animated sprite**
+  - player holds a burning torch (requires *torch.png* sprite sheet)
+* **Rotate the point of view with the mouse**
+
+### Additional features
+
+* **Pause screen**
+  - shows at the start of the game and when pressing `P`
+  - blurred still frame of the game's state with clean texture (*pause.png* required)
+  - blur algorithm needed to be fast for it to look good
+* **Window resizing**
+  - when on the pause screen, the cursor can be used to resize the window and the game adjusts accordingly
+  - minimum size is the size of the *pause.png* texture
+  - if window is too small, only a message will be displayed, since MLX can't restrict resizing
+* **Player speed**
+  - sprint using `LEFT SHIFT`
+  - sneak using `F`
+* **fps tracker** in the console
+* **cropping textures** instead of stretching when texture isn't square
+
+## Scene Description File (Map)
 
 * The map must be composed of only 6 possible characters:
   - `0` for an empty space
@@ -97,38 +134,3 @@ C 225,30,0
 ```
 
 * If any misconfiguration of any kind is encountered in the file, the program must exit properly and return "Error\n" followed by an explicit error message of your choice.
-
-## 💬 Description
-
-### Mandatory
-
-* Look and move around in a seemingly 3D environment using your keyboard
-
-### Bonus
-
-* **Player collides with wall**
-* **A minimap system**
-  - shows a top-down view of a section of the map
-  - when player walks or rotates, the map around the centered player moves to keep the player always facing straight up
-  - shows walls, open and closed doors, as well as the player's fov
-  - can be zoomed in and out using the scroll wheel
-* **Doors which can open and close**
-* **Animated sprite**
-  - player holds a burning torch (requires *torch.png* sprite sheet)
-* **Rotate the point of view with the mouse**
-
-### Additional features
-
-* **Pause screen**
-  - shows at the start of the game and when pressing `P`
-  - blurred still frame of the game's state with clean texture (*pause.png* required)
-  - blur algorithm needed to be fast for it to look good
-* **Window resizing**
-  - when on the pause screen, the cursor can be used to resize the window and the game adjusts accordingly
-  - minimum size is the size of the *pause.png* texture
-  - if window is too small, only a message will be displayed, since MLX can't restrict resizing
-* **Player speed**
-  - sprint using `LEFT SHIFT`
-  - sneak using `F`
-* **fps tracker** in the console
-* **cropping textures** instead of stretching when texture isn't square
