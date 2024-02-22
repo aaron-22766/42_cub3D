@@ -51,7 +51,7 @@ make
 * **Change fov**: `SCROLL LEFT/RIGHT` (`SHIFT`+`UP/DOWN` on mice without LEFT/RIGHT)
 * **Exit**: `ESCAPE`
 
-For the program's input, either use a map we provide or check the [requirements for the map file](#Scene-Description-File-(Map)) to learn how to write one yourself. You can always just try out and the errors will help you figure it out as well!
+For the program's input, either use a map we provide or check the [requirements for the map file](#Scene-Description-File) to learn how to write one yourself. You can always just try out and the errors will help you figure it out as well!
 
 ## 💬 Description
 
@@ -88,7 +88,7 @@ For the program's input, either use a map we provide or check the [requirements 
 * **fps tracker** in the console
 * **cropping textures** instead of stretching when texture isn't square
 
-## Scene Description File (Map)
+## 🗺 Scene Description File
 
 * The map must be composed of only 6 possible characters:
   - `0` for an empty space
