@@ -24,7 +24,7 @@ This project is inspired by the world-famous eponymous 90's game *Wolfenstein 3D
 
 For this team project, I teamed up with [Lorenzo](https://github.com/LorenFiorini).
 
-![cub3D Demo](https://github.com/aaron-22766/aaron-22766/blob/main/bin/gifs/cub3D%20Demo.gif)
+[![Play Demo](https://github.com/aaron-22766/aaron-22766/blob/main/bin/gifs/cub3D%20Demo.gif)](https://www.youtube.com/watch?v=q129A7XnbvM)
 
 ## 🛠 Usage
 
